@@ -48,7 +48,7 @@ where m.ip_address like "%/24" or m.ip_address like "%/16";
 
 select *, count(*)
 from scuola.mock_data m
-where m.ip_address like "%/23" or m.ip_address like "%/16"
+where m.ip_address like "%/23" or m.ip_address like "%/16" -- dove utilizziamo le funzioni di aggregazione bisogna utilizzare having al posto di where
 group by m.first_name, m.last_name;
 
 select *, count(*) as quantity
