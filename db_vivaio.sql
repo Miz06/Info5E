@@ -1,4 +1,4 @@
-create database vivaio
+create database vivaio;
 
 create table vivaio.report(
  id int,
@@ -654,3 +654,4 @@ INSERT INTO vivaio.report (id,nome_latino,nome_comune,esotica,fornitore_id,parti
 	 (534,'Locusta soncino','Leycesteria',1,32,'11112222333','LVRMRA85M32H012J','Jacopo','Lavorato','Via Jaguar, 6','10100','Torino','TO'),
 	 (547,'Oxalis','Nespolo comune',1,32,'11112222333','LVRMRA85M32H012J','Jacopo','Lavorato','Via Jaguar, 6','10100','Torino','TO'),
 	 (557,'Prunus cerasifera','Pistacchio',0,32,'11112222333','LVRMRA85M32H012J','Jacopo','Lavorato','Via Jaguar, 6','10100','Torino','TO');
+
