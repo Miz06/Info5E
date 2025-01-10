@@ -38,27 +38,105 @@ order by ap.id_produttore asc;
 delete from sistems.access_point
 where id_produttore = 1;
 
+-- INNER JOIN
 select *
 from sistems.proprietari p
 inner join sistems.access_point a on p.id = a.id_produttore;
+
+-- LEFT JOIN 
+select 
+	coalesce (p.id, a.id_produttore) as id_producer,
+	p.nome,
+	p.cognome,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+left join sistems.access_point a on p.id = a.id_produttore;
+
+-- ----------- 
 
 select *
 from sistems.proprietari p
 left join sistems.access_point a on p.id = a.id_produttore;
 
+-- RIGHT JOIN
 select *
 from sistems.proprietari p
 right join sistems.access_point a on p.id = a.id_produttore;
 
+-- ----------- 
+
+select 
+	coalesce (p.id, a.id_produttore) as id_producer,
+	p.nome,
+	p.cognome,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+right join sistems.access_point a on p.id = a.id_produttore;
+
+-- FULL OUTER JOIN (specirficare sempre tutte le colonne senza utilizzare direttamente *)
+select 
+	coalesce (p.id, a.id_produttore) as id_producer,
+	p.nome,
+	p.cognome,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+left join sistems.access_point a on p.id = a.id_produttore
+
+union 
+
+select 
+	coalesce (p.id, a.id_produttore) as id_producer,
+	p.nome,
+	p.cognome,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+right join sistems.access_point a on p.id = a.id_produttore;
+
+-- ----------- 
+
+select 
+	p.id,
+	p.nome,
+	p.cognome,
+	a.id_produttore,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+left join sistems.access_point a on p.id = a.id_produttore
+
+union 
+
+select 
+	p.id,
+	p.nome,
+	p.cognome,
+	a.id_produttore,
+	a.prezzo,
+	a.porte,
+	a.marca
+from sistems.proprietari p
+right join sistems.access_point a on p.id = a.id_produttore;
+
+-- UPDATE
 update sistems.access_point 
 set prezzo = 130 
 where marca = 'marca1';
 
+-- DELETE/TRUNCATE/DROP
 delete from sistems.access_point
 where marca = 'marca2';
 
--- delete from sistems.access_point;
--- truncate table sistems.access_point;
+delete from sistems.access_point;
+-- truncate table sistems.access_point ;
 
 -- drop table sistems.access_point;
 -- drop table sistems.proprietari;
