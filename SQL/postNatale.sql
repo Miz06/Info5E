@@ -131,6 +131,21 @@ update sistems.access_point
 set prezzo = 130 
 where marca = 'marca1';
 
+select count(*), ap.marca
+from sistems.access_point ap
+group by ap.marca;
+
+-- group by
+select count(*), ap.marca
+from sistems.access_point ap
+group by ap.marca;
+
+-- having
+select count(*), ap.prezzo, ap.marca
+from sistems.access_point ap
+group by ap.marca
+having ap.prezzo > 100;
+
 -- DELETE/TRUNCATE/DROP
 delete from sistems.access_point
 where marca = 'marca2';
@@ -141,8 +156,3 @@ delete from sistems.access_point;
 -- drop table sistems.access_point;
 -- drop table sistems.proprietari;
 -- drop database sistems;
-
-
-
-
-
