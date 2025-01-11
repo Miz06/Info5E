@@ -42,7 +42,7 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Test</title>
     <style>
         body {
             background-color: #f7d7ff;
@@ -96,12 +96,13 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            display: block; /* Per centrare il pulsante */
+            display: block;
             margin: 3% auto;
         }
 
         .submit-button:hover {
-            background-color: #6a1b9a; /
+            background-color: #6a1b9a;
+        /
         }
     </style>
 </head>
@@ -116,59 +117,61 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
 <!--        </div>-->
 <!--    --><?php //endforeach;?>
 
-<div class="card">
-    <?php
-    echo '<label for="q1">' . htmlspecialchars($domande[$i]) . '</label>';
-    $i++;
-    ?>
-    <br>
-    <textarea id="q1" name="q1" rows="5" cols="40" placeholder="La tua risposta..."></textarea>
-</div>
+<form method="post" action="pagina2.php">
+    <div class="card">
+        <?php
+        echo '<label for="q1"> <strong>' . htmlspecialchars($domande[$i]) . '</strong></label>';
+        $i++;
+        ?>
+        <br>
+        <textarea id="q1" name="q1" rows="5" cols="40" placeholder="La tua risposta..."></textarea>
+    </div>
 
-<div class="card">
-    <?php
-    echo '<label for="q2">' . htmlspecialchars($domande[$i]);
-    $i++ . '</label>';
-    foreach ($opzioniD2 as $opzioneD2) {
-        echo '<br> <input type="radio" id="q2" name="q2" value="' . htmlspecialchars($opzioneD2) . '">' . htmlspecialchars($opzioneD2);
-    }
-    ?>
-</div>
+    <div class="card">
+        <?php
+        echo '<label for="q2"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
+        $i++ . '</label>';
+        foreach ($opzioniD2 as $opzioneD2) {
+            echo '<br> <input type="radio" id="q2" name="q2" value="' . htmlspecialchars($opzioneD2) . '">' . htmlspecialchars($opzioneD2);
+        }
+        ?>
+    </div>
 
-<div class="card">
-    <?php
-    echo '<label for="q3">' . htmlspecialchars($domande[$i]);
-    $i++ . '</label>';
-    foreach ($opzioniD3 as $opzioneD3) {
-        echo '<br> <input type="checkbox" id="q3" name="q3[]" value="' . htmlspecialchars($opzioneD3) . '">' . htmlspecialchars($opzioneD3);
-    }
-    ?>
-</div>
+    <div class="card">
+        <?php
+        echo '<label for="q3"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
+        $i++ . '</label>';
+        foreach ($opzioniD3 as $opzioneD3) {
+            echo '<br> <input type="checkbox" id="q3" name="q3[]" value="' . htmlspecialchars($opzioneD3) . '">' . htmlspecialchars($opzioneD3);
+        }
+        ?>
+    </div>
 
-<div class="card">
-    <?php
-    echo '<label for="q4">' . htmlspecialchars($domande[$i]);
-    $i++ . '</label>';
-    echo '<br> <select id="q4" name="q4">';
-    foreach ($opzioniD4 as $opzioneD4) {
-        echo '<option value="' . htmlspecialchars($opzioneD4) . '">' . htmlspecialchars($opzioneD4) . '</option>';
-    }
-    echo '</select>';
-    ?>
-</div>
+    <div class="card">
+        <?php
+        echo '<label for="q4"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
+        $i++ . '</label>';
+        echo '<br> <select id="q4" name="q4">';
+        foreach ($opzioniD4 as $opzioneD4) {
+            echo '<option value="' . htmlspecialchars($opzioneD4) . '">' . htmlspecialchars($opzioneD4) . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </div>
 
-<div class="card">
-    <?php
-    echo '<label for="q5">' . htmlspecialchars($domande[$i]);
-    $i++ . '</label>';
-    echo '<br> <select id="q5" name="q5[]" size="4" multiple>';
-    foreach ($opzioniD5 as $opzioneD5) {
-        echo '<option value="' . htmlspecialchars($opzioneD5) . '">' . htmlspecialchars($opzioneD5) . '</option>';
-    }
-    echo '</select>';
-    ?>
-</div>
+    <div class="card">
+        <?php
+        echo '<label for="q5"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
+        $i++ . '</label>';
+        echo '<br> <select id="q5" name="q5[]" size="4" multiple>';
+        foreach ($opzioniD5 as $opzioneD5) {
+            echo '<option value="' . htmlspecialchars($opzioneD5) . '">' . htmlspecialchars($opzioneD5) . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </div>
 
-<input type="submit" class="submit-button" value="Invia">
+    <input type="submit" class="submit-button" value="Invia"> <!-- Invia il form a pagina2.php -->
+</form>
 </body>
 </html>
