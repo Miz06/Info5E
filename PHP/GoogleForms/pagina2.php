@@ -11,6 +11,10 @@ $domande = [
 
 $i = 0;
 
+$name = $_POST['name'] ?? '';
+$surname = $_POST['surname'] ?? '';
+$email = $_POST['email'] ?? '';
+$pwd = $_POST['pwd'] ?? '';
 $q1 = $_POST['q1'] ?? ''; /* Per evitare di riscontrare errori */
 $q2 = $_POST['q2'] ?? '';
 $q3 = $_POST['q3'] ?? [];
@@ -37,6 +41,11 @@ $corrette = [
     <title>Correzione Test</title>
 </head>
 <style>
+    body {
+        background-color: #f7d7ff;
+        font-family: Arial, sans-serif;
+    }
+
     .card {
         background-color: white;
         padding: 2%;
@@ -58,13 +67,20 @@ $corrette = [
         right: 0; /*allinea l'elemento a destra*/
         height: 10%; /*Altezza della parte colorata*/
         background-color: blueviolet;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
     }
 </style>
 <body>
 <div class="card card-with-bar">
-    <h1>Test sui DBMS</h1>
+    <h1>Test inviato con successo</h1>
+    <?php
+    echo 'Nome: ' . htmlspecialchars($name) . '<hr>' . '<br>';
+    echo 'Cognome: ' . htmlspecialchars($surname) . '<hr>' . '<br>';
+    echo 'Email: ' . htmlspecialchars($email) . '<hr>' . '<br>';
+    echo 'Password: ' . htmlspecialchars($pwd) . '<hr>';
+    ?>
+
 </div>
 
 <?php foreach ($domande as $domanda): ?>
@@ -93,7 +109,10 @@ $corrette = [
                 $risposte = '';
         }
 
-        if (is_array($risposte)) {
+        if(empty($risposte)){
+            echo 'Nessuna risposta selezionata ' . '✗<br>';
+        }
+        elseif (is_array($risposte)) {
             echo 'Risposte date: <br>';
             foreach ($risposte as $risposta)
                 if (in_array($risposta, $corrette)) {
@@ -111,19 +130,20 @@ $corrette = [
                 $v = ['a', 'e', 'i', 'o', 'u'];
 
                 for ($j = 0; $j < strlen($str); $j++)
-                    if (ctype_digit($str[$i])) {
+                    if (ctype_digit($str[$j])) {
                         $numeri++;
-                    } elseif (in_array($str[$i], $v)) {
+                    } elseif (in_array($str[$j], $v)) {
                         $vocali++;
-                    } elseif (ctype_alpha($str[$i])) {
+                    } elseif (ctype_alpha($str[$j])) {
                         $consonanti++;
                     }
 
-                echo 'Numero parole: ' . $parole . '<br>';
+                echo 'Risposta data: <br> ~ ' . htmlspecialchars($risposte) . '<br>';
+
+                echo '<br> Numero parole: ' . $parole . '<br>';
                 echo 'Numero vocali: ' . $vocali . '<br>';
                 echo 'Numero consonanti: ' . $consonanti . '<br>';
                 echo 'Numero caratteri numerici: ' . $numeri . '<br>';
-                echo 'Risposta data: <br>' . htmlspecialchars($risposte) . '<br>';
 
             } else {
                 echo 'Risposta data: <br>';

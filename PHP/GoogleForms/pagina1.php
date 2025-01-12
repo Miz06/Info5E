@@ -70,21 +70,19 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
             right: 0; /*allinea l'elemento a destra*/
             height: 10%; /*Altezza della parte colorata*/
             background-color: blueviolet;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
         }
 
-        textarea {
+        textarea, .pwdStyle {
             width: 100%;
-            border: 1px solid #cdcdcd;
-            border-radius: 5px;
             resize: vertical; /* Permette di ridimensionare solo verticalmente */
             margin-top: 10px;
-            background-color: #f9f9f9;
+            border: none;
+            background-color: white;
         }
 
-        textarea:focus {
-            border-color: #4285F4;
+        textarea:focus, .pwdStyle:focus {
             outline: none; /* Rimuove il contorno predefinito */
         }
 
@@ -102,22 +100,43 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
 
         .submit-button:hover {
             background-color: #6a1b9a;
-        /
         }
+
     </style>
 </head>
 <body>
-<div class="card card-with-bar">
-    <h1>Test sui DBMS</h1>
-</div>
-
-<!--    --><?php //foreach ($domande as $domanda):?>
-<!--        <div class="card">-->
-<!--            --><?php //echo htmlspecialchars($domanda);?>
-<!--        </div>-->
-<!--    --><?php //endforeach;?>
-
 <form method="post" action="pagina2.php">
+    <div class="card card-with-bar">
+        <h1 style="padding-top: 5%">Test sui DBMS</h1>
+
+        <br>
+        <label for="name"><strong>Nome</strong></label>
+        <textarea id="name" name="name" rows="1" placeholder="..." required></textarea> <!-- required viene utilizzato per rendere il campo obbligatorio -->
+        <hr>
+
+        <br>
+        <label for="surname"><strong>Cognome</strong></label>
+        <textarea id="surname" name="surname" rows="1" placeholder="..." required></textarea>
+        <hr>
+
+        <br>
+        <label for="email"><strong>Email</strong></label>
+        <textarea id="email" name="email" rows="1" placeholder="..." required></textarea>
+        <hr>
+
+        <br>
+        <label for="pwd"><strong>Password</strong></label>
+        <br>
+        <input type="password" id="pwd" name="pwd" placeholder="..." required style="border:none">
+        <hr>
+    </div>
+
+    <!--    --><?php //foreach ($domande as $domanda):?>
+    <!--        <div class="card">-->
+    <!--            --><?php //echo htmlspecialchars($domanda);?>
+    <!--        </div>-->
+    <!--    --><?php //endforeach;?>
+
     <div class="card">
         <?php
         echo '<label for="q1"> <strong>' . htmlspecialchars($domande[$i]) . '</strong></label>';
