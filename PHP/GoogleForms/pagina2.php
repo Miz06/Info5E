@@ -70,6 +70,15 @@ $corrette = [
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
+
+    .red{
+        color: red;
+    }
+
+    .green{
+        color: green;
+    }
+
 </style>
 <body>
 <div class="card card-with-bar">
@@ -110,15 +119,15 @@ $corrette = [
         }
 
         if(empty($risposte)){
-            echo 'Nessuna risposta selezionata ' . '✗<br>';
+            echo 'Nessuna risposta selezionata ' . '<span class="red"> ✗</span><br>';
         }
         elseif (is_array($risposte)) {
             echo 'Risposte date: <br>';
             foreach ($risposte as $risposta)
                 if (in_array($risposta, $corrette)) {
-                    echo '~ ' . htmlspecialchars($risposta) . ' ✓<br>';
+                    echo '~ ' . htmlspecialchars($risposta) . '<span class="green"> ✓</span><br>';
                 } else {
-                    echo '~ ' . htmlspecialchars($risposta) . ' ✗<br>';
+                    echo '~ ' . htmlspecialchars($risposta) . '<span class="red"> ✗</span><br>';
                 }
         } else {
             if ($i == 0) {
@@ -148,9 +157,9 @@ $corrette = [
             } else {
                 echo 'Risposta data: <br>';
                 if (in_array($risposte, $corrette)) {
-                    echo '~ ' . htmlspecialchars($risposte) . ' ✓<br>';
+                    echo '~ ' . htmlspecialchars($risposte) . '<span class="green"> ✓</span><br>';
                 } else {
-                    echo '~ ' . htmlspecialchars($risposte) . ' ✗<br>';
+                    echo '~ ' . htmlspecialchars($risposte) . '<span class="red"> ✗</span><br>';
                 }
             }
         }

@@ -74,7 +74,7 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
             border-top-right-radius: 15px;
         }
 
-        textarea, .pwdStyle {
+        textarea, .inputStyle {
             width: 100%;
             resize: vertical; /* Permette di ridimensionare solo verticalmente */
             margin-top: 10px;
@@ -82,7 +82,7 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
             background-color: white;
         }
 
-        textarea:focus, .pwdStyle:focus {
+        textarea:focus, .inputStyle:focus {
             outline: none; /* Rimuove il contorno predefinito */
         }
 
@@ -121,13 +121,14 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
 
         <br>
         <label for="email"><strong>Email</strong></label>
-        <textarea id="email" name="email" rows="1" placeholder="..." required></textarea>
+        <br>
+        <input type="email" id="email" name="email" placeholder="..." required class="inputStyle"></input>
         <hr>
 
         <br>
         <label for="pwd"><strong>Password</strong></label>
         <br>
-        <input type="password" id="pwd" name="pwd" placeholder="..." required style="border:none">
+        <input type="password" id="pwd" name="pwd" placeholder="..." required class="inputStyle">
         <hr>
     </div>
 
