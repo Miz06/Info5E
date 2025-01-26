@@ -1,0 +1,27 @@
+.topnav{
+    top: 0;
+    margin-bottom: 5%;
+}
+
+.topnav a{
+    color: white;
+    margin-left: 4%;
+    margin-right: 4%;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 1%;
+    text-decoration: none;
+}
+
+.topnav, .footer{
+    padding: 2%;
+    background-color: black;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.footer{
+    bottom: 0;
+    color: white;
+}
