@@ -42,18 +42,14 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
     <title>Test</title>
     <style>
-        body {
-            background-color: #f7d7ff;
-            font-family: Arial, sans-serif;
-        }
-
         .card {
             background-color: white;
             padding: 2%;
-            margin-left: 25%;
-            margin-right: 25%;
+            margin-left: 20%;
+            margin-right: 20%;
             margin-top: 2%;
             margin-bottom: 2%;
             border: 1px solid #b8b8b8;
@@ -102,98 +98,42 @@ $i = 0; /* utilizzato per la scrittura in php della domanda corrente*/
             background-color: #6a1b9a;
         }
 
+        form {
+            margin-bottom: 20%;
+        }
     </style>
 </head>
 <body>
-<?=require './reference/navbar.php';?>
+<?php require './navbar.php'; ?>
+
 <form method="post" action="pagina2.php">
     <div class="card card-with-bar">
-        <h1 style="padding-top: 5%">Test sui DBMS</h1>
+        <h1 style="padding-top: 5%">CREATE - Aggiungi nuovo libro</h1>
 
         <br>
-        <label for="name"><strong>Nome</strong></label>
-        <textarea id="name" name="name" rows="1" placeholder="..." required></textarea> <!-- required viene utilizzato per rendere il campo obbligatorio -->
+        <label for="titolo"><strong>Titolo</strong></label>
+        <textarea id="titolo" name="titolo" rows="1" placeholder="..." required></textarea>
         <hr>
 
         <br>
-        <label for="surname"><strong>Cognome</strong></label>
-        <textarea id="surname" name="surname" rows="1" placeholder="..." required></textarea>
+        <label for="Autore"><strong>Autore</strong></label>
+        <textarea id="Autore" name="Autore" rows="1" placeholder="..." required></textarea>
         <hr>
 
         <br>
-        <label for="email"><strong>Email</strong></label>
-        <br>
-        <input type="email" id="email" name="email" placeholder="..." required class="inputStyle"></input>
+        <label for="Genere"><strong>Genere</strong></label>
+        <textarea id="Autore" name="Autore" rows="1" placeholder="..." required></textarea>
         <hr>
 
         <br>
-        <label for="pwd"><strong>Password</strong></label>
-        <br>
-        <input type="password" id="pwd" name="pwd" placeholder="..." required class="inputStyle">
+        <label for="Prezzo"><strong>Prezzo</strong></label>
+        <textarea id="Prezzo" name="Prezzo" rows="1" placeholder="..." required></textarea>
         <hr>
     </div>
 
-    <!--    --><?php //foreach ($domande as $domanda):?>
-    <!--        <div class="card">-->
-    <!--            --><?php //echo htmlspecialchars($domanda);?>
-    <!--        </div>-->
-    <!--    --><?php //endforeach;?>
-
-    <div class="card">
-        <?php
-        echo '<label for="q1"> <strong>' . htmlspecialchars($domande[$i]) . '</strong></label>';
-        $i++;
-        ?>
-        <br>
-        <textarea id="q1" name="q1" rows="5" cols="40" placeholder="La tua risposta..."></textarea>
-    </div>
-
-    <div class="card">
-        <?php
-        echo '<label for="q2"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
-        $i++ . '</label>';
-        foreach ($opzioniD2 as $opzioneD2) {
-            echo '<br> <input type="radio" id="q2" name="q2" value="' . htmlspecialchars($opzioneD2) . '">' . htmlspecialchars($opzioneD2);
-        }
-        ?>
-    </div>
-
-    <div class="card">
-        <?php
-        echo '<label for="q3"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
-        $i++ . '</label>';
-        foreach ($opzioniD3 as $opzioneD3) {
-            echo '<br> <input type="checkbox" id="q3" name="q3[]" value="' . htmlspecialchars($opzioneD3) . '">' . htmlspecialchars($opzioneD3);
-        }
-        ?>
-    </div>
-
-    <div class="card">
-        <?php
-        echo '<label for="q4"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
-        $i++ . '</label>';
-        echo '<br> <select id="q4" name="q4">';
-        foreach ($opzioniD4 as $opzioneD4) {
-            echo '<option value="' . htmlspecialchars($opzioneD4) . '">' . htmlspecialchars($opzioneD4) . '</option>';
-        }
-        echo '</select>';
-        ?>
-    </div>
-
-    <div class="card">
-        <?php
-        echo '<label for="q5"> <strong>' . htmlspecialchars($domande[$i]) . ' </strong>';
-        $i++ . '</label>';
-        echo '<br> <select id="q5" name="q5[]" size="4" multiple>';
-        foreach ($opzioniD5 as $opzioneD5) {
-            echo '<option value="' . htmlspecialchars($opzioneD5) . '">' . htmlspecialchars($opzioneD5) . '</option>';
-        }
-        echo '</select>';
-        ?>
-    </div>
-
-    <input type="submit" class="submit-button" value="Invia"> <!-- Invia il form a pagina2.php -->
+    <input type="submit" class="submit-button" value="Crea"> <!-- Invia il form a pagina2.php -->
 </form>
-<?=require './reference/footer.php';?>
+
+<?php require './footer.php'; ?>
 </body>
 </html>
