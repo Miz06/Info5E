@@ -1,9 +1,11 @@
 body{
     background-color: #fdf5ff;
+    margin: 0;
 }
 
 .topnav{
     top: 0;
+    position: fixed;
 }
 
 .topnav a{
@@ -22,10 +24,10 @@ body{
     text-align: center;
     width: 100%;
     padding: 2%;
-    position: fixed;
 }
 
 .footer{
     bottom: 0;
     color: white;
+    position: fixed;
 }

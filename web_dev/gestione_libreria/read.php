@@ -1,15 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./style.css">
-    <title>Test</title>
-</head>
-<body>
-<?php require './navbar.php';?>
+<?php
+$title = 'Read';
+require './connection.php';
+require './navbar.php';
+require './footer.php';
 
-<?php require './footer.php';?>
-</body>
-</html>
+$query = 'select * from table_libreria';
+try {
+    $stm = $db->prepare($query);
+    $stm->execute();
+    while ($libro = $stm->fetch()) {
+        echo "Titolo: " . $libro->titolo . "<br>";
+        echo "Genere: " . $libro->genere . "<br>";
+        echo "Autore: " . $libro->autore . "<br>";
+        echo "Prezzo: " . $libro->prezzo . "<br>";
+        echo "Anno pubblicazione: " . $libro->anno_pubblicazione . "<hr>";
+    }
+    $stm->closeCursor();
+} catch (Exception $e) {
+    logError($e);
+}
+
+function logError(Exception $e)
+{
+    error_log($e->getMessage(), 3, 'log/database_log');
+    echo 'A DB error occurred, Try again';
+}
+?>
+

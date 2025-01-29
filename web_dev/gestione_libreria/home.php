@@ -9,7 +9,7 @@
     <title>Enhanced Bootstrap Carousel</title>
     <style>
         .carousel {
-            margin: 5%;
+            margin: 10%;
         }
 
         .carousel img {
@@ -31,6 +31,8 @@
             background-color: black;
             border-radius: 50%;
         }
+
+
     </style>
 </head>
 <body>
