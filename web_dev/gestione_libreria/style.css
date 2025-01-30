@@ -1,0 +1,88 @@
+body{
+    background-color: #fdf5ff;
+    font-family: Arial, sans-serif;
+    margin-top: 10%;
+}
+
+.topnav{
+    top: 0;
+    position: fixed;
+}
+
+.topnav, .footer {
+    background-color: black;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 1%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box; <!-- va utilizzato per garantire che il padding non influisca sul centramento degli elementi -->
+}
+
+.topnav a {
+    color: white;
+    margin: 0 2%;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 1%;
+    text-decoration: none;
+}
+
+.footer{
+    bottom: 0;
+    color: white;
+}
+
+form{
+    align-items: center;
+}
+
+.card{
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #b8b8b8;
+    margin: auto;
+    padding: 2%;
+    width: 50%;
+}
+
+h1{
+    background-color: blueviolet;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    padding: 2%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button {
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 1%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 3% auto;
+    width: 50%;
+}
+
+.submit-button:hover{
+    background-color: darkgreen;
+}
+
+textarea{
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    background-color: white;
+}
+
+textarea:focus{
+    outline: none; /* Rimuove il contorno predefinito quanto si scrive nella textbox */
+}
+
