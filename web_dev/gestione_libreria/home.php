@@ -1,42 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>Enhanced Bootstrap Carousel</title>
-    <style>
-        .carousel {
-            margin: 10%;
-        }
+<?php
+$title = 'Home';
+require './navbar.php';
+require './footer.php';
+?>
 
-        .carousel img {
-            height: 400px;
-            width: 80%;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-caption {
-            background-color: lightgrey;
-            border-radius: 10px;
-            padding: 2%;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: black;
-            border-radius: 50%;
-        }
-
-
-    </style>
-</head>
-<body>
-<?php require './navbar.php'; ?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+<link href="./style.css" rel="stylesheet">
 
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
@@ -48,26 +18,26 @@
     <div class="carousel-inner">
 
         <div class="carousel-item active" data-bs-interval="10000">
-            <img src="./images/img1.jpg" class="d-block w-100" alt="First slide">
+            <img src="./images/mySQL.png" class="d-block w-100" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
-                <h5>First Slide Label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+                <h5>mySQL</h5>
+                <p>MySQL è un sistema di gestione di database relazionali open source indipendente dalla piattaforma e che offre innumerevoli usi e funzionalità.</p>
             </div>
         </div>
 
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="./images/img1.jpg" class="d-block w-100" alt="Second slide">
+            <img src="./images/xampp.png" class="d-block w-100" alt="Second slide">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Second Slide Label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
+                <h5>XAMPP</h5>
+                <p>XAMPP è una distribuzione di Apache completamente gratuita e semplice da installare, contenente MySQL, PHP e Perl.</p>
             </div>
         </div>
 
         <div class="carousel-item">
-            <img src="./images/img1.jpg" class="d-block w-100" alt="Third slide">
+            <img src="./images/php.jpg" class="d-block w-100" alt="Third slide">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Third Slide Label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+                <h5>PHP</h5>
+                <p>Il PHP permette l'elaborazione di dati da base di dati MySQL. I dati verranno richiesti, inseriti e modificati attraverso opportune query usando alcune estensioni tra cui MySQL e PDO.</p>
             </div>
         </div>
 
@@ -81,9 +51,3 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-
-<?php require './footer.php'; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

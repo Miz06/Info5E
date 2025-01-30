@@ -8,6 +8,9 @@ require './footer.php';
 $query = 'select * from table_libreria';
 ?>
 
+<div class="card">
+<h1>READ</h1>
+
 <table>
     <thead> <!-- contiene le intestazioni-->
     <tr>
@@ -48,5 +51,6 @@ $query = 'select * from table_libreria';
     ?>
     </tbody>
 </table>
+</div>
 
 

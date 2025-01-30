@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         error_log($e->getMessage(), 3, 'log/database_log');
         echo 'A DB error occurred, Try again';
     }
+
+    header('Location: conferma.html');
 }
 ?>
 

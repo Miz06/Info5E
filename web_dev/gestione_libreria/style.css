@@ -92,7 +92,7 @@ textarea:focus{
 table {
     width: 80%;
     border-collapse: collapse; /* Rimuove gli spazi tra le celle */
-    margin: auto;
+    margin: 4% auto;
 }
 
 th, td {
@@ -102,7 +102,7 @@ th, td {
 }
 
 th {
-    background-color: blueviolet;
+    background-color: forestgreen;
     color: white;
 }
 
@@ -110,3 +110,26 @@ tr:hover {
     background-color: lightgray;
 }
 
+.carousel {
+    margin: 10%;
+}
+
+.carousel img {
+    height: 500px;
+    width: 80%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-caption {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    border-radius: 50%;
+    background-color: black;
+}
