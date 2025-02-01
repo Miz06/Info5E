@@ -43,4 +43,3 @@ create table db_campionato_automobilistico.case_partecipanti_gare(
 	foreign key (nome_casa) references db_campionato_automobilistico.case(nome),
 	foreign key (data_gara, luogo_gara) references db_campionato_automobilistico.gare(data, luogo)
 );
-
