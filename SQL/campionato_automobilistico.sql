@@ -11,6 +11,7 @@ create table db_campionato_automobilistico.piloti(
 	cognome varchar(30),
 	nazionalita varchar(30),
 	vittorie int default 0,
+	tempo time,
 	numero int auto_increment primary key, 
 	nome_casa varchar(30) not null,
 	foreign key (nome_casa) references db_campionato_automobilistico.case(nome)
