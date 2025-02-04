@@ -14,9 +14,11 @@ body {
 .navbar, footer {
     background-color: black;
     text-align: center;
-    padding: 2%;
+    padding: 0;
     align-items: center; /* Centra verticalmente il contenuto */
     justify-content: center; /* Centra orizzontalmente il contenuto */
+    display: flex;
+    width: 100%;
 }
 
 .navbar a {
@@ -35,7 +37,6 @@ body {
 
 footer {
     color: white;
-    width: 100%;
     margin-top: auto;
 }
 
@@ -49,7 +50,6 @@ form{
     border: 1px solid #b8b8b8;
     margin: auto;
     padding: 2%;
-    width: 50%;
 }
 
 h1{
@@ -75,7 +75,7 @@ h1{
     margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 20%;
 }
 
 .submit-button:hover{
