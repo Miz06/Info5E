@@ -1,23 +1,22 @@
-body{
-    background-color: #fdf5ff;
-    font-family: Arial, sans-serif;
-    margin-top: 10%;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar{
-    top: 0;
-    position: fixed;
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
 }
 
 .navbar, footer {
     background-color: black;
-    left: 0;
     text-align: center;
-    width: 100%;
-    padding: 1%;
-    position: fixed;
-    display: flex;
-    justify-content: center;
+    padding: 2%;
+    align-items: center; /* Centra verticalmente il contenuto */
+    justify-content: center; /* Centra orizzontalmente il contenuto */
 }
 
 .navbar a {
@@ -27,16 +26,21 @@ body{
     border-radius: 20px;
     padding: 1%;
     text-decoration: none;
+    transition: background-color 0.3s;
 }
 
-footer{
-    bottom: 0;
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+footer {
     color: white;
+    width: 100%;
+    margin-top: auto;
 }
-
 
 form{
-    align-items: center;
+    margin-top: 2%;
 }
 
 .card{
@@ -49,7 +53,7 @@ form{
 }
 
 h1{
-    background-color: blueviolet;
+    background-color: darkcyan;
     text-align: center;
     color: white;
     border-radius: 20px;
@@ -87,4 +91,49 @@ textarea{
 
 textarea:focus{
     outline: none; /* Rimuove il contorno predefinito quanto si scrive nella textbox */
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse; /* Rimuove gli spazi tra le celle */
+    margin: 4% auto;
+}
+
+th, td {
+    padding: 1%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+th {
+    background-color: forestgreen;
+    color: white;
+}
+
+tr:hover {
+    background-color: lightgray;
+}
+
+.carousel {
+    margin: 10%;
+}
+
+.carousel img {
+    height: 500px;
+    width: 80%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-caption {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    border-radius: 50%;
+    background-color: black;
 }
