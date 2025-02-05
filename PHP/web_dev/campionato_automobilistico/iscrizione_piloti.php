@@ -1,11 +1,31 @@
 <?php
 $title = 'Iscrizione piloti';
-$case=[
-        "ciao",
-        "lello",
-];
+
 require './connectionToDB.php';
 require './navbar.php';
+
+$query = 'select nome from db_campionato_automobilistico.case';
+$case = []; // Inizializza un array vuoto
+
+try {
+    $stm = $db->prepare($query);
+    $stm->execute();
+
+    // Recupera tutte le tuple e le memorizza nell'array
+    while ($casa = $stm->fetch(PDO::FETCH_ASSOC)) {
+        $case[] = $casa['nome']; // Aggiungi il nome all'array
+    }
+    $stm->closeCursor();
+} catch (Exception $e) {
+    logError($e);
+}
+
+function logError(Exception $e)
+{
+    error_log($e->getMessage(), 3, 'log/database_log');
+    echo 'A DB error occurred, Try again';
+}
+
 ?>
 
 <form method="post" action="iscrizione_piloti.php">
@@ -31,8 +51,8 @@ require './navbar.php';
         <label for="casa_pilota"><strong>Casa</strong></label>
         <br>
         <?php
-            foreach($case as $casa){
-                echo "<br><input type='radio' id='casa_pilota' name='casa_pilota' value='$casa'> $casa";
+            foreach($case as $c){
+                echo "<br><input type='radio' id='casa_pilota' name='casa_pilota' value='$c'> $c";
             }
         ?>
         <hr>
