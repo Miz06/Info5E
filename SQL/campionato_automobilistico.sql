@@ -28,18 +28,20 @@ create table db_campionato_automobilistico.gare
 );
 
 -- rappresenta la relazione molti a molti tra piloti e gare 
-create table db_campionato_automobilistico.piloti_partecipanti_gare
+create table db_campionato_automobilistico.gareggiare
 (
     id_pilota  int,
     luogo_gara varchar(30),
     data_gara  datetime,
     primary key (id_pilota, luogo_gara, data_gara),
+    tempo_migliore time,
+    tempo_gara time,
     foreign key (id_pilota) references db_campionato_automobilistico.piloti (numero),
     foreign key (data_gara, luogo_gara) references db_campionato_automobilistico.gare (data, luogo)
 );
 
 -- rappresenta la relazione molti a molti tra case e gare 
-create table db_campionato_automobilistico.case_partecipanti_gare
+create table db_campionato_automobilistico.partecipare
 (
     nome_casa  varchar(30),
     luogo_gara varchar(30),
