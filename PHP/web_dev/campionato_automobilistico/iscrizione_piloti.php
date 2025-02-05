@@ -23,11 +23,6 @@ require './navbar.php';
         <textarea id="nazionalita_pilota" name="nazionalita_pilota" rows="1" placeholder="..." required></textarea>
         <hr>
 
-        <br>
-        <label for="tempo_pilota"><strong>Tempo</strong></label>
-        <textarea id="tempo_pilota" name="tempo_pilota" rows="1" placeholder="..." required></textarea>
-        <hr>
-
     </div>
 
     <br>
