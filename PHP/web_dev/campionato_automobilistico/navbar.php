@@ -12,7 +12,9 @@
 <body>
 <div class="navbar">
     <a href="./iscrizione_piloti.php">Iscrizione piloti</a>
-    <a href="./classifiche.php">Classifiche</a>
+    <a href="./iscrizione_case.php">Iscrizione case</a>
+    <a href="classifiche_gare.php">Classifiche gare</a>
+    <a href="classifica_case.php">Classifica casa</a>
 </div>
 </body>
 </html>

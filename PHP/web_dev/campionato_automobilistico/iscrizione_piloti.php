@@ -1,6 +1,10 @@
 <?php
 $title = 'Iscrizione piloti';
-
+$case=[
+        "ciao",
+        "lello",
+];
+require './connectionToDB.php';
 require './navbar.php';
 ?>
 
@@ -23,25 +27,18 @@ require './navbar.php';
         <textarea id="nazionalita_pilota" name="nazionalita_pilota" rows="1" placeholder="..." required></textarea>
         <hr>
 
-    </div>
-
-    <br>
-
-    <div class="card">
-        <h1>Dati casa</h1>
-
         <br>
-        <label for="nome_casa"><strong>Nome</strong></label>
-        <textarea id="nome_casa" name="nome_casa" rows="1" placeholder="..." required></textarea>
+        <label for="casa_pilota"><strong>Casa</strong></label>
+        <br>
+        <?php
+            foreach($case as $casa){
+                echo "<br><input type='radio' id='casa_pilota' name='casa_pilota' value='$casa'> $casa";
+            }
+        ?>
         <hr>
 
-        <br>
-        <label for="colore_casa"><strong>Colore</strong></label>
-        <textarea id="colore_casa" name="colore_casa" rows="1" placeholder="..." required></textarea>
-        <hr>
     </div>
-
-    <input type="submit" class="submit-button" value="ISCRIVI">
+    <input type="submit" class="submit-button" value="ISCRIVI PILOTA">
 </form>
 
 <?php require './footer.php';
