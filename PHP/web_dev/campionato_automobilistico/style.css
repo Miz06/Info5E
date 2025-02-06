@@ -64,6 +64,18 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+h2{
+    background-color: darkcyan;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    padding: 1%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5%;
+}
+
 .submit-button {
     background-color: forestgreen;
     color: white;
@@ -96,7 +108,7 @@ textarea:focus{
 table {
     width: 80%;
     border-collapse: collapse; /* Rimuove gli spazi tra le celle */
-    margin: 4% auto;
+    margin: 0 auto;
 }
 
 th, td {
@@ -106,7 +118,7 @@ th, td {
 }
 
 th {
-    background-color: forestgreen;
+    background-color: blueviolet;
     color: white;
 }
 

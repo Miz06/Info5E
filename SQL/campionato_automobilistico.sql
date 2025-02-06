@@ -50,3 +50,16 @@ create table db_campionato_automobilistico.partecipare
     foreign key (nome_casa) references db_campionato_automobilistico.case (nome),
     foreign key (data_gara, luogo_gara) references db_campionato_automobilistico.gare (data, luogo)
 );
+
+INSERT INTO db_campionato_automobilistico.case (nome, colore)
+VALUES ('Mercedes', 'Argento'),
+       ('Red Bull', 'Blu'),
+       ('McLaren', 'Arancione'),
+       ('Aston Martin', 'Verde');
+
+INSERT INTO db_campionato_automobilistico.piloti (nome, cognome, nazionalita, vittorie, nome_casa)
+VALUES ('Charles', 'Leclerc', 'Monegasco', 5, 'Ferrari'),
+       ('Lewis', 'Hamilton', 'Inglese', 103, 'Mercedes'),
+       ('Max', 'Verstappen', 'Olandese', 55, 'Red Bull'),
+       ('Lando', 'Norris', 'Inglese', 1, 'McLaren'),
+       ('Fernando', 'Alonso', 'Spagnolo', 32, 'Aston Martin');
