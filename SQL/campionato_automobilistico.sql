@@ -3,7 +3,7 @@ database db_campionato_automobilistico;
 use
 db_campionato_automobilistico;
 
-create table db_campionato_automobilistico.case
+create table db_campionato_automobilistico.case_automobilistiche
 (
     nome   varchar(30) primary key,
     colore varchar(30)
@@ -17,7 +17,7 @@ create table db_campionato_automobilistico.piloti
     vittorie    int default 0,
     numero      int auto_increment primary key,
     nome_casa   varchar(30) not null,
-    foreign key (nome_casa) references db_campionato_automobilistico.case (nome)
+    foreign key (nome_casa) references db_campionato_automobilistico.case_automobilistiche (nome)
 );
 
 create table db_campionato_automobilistico.gare
@@ -47,29 +47,29 @@ create table db_campionato_automobilistico.partecipare
     luogo_gara varchar(30),
     data_gara  datetime,
     primary key (nome_casa, luogo_gara, data_gara),
-    foreign key (nome_casa) references db_campionato_automobilistico.case (nome),
+    foreign key (nome_casa) references db_campionato_automobilistico.case_automobilistiche (nome),
     foreign key (data_gara, luogo_gara) references db_campionato_automobilistico.gare (data, luogo)
 );
 
-INSERT INTO db_campionato_automobilistico.case (nome, colore)
+INSERT INTO db_campionato_automobilistico.case_automobilistiche (nome, colore)
 VALUES ('Mercedes', 'Argento'),
        ('Red Bull', 'Blu'),
        ('McLaren', 'Arancione'),
        ('Aston Martin', 'Verde');
 
 INSERT INTO db_campionato_automobilistico.piloti (nome, cognome, nazionalita, vittorie, nome_casa)
-VALUES ('Charles', 'Leclerc', 'Monegasco', 5, 'Ferrari'),
-       ('Lewis', 'Hamilton', 'Inglese', 103, 'Mercedes'),
+VALUES ('Lewis', 'Hamilton', 'Inglese', 103, 'Mercedes'),
        ('Max', 'Verstappen', 'Olandese', 55, 'Red Bull'),
        ('Lando', 'Norris', 'Inglese', 1, 'McLaren'),
-       ('Fernando', 'Alonso', 'Spagnolo', 32, 'Aston Martin');
+       ('Fernando', 'Alonso', 'Spagnolo', 32, 'Aston Martin'),
+       ('Sebastian', 'Vettel', 'Tedesco', 53, 'Aston Martin');
 
 INSERT INTO db_campionato_automobilistico.gare (data, luogo, tempo_veloce)
-VALUES ('2024-03-10 14:00:00', 'Monza', '01:20:34'),
-       ('2024-04-07 14:00:00', 'Silverstone', '01:25:6'),
-       ('2024-05-12 14:00:00', 'Monaco', '01:12:8'),
-       ('2024-06-16 14:00:00', 'Spa-Francorchamps', '01:45:12'),
-       ('2024-07-21 14:00:00', 'Suzuka', '01:30:46');
+VALUES ('2024-03-10 14:00:00', 'Monza', '00:01:34'),
+       ('2024-04-07 14:00:00', 'Silverstone', '00:01:40'),
+       ('2024-05-12 14:00:00', 'Monaco', '00:01:45'),
+       ('2024-06-16 14:00:00', 'Spa-Francorchamps', '00:01:28'),
+       ('2024-07-21 14:00:00', 'Suzuka', '00:01:51');
 
 INSERT INTO db_campionato_automobilistico.gareggiare (id_pilota, luogo_gara, data_gara, posizione)
 VALUES (1, 'Monza', '2024-03-10 14:00:00', 2),
@@ -83,12 +83,27 @@ VALUES (1, 'Monza', '2024-03-10 14:00:00', 2),
        (5, 'Monaco', '2024-05-12 14:00:00', 2);
 
 INSERT INTO db_campionato_automobilistico.partecipare (nome_casa, luogo_gara, data_gara)
-VALUES ('Ferrari', 'Monza', '2024-03-10 14:00:00'),
-       ('Mercedes', 'Monza', '2024-03-10 14:00:00'),
+VALUES ('Mercedes', 'Monza', '2024-03-10 14:00:00'),
        ('Red Bull', 'Monza', '2024-03-10 14:00:00'),
        ('McLaren', 'Silverstone', '2024-04-07 14:00:00'),
        ('Aston Martin', 'Silverstone', '2024-04-07 14:00:00'),
        ('Red Bull', 'Silverstone', '2024-04-07 14:00:00'),
-       ('Ferrari', 'Monaco', '2024-05-12 14:00:00'),
        ('Mercedes', 'Monaco', '2024-05-12 14:00:00'),
        ('Aston Martin', 'Monaco', '2024-05-12 14:00:00');
+
+create table db_campionato_automobilistico.datiCampionato as
+select p.nome,
+       p.cognome,
+       p.nazionalita,
+       p.numero,
+       p.vittorie,
+       p.nome_casa,
+       c.colore     as colore_casa,
+       g.data_gara  as data_gara,
+       g.luogo_gara as luogo_gara,
+       g.posizione  as posizione,
+       g1.tempo_veloce
+from db_campionato_automobilistico.piloti p
+         join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.nome
+         join db_campionato_automobilistico.gareggiare g on p.numero = g.id_pilota
+         join db_campionato_automobilistico.gare g1 on g.luogo_gara = g1.luogo and g.data_gara = g1.data;

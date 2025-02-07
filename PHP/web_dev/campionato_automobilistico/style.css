@@ -64,15 +64,32 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-h2{
-    background-color: darkcyan;
+h2, h3{
     text-align: center;
-    color: white;
     border-radius: 20px;
     padding: 1%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2{
     margin-left: 20%;
     margin-right: 20%;
+}
+
+
+h3{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.entità{
+    background-color: orange;
+    color: black;
+}
+
+.relazione{
+    background-color: blueviolet;
+    color: white;
 }
 
 .submit-button {
@@ -117,7 +134,7 @@ th, td {
 }
 
 th {
-    background-color: blueviolet;
+    background-color: green;
     color: white;
 }
 
