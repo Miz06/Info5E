@@ -5,18 +5,32 @@ require './connectionToDB.php';
 require './navbar.php';
 
 $queryInsert = 'insert into db_campionato_automobilistico.piloti(nome, cognome, nazionalita, vittorie, nome_casa) values(:nome,:cognome,:nazionalita, :vittorie, :nome_casa);';
-$querySelect = 'select nome from db_campionato_automobilistico.case_automobilistiche';
-$case = []; //inizializzazione dell'arra contenente le case automobilistiche
+$querySelectCase = 'select nome from db_campionato_automobilistico.case_automobilistiche';
+$querySelectGare = 'select data, luogo from db_campionato_automobilistico.gare';
+
+$case = []; //inizializzazione dell'array contenente le case automobilistiche
+$gare = []; //array gare
+
+function logError(Exception $e):void
+{
+    error_log($e->getMessage(), 3, 'log/database_log');
+}
 
 try {
-    $stm = $db->prepare($querySelect);
+    $stm = $db->prepare($querySelectCase);
     $stm->execute();
-
-    // Recupera tutte le case del db e le memorizza nell'array
     while ($c = $stm->fetch(PDO::FETCH_ASSOC)) {
         $case[] = $c['nome'];
     }
     $stm->closeCursor();
+
+    $stm = $db->prepare($querySelectGare);
+    $stm->execute();
+    while ($g = $stm->fetch(PDO::FETCH_ASSOC)) {
+        $gare[] = $g['luogo'] . ' - ' . $g['data'];
+    }
+    $stm->closeCursor();
+
 } catch (Exception $e) {
     logError($e);
 }
@@ -45,11 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     header('Location: ./confirm.html');
-}
-
-function logError(Exception $e):void
-{
-    error_log($e->getMessage(), 3, 'log/database_log');
 }
 
 ?>
@@ -85,6 +94,16 @@ function logError(Exception $e):void
             foreach($case as $c){
                 echo "<br><input type='radio' id='nome_casa' name='nome_casa' value='$c'> $c";
             }
+        ?>
+        <hr>
+
+        <br>
+        <label for="gara"><strong>Gare a cui parteciperà</strong></label>
+        <br>
+        <?php
+        foreach($gare as $g){
+            echo "<br><input type='radio' id='gara' name='gara' value='$g'> $g";
+        }
         ?>
         <hr>
 
