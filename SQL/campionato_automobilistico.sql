@@ -34,7 +34,7 @@ create table db_campionato_automobilistico.gareggiare
     id_pilota  int,
     luogo_gara varchar(30),
     data_gara  datetime,
-    posizione  int,
+    tempo      time,
     primary key (id_pilota, luogo_gara, data_gara),
     foreign key (id_pilota) references db_campionato_automobilistico.piloti (numero),
     foreign key (data_gara, luogo_gara) references db_campionato_automobilistico.gare (data, luogo)
@@ -71,16 +71,16 @@ VALUES ('2024-03-10 14:00:00', 'Monza', '00:01:34'),
        ('2024-06-16 14:00:00', 'Spa-Francorchamps', '00:01:28'),
        ('2024-07-21 14:00:00', 'Suzuka', '00:01:51');
 
-INSERT INTO db_campionato_automobilistico.gareggiare (id_pilota, luogo_gara, data_gara, posizione)
-VALUES (1, 'Monza', '2024-03-10 14:00:00', 2),
-       (2, 'Monza', '2024-03-10 14:00:00', 1),
-       (3, 'Monza', '2024-03-10 14:00:00', 3),
-       (4, 'Silverstone', '2024-04-07 14:00:00', 2),
-       (5, 'Silverstone', '2024-04-07 14:00:00', 1),
-       (3, 'Silverstone', '2024-04-07 14:00:00', 3),
-       (1, 'Monaco', '2024-05-12 14:00:00', 1),
-       (2, 'Monaco', '2024-05-12 14:00:00', 3),
-       (5, 'Monaco', '2024-05-12 14:00:00', 2);
+INSERT INTO db_campionato_automobilistico.gareggiare (id_pilota, luogo_gara, data_gara, tempo)
+VALUES (1, 'Monza', '2024-03-10 14:00:00', '01:15:36'),
+       (2, 'Monza', '2024-03-10 14:00:00', '01:20:24'),
+       (3, 'Monza', '2024-03-10 14:00:00', '01:45:11'),
+       (4, 'Silverstone', '2024-04-07 14:00:00', '01:15:10'),
+       (5, 'Silverstone', '2024-04-07 14:00:00', '01:55:01'),
+       (3, 'Silverstone', '2024-04-07 14:00:00', '01:15:09'),
+       (1, 'Monaco', '2024-05-12 14:00:00', '01:39:56'),
+       (2, 'Monaco', '2024-05-12 14:00:00', '01:27:35'),
+       (5, 'Monaco', '2024-05-12 14:00:00', '01:26:22');
 
 INSERT INTO db_campionato_automobilistico.partecipare (nome_casa, luogo_gara, data_gara)
 VALUES ('Mercedes', 'Monza', '2024-03-10 14:00:00'),
@@ -101,7 +101,7 @@ select p.nome,
        c.colore     as colore_casa,
        g.data_gara  as data_gara,
        g.luogo_gara as luogo_gara,
-       g.posizione  as posizione,
+       g.tempo      as tempo,
        g1.tempo_veloce
 from db_campionato_automobilistico.piloti p
          join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.nome

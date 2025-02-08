@@ -118,7 +118,7 @@ function logError(Exception $e): void
                 <th class="col">Id pilota</th>
                 <th class="col">Data</th>
                 <th class="col">Luogo</th>
-                <th class="col">Posizione</th>
+                <th class="col">Tempo</th>
             </tr>
             </thead>
             <tbody>
@@ -132,7 +132,7 @@ function logError(Exception $e): void
                     echo '<td>' . $gareggiare->id_pilota . "</td>";
                     echo '<td>' . $gareggiare->data_gara . "</td>";
                     echo '<td>' . $gareggiare->luogo_gara . "</td>";
-                    echo '<td>' . $gareggiare->posizione . "</td>";
+                    echo '<td>' . $gareggiare->tempo . "</td>";
                     echo '</tr>';
                 }
                 $stm->closeCursor();

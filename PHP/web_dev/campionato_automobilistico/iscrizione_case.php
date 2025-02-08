@@ -4,7 +4,7 @@ $title = 'Iscrizione case';
 require './connectionToDB.php';
 require './navbar.php';
 
-$query = 'insert into db_campionato_automobilistico.case(nome, colore) values(:nome, :colore);';
+$query = 'insert into db_campionato_automobilistico.case_automobilistiche(nome, colore) values(:nome, :colore);';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
