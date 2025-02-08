@@ -1,7 +1,10 @@
 <?php
 $title = 'Classifiche gare';
 
-require './connectionToDB.php';
+require './DBconn.php';
+$config = require './databaseConfig.php';
+$db = DBconn::getDB($config);
+
 require './navbar.php';
 
 //query per visualizzare la classifica per ogni gara
@@ -12,13 +15,8 @@ order by luogo_gara, tempo';
 //query per visualizzare le vittorie di ogni casa
 $queryClassificaCase = 'select d.nome_casa, d.colore_casa, sum(d.vittorie) as vittorie
 from db_campionato_automobilistico.datiCampionato d
-group by d.nome_casa';
-
-function logError(Exception $e): void
-{
-    error_log($e->getMessage(), 3, 'log/database_log');
-}
-
+group by d.nome_casa 
+order by sum(d.vittorie)';
 ?>
 
     <div style="margin-top: 2%; margin-bottom: 2%">
@@ -83,6 +81,7 @@ function logError(Exception $e): void
                 <th class="col">Casa</th>
                 <th class="col">Colore</th>
                 <th class="col">Vittorie</th>
+                <th class="col">Posizione</th>
             </tr>
             </thead>
             <tbody>
@@ -91,12 +90,17 @@ function logError(Exception $e): void
             try {
                 $stm = $db->prepare($queryClassificaCase);
                 $stm->execute();
+
+                $posizione = 1;
+
                 while ($casa = $stm->fetch()) {
                     echo '<tr>';
                     echo '<td>' . $casa->nome_casa . "</td>";
                     echo '<td>' . $casa->colore_casa . "</td>";
                     echo '<td>' . $casa->vittorie . "</td>";
+                    echo '<td>' . $posizione . "</td>";
                     echo '</tr>';
+                    $posizione++;
                 }
                 $stm->closeCursor();
             } catch (Exception $e) {

@@ -1,7 +1,10 @@
 <?php
 $title = 'Iscrizione piloti';
 
-require './connectionToDB.php';
+require './DBconn.php';
+$config = require './databaseConfig.php';
+$db = DBconn::getDB($config);
+
 require './navbar.php';
 
 $queryInsertIntoPiloti = 'insert into db_campionato_automobilistico.piloti(nome, cognome, nazionalita, vittorie, nome_casa) values(:nome,:cognome,:nazionalita, :vittorie, :nome_casa);';
@@ -12,12 +15,6 @@ $queryInsertIntoPartecipare = 'insert into db_campionato_automobilistico.parteci
 
 $case = []; //inizializzazione dell'array contenente le case automobilistiche
 $gareDisponibili = []; //array gare disponibili
-
-function logError(Exception $e): void
-{
-    error_log($e->getMessage(), 3, 'log/database_log');
-}
-
 try {
     //select case
     $stm = $db->prepare($querySelectCase);

@@ -1,7 +1,10 @@
 <?php
 $title = 'Classifica case';
 
-require './connectionToDB.php';
+require './DBconn.php';
+$config = require './databaseConfig.php';
+$db = DBconn::getDB($config);
+
 require './navbar.php';
 
 $queryReadCase = 'select * from db_campionato_automobilistico.case_automobilistiche';
@@ -9,11 +12,6 @@ $queryReadPiloti = 'select * from db_campionato_automobilistico.piloti';
 $queryReadGare = 'select * from db_campionato_automobilistico.gare';
 $queryReadGareggiare = 'select * from db_campionato_automobilistico.gareggiare';
 $queryReadPartecipare = 'select * from db_campionato_automobilistico.partecipare';
-
-function logError(Exception $e): void
-{
-    error_log($e->getMessage(), 3, 'log/database_log');
-}
 
 ?>
     <div style="margin-top: 2%; margin-bottom: 2%">

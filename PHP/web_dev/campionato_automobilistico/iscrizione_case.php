@@ -1,7 +1,10 @@
 <?php
 $title = 'Iscrizione case';
 
-require './connectionToDB.php';
+require './DBconn.php';
+$config = require './databaseConfig.php';
+$db = DBconn::getDB($config);
+
 require './navbar.php';
 
 $query = 'insert into db_campionato_automobilistico.case_automobilistiche(nome, colore) values(:nome, :colore);';
@@ -24,12 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     header('Location: confirm.html');
-}
-
-function logError(Exception $e):void
-{
-    error_log($e->getMessage(), 3, 'log/database_log');
-    echo 'A DB error occurred, Try again';
 }
 ?>
 
