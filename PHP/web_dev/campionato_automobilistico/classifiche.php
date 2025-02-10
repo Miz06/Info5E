@@ -75,7 +75,7 @@ order by sum(d.vittorie)';
 
             //viene stampata la classifica per ogni gara
             foreach ($gare as $gara => $classifica) {
-                echo "<h3 style='text-align: center'>Luogo e Data : $gara<br>Tempo migliore: $miglior_tempo<br></h3>";
+                echo "<h3 style='text-align: center' class='data_ora_gara'>Luogo e Data : $gara<br>Tempo migliore: $miglior_tempo<br></h3>";
                 echo "<table><thead>
                     <tr>
                         <th class='col'>Id Pilota</th>
