@@ -91,19 +91,22 @@ VALUES ('Mercedes', 'Monza', '2024-03-10 14:00:00'),
        ('Mercedes', 'Monaco', '2024-05-12 14:00:00'),
        ('Aston Martin', 'Monaco', '2024-05-12 14:00:00');
 
+/*
 create table db_campionato_automobilistico.datiCampionato as
-select p.nome,
-       p.cognome,
-       p.nazionalita,
-       p.numero,
-       p.vittorie,
-       p.nome_casa,
-       c.colore     as colore_casa,
-       g.data_gara  as data_gara,
-       g.luogo_gara as luogo_gara,
-       g.tempo      as tempo,
-       g1.tempo_veloce
+select
+	p.nome,
+	p.cognome,
+	p.nazionalita,
+	p.numero,
+	p.vittorie,
+	p.nome_casa,
+	c.colore as colore_casa,
+	g.data_gara as data_gara,
+	g.luogo_gara as luogo_gara,
+	g.tempo as tempo,
+	g1.tempo_veloce
 from db_campionato_automobilistico.piloti p
-         join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.nome
-         join db_campionato_automobilistico.gareggiare g on p.numero = g.id_pilota
-         join db_campionato_automobilistico.gare g1 on g.luogo_gara = g1.luogo and g.data_gara = g1.data;
+join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.nome
+join db_campionato_automobilistico.gareggiare g on p.numero = g.id_pilota
+join db_campionato_automobilistico.gare g1 on g.luogo_gara = g1.luogo and g.data_gara = g1.data;
+*/

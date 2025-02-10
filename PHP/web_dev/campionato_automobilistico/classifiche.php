@@ -7,6 +7,7 @@ $db = DBconn::getDB($config);
 
 require './navbar.php';
 
+//ogni volta viene eliminata e ricreata la tabella ottenuta dalle join in quanto questa non si aggiorna automaticamente all'aggiornarsi delle tabelle che la compongono
 $queryDeleteJoin = 'drop table db_campionato_automobilistico.datiCampionato';
 $queryCreateJoin = 'create table db_campionato_automobilistico.datiCampionato as
 select 
