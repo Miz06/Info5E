@@ -1,11 +1,11 @@
 <?php
 $title = 'Iscrizione case';
 
-require './DBconn.php';
-$config = require './databaseConfig.php';
+require '../connectionToDB/DBconn.php';
+$config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-require './navbar.php';
+require '../references/navbar.php';
 
 $query = 'insert into db_campionato_automobilistico.case_automobilistiche(nome, colore) values(:nome, :colore);';
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stm->bindValue(':colore', $colore);
         if ($stm->execute()) {
             $stm->closeCursor();
-            header('Location: ./confirm.html');
+            header('Location: ../references/confirm.html');
         } else {
             throw new PDOException("Errore nella query");
         }
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form method="post" action="./iscrizione_case.php">
+<form method="post" action="iscrizione_case.php">
     <div class="card">
         <h1>Dati casa</h1>
 
@@ -47,5 +47,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="submit" class="submit-button" value="ISCRIVI CASA">
 </form>
 
-<?php require './footer.php';
+<?php require '../references/footer.php';
 ?>

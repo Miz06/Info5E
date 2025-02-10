@@ -1,15 +1,15 @@
 <?php
 $title = 'Classifiche gare';
 
-require './DBconn.php';
-$config = require './databaseConfig.php';
+require '../connectionToDB/DBconn.php';
+$config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-require './navbar.php';
+require '../references/navbar.php';
 
 //ogni volta viene eliminata e ricreata la tabella ottenuta dalle join in quanto questa non si aggiorna automaticamente all'aggiornarsi delle tabelle che la compongono
-$queryDeleteJoin = 'drop table db_campionato_automobilistico.datiCampionato';
-$queryCreateJoin = 'create table db_campionato_automobilistico.datiCampionato as
+$queryDeleteJoinDatiClassificaGare = 'drop table db_campionato_automobilistico.datiClassificaGare';
+$queryCreateJoinDatiClassificaGare = 'create table db_campionato_automobilistico.datiClassificaGare as
 select 
 	p.nome,
 	p.cognome,
@@ -27,8 +27,21 @@ join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.no
 join db_campionato_automobilistico.gareggiare g on p.numero = g.id_pilota
 join db_campionato_automobilistico.gare g1 on g.luogo_gara = g1.luogo and g.data_gara = g1.data;';
 
+$queryDeleteJoinDatiClassificaCase = 'drop table db_campionato_automobilistico.datiClassificaCase';
+$queryCreateJoinDatiClassificaCase = 'create table db_campionato_automobilistico.datiClassificaCase as
+select 
+	p.nome,
+	p.cognome,
+	p.nazionalita,
+	p.numero,
+	p.vittorie,
+	p.nome_casa,
+	c.colore as colore_casa
+from db_campionato_automobilistico.piloti p
+join db_campionato_automobilistico.case_automobilistiche c on p.nome_casa = c.nome';
+
 try {
-    $stm = $db->prepare($queryDeleteJoin);
+    $stm = $db->prepare($queryDeleteJoinDatiClassificaGare);
     $stm->execute();
     $stm->closeCursor();
 } catch (Exception $e) {
@@ -36,7 +49,23 @@ try {
 }
 
 try {
-    $stm = $db->prepare($queryCreateJoin);
+    $stm = $db->prepare($queryCreateJoinDatiClassificaGare);
+    $stm->execute();
+    $stm->closeCursor();
+} catch (Exception $e) {
+    logError($e);
+}
+
+try {
+    $stm = $db->prepare($queryDeleteJoinDatiClassificaCase);
+    $stm->execute();
+    $stm->closeCursor();
+} catch (Exception $e) {
+    logError($e);
+}
+
+try {
+    $stm = $db->prepare($queryCreateJoinDatiClassificaCase);
     $stm->execute();
     $stm->closeCursor();
 } catch (Exception $e) {
@@ -45,12 +74,12 @@ try {
 
 //query per visualizzare la classifica per ogni gara
 $queryClassificaGare = 'select * 
-from db_campionato_automobilistico.datiCampionato 
+from db_campionato_automobilistico.datiClassificaGare 
 order by luogo_gara, tempo';
 
 //query per visualizzare le vittorie di ogni casa
 $queryClassificaCase = 'select d.nome_casa, d.colore_casa, sum(d.vittorie) as vittorie
-from db_campionato_automobilistico.datiCampionato d
+from db_campionato_automobilistico.datiClassificaCase d
 group by d.nome_casa 
 order by sum(d.vittorie) desc';
 ?>
@@ -148,5 +177,5 @@ order by sum(d.vittorie) desc';
     </div>
 
 <?php
-require './footer.php';
+require '../references/footer.php';
 ?>

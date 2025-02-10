@@ -1,11 +1,11 @@
 <?php
 $title = 'Classifica case';
 
-require './DBconn.php';
-$config = require './databaseConfig.php';
+require '../connectionToDB/DBconn.php';
+$config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-require './navbar.php';
+require '../references/navbar.php';
 
 $queryReadCase = 'select * from db_campionato_automobilistico.case_automobilistiche';
 $queryReadPiloti = 'select * from db_campionato_automobilistico.piloti';
@@ -172,5 +172,5 @@ $queryReadPartecipare = 'select * from db_campionato_automobilistico.partecipare
         </table>
     </div>
 <?php
-require './footer.php';
+require '../references/footer.php';
 ?>
