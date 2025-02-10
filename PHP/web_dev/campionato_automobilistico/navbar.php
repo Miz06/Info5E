@@ -13,6 +13,7 @@
 <div class="navbar">
     <a href="./iscrizione_piloti.php">Iscrizione piloti</a>
     <a href="./iscrizione_case.php">Iscrizione case</a>
+    <a href="./aggiungi_gare.php">Aggiungi gara</a>
     <a href="./datiCampionato.php">Dati campionato</a>
     <a href="./classifiche.php">Classifiche</a>
 </div>

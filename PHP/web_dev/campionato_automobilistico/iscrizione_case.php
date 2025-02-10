@@ -19,14 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stm->bindValue(':colore', $colore);
         if ($stm->execute()) {
             $stm->closeCursor();
+            header('Location: ./confirm.html');
         } else {
             throw new PDOException("Errore nella query");
         }
     } catch (Exception $e) {
         logError($e);
     }
-
-    header('Location: confirm.html');
 }
 ?>
 
