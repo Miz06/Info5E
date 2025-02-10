@@ -1,1 +1,0 @@
-SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'daticampionato' already existsSQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'db_campionato_automobilistico.daticampionato'
