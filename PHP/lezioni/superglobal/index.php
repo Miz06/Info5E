@@ -1,9 +1,15 @@
 <?php
-require './action_page.php';
-if(isset($_COOKIE['user'])){
+
+if (isset($_COOKIE['user'])) {
     $name = $_COOKIE['user'];
-}else{
+} else {
     $name = 'undefined user';
+}
+
+if(isset($_COOKIE['color'])){
+    $color = $_COOKIE['color'];
+}else{
+    $color = 'white';
 }
 
 /*  variabili SUPERGLOBAL (variabili predefinite dal linguaggio php visualizzabili e utilizzabili da tutti gli script)
@@ -33,15 +39,32 @@ echo $_SERVER['SERVER_PROTOCOL']. '<br>' . '<br>';
 */
 ?>
 
-<h1>Ciao: <?=$name?></h1>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="background-color: <?=$color?>">
+<h1>Ciao: <?= $name ?></h1>
 <form action="action_page.php" method="GET">
     <label for="fname">First name:</label><br>
     <input type="text" name="fname" id="fname"><br><br>
 
     <label for="color">Color:</label><br>
-    <input type="text" name="color" id="color"><br><br>
+    <select name="color" id="color">
+        <option value="blue">blue</option>
+        <option value="green">green</option>
+        <option value="yellow">yellow</option>
+    </select>
 
-    <label for="pwd">Password:</label><br>
-    <input type="pwd" name="pwd" id="pwd"><br><br>
+    <br><br><label for="pwd">Password:</label><br>
+    <input type="password" name="pwd" id="pwd"><br><br>
+
     <input type="submit" value="Submit">
 </form>
+</body>
+</html>
