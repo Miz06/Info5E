@@ -1,0 +1,10 @@
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'cc' for key 'PRIMARY'---2025-02-19 20:32:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'cc' for key 'PRIMARY'---2025-02-19 20:32:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:33:02
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:33:02
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'rrrr' for key 'PRIMARY'---2025-02-19 20:33:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'rrrr' for key 'PRIMARY'---2025-02-19 20:33:55
