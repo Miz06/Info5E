@@ -21,20 +21,41 @@ $queryUpdatePredecessore = 'UPDATE db_utopia.sovrani SET successore = :successor
 $queryUpdateSuccessore = 'UPDATE db_utopia.sovrani SET predecessore = :predecessore WHERE nome = :successore';
 
 try {
-    $stm = $db->prepare($queryInsertInto);
+    if (!empty($nome) && !empty($inizio_regno) && !empty($fine_regno) && !empty($immagine) && $successore != $predecessore) {
+        $stm = $db->prepare($queryInsertInto);
 
-    $stm->bindValue(':nome', $nome);
-    $stm->bindValue(':inizio_regno', $inizio_regno);
-    $stm->bindValue(':fine_regno', $fine_regno);
-    $stm->bindValue(':immagine', $immagine);
-    $stm->bindValue(':successore', $successore);
-    $stm->bindValue(':predecessore', $predecessore);
+        $stm->bindValue(':nome', $nome);
+        $stm->bindValue(':inizio_regno', $inizio_regno);
+        $stm->bindValue(':fine_regno', $fine_regno);
+        $stm->bindValue(':immagine', $immagine);
+        $stm->bindValue(':successore', $successore);
+        $stm->bindValue(':predecessore', $predecessore);
 
-    if ($stm->execute()) {
-        header('Location: ./data.php');
+        if ($stm->execute()) {
+            // Aggiornamento del successore del predecessore
+            if (!empty($successore) && !empty($predecessore)) {
+                $stm = $db->prepare($queryUpdatePredecessore);
+                $stm->bindValue(':successore', $nome);
+                $stm->bindValue(':predecessore', $predecessore);
+                $stm->execute();
+                $stm->closeCursor();
+            }
+
+            // Aggiornamento del predecessore del successore
+            if (!empty($successore) && !empty($predecessore)) {
+                $stm = $db->prepare($queryUpdateSuccessore);
+                $stm->bindValue(':predecessore', $nome);
+                $stm->bindValue(':successore', $successore);
+                $stm->execute();
+                $stm->closeCursor();
+            }
+
+            header('Location: ./data.php');
+        }
+        $stm->closeCursor();
     }
-    $stm->closeCursor();
-} catch (Exception $e) {
+} catch
+(Exception $e) {
     logError($e);
 }
 
@@ -45,32 +66,6 @@ try {
         $sovrani[] = $s['nome'];
     }
     $stm->closeCursor();
-} catch (Exception $e) {
-    logError($e);
-}
-
-try {
-    // Aggiornamento del successore del predecessore
-    if ($successore != 'null' && $predecessore != 'null') {
-        $stm = $db->prepare($queryUpdatePredecessore);
-        $stm->bindValue(':successore', $nome);
-        $stm->bindValue(':predecessore', $predecessore);
-        $stm->execute();
-        $stm->closeCursor();
-    }
-} catch (Exception $e) {
-    logError($e);
-}
-
-try {
-    // Aggiornamento del predecessore del successore
-    if ($successore != 'null' && $predecessore != 'null') {
-        $stm = $db->prepare($queryUpdateSuccessore);
-        $stm->bindValue(':predecessore', $nome);
-        $stm->bindValue(':successore', $successore);
-        $stm->execute();
-        $stm->closeCursor();
-    }
 } catch (Exception $e) {
     logError($e);
 }
