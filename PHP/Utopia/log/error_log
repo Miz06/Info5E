@@ -1,10 +1,52 @@
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'cc' for key 'PRIMARY'---2025-02-19 20:32:54
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'cc' for key 'PRIMARY'---2025-02-19 20:32:54
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:32:54
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:33:02
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-02-19 20:33:02
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'rrrr' for key 'PRIMARY'---2025-02-19 20:33:55
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'rrrr' for key 'PRIMARY'---2025-02-19 20:33:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaaa' for key 'PRIMARY'---2025-02-20 22:09:47
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaaa' for key 'PRIMARY'---2025-02-20 22:09:47
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaaa' for key 'PRIMARY'---2025-02-20 22:09:47
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'aaaa' for key 'PRIMARY'---2025-02-20 22:09:47
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ds' for key 'PRIMARY'---2025-02-20 22:10:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ds' for key 'PRIMARY'---2025-02-20 22:10:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'ds' for key 'PRIMARY'---2025-02-20 22:10:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:12:13
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:12:13
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:12:14
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:12:14
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:14:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:14:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:14:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:14:32
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:14:32
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-02-20 22:23:50
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-02-20 22:24:09
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_utopia`.`sovrani`, CONSTRAINT `sovrani_ibfk_1` FOREIGN KEY (`successore`) REFERENCES `sovrani` (`nome`))---2025-02-20 22:24:09
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_utopia`.`sovrani`, CONSTRAINT `sovrani_ibfk_2` FOREIGN KEY (`predecessore`) REFERENCES `sovrani` (`nome`))---2025-02-20 22:24:09
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'immagine, successore, predecessore) values ('alessandroooo', '2025-02-21', '2...' at line 1---2025-02-20 22:24:45
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_utopia`.`sovrani`, CONSTRAINT `sovrani_ibfk_1` FOREIGN KEY (`successore`) REFERENCES `sovrani` (`nome`))---2025-02-20 22:24:45
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_utopia`.`sovrani`, CONSTRAINT `sovrani_ibfk_2` FOREIGN KEY (`predecessore`) REFERENCES `sovrani` (`nome`))---2025-02-20 22:24:45
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:39:40
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:39:52
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:40:02
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:40:14
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:41:03
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:41:04
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:41:04
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:15
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:37
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:39
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:39
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:39
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:39
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:39
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:40
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:42:47
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:43:12
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:43:12
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:47:03
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'PRIMARY'---2025-02-20 22:47:23

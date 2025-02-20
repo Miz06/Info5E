@@ -4,55 +4,57 @@ require '../connectionToDB/DBconn.php';
 $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$nome = $_GET['nome'] ?? '';
-$inizio_regno = $_GET['inizio_regno'] ?? '';
-$fine_regno = $_GET['fine_regno'] ?? '';
+$nome = $_POST['nome'] ?? '';
+$inizio_regno = $_POST['inizio_regno'] ?? '';
+$fine_regno = $_POST['fine_regno'] ?? '';
+$immagine = $_POST['immagine'] ?? '';
 
 //successore e predecessore se non selezionati, come è ovvio che accadrà per il primo sovrano inserito, asssumeranno valore null direttamente da php
-$successore = $_GET['successore'] ?? null;
-$predecessore = $_GET['predecessore'] ?? null;
+$successore = $_POST['successore'] ?? null;
+$predecessore = $_POST['predecessore'] ?? null;
 
 $sovrani = [];
 
-$queryInsertInto = 'insert into db_dinastia_sovrani.sovrani(nome, inizio_regno, fine_regno, successore, predecessore) values (:nome, :inizio_regno, :fine_regno, :successore, :predecessore)';
-$querySelect = 'select s.nome from db_dinastia_sovrani.sovrani s';
-$queryUpdatePredecessore = 'UPDATE db_dinastia_sovrani.sovrani SET successore = :successore WHERE nome = :predecessore';
-$queryUpdateSuccessore = 'UPDATE db_dinastia_sovrani.sovrani SET predecessore = :predecessore WHERE nome = :successore';
+$queryInsertInto = 'insert into db_utopia.sovrani(nome, inizio_regno, fine_regno, immagine, successore, predecessore) values (:nome, :inizio_regno, :fine_regno, :immagine, :successore, :predecessore)';
+$querySelect = 'select s.nome from db_utopia.sovrani s';
+$queryUpdatePredecessore = 'UPDATE db_utopia.sovrani SET successore = :successore WHERE nome = :predecessore';
+$queryUpdateSuccessore = 'UPDATE db_utopia.sovrani SET predecessore = :predecessore WHERE nome = :successore';
 
-try{
-    if($successore != $predecessore){
-        $stm = $db->prepare($queryInsertInto);
+try {
+    $stm = $db->prepare($queryInsertInto);
 
-        $stm->bindValue(':nome', $nome);
-        $stm->bindValue(':inizio_regno', $inizio_regno);
-        $stm->bindValue(':fine_regno', $fine_regno);
-        $stm->bindValue(':successore', $successore);
-        $stm->bindValue(':predecessore', $predecessore);
+    $stm->bindValue(':nome', $nome);
+    $stm->bindValue(':inizio_regno', $inizio_regno);
+    $stm->bindValue(':fine_regno', $fine_regno);
+    $stm->bindValue(':immagine', $immagine);
+    $stm->bindValue(':successore', $successore);
+    $stm->bindValue(':predecessore', $predecessore);
 
-        $stm->execute();
-        $stm->closeCursor();
+    if ($stm->execute()) {
+        header('Location: ./data.php');
     }
-}catch(Exception $e){
+    $stm->closeCursor();
+} catch (Exception $e) {
     logError($e);
 }
 
-try{
+try {
     $stm = $db->prepare($querySelect);
     $stm->execute();
     while ($s = $stm->fetch(PDO::FETCH_ASSOC)) {
         $sovrani[] = $s['nome'];
     }
     $stm->closeCursor();
-}catch(Exception $e){
+} catch (Exception $e) {
     logError($e);
 }
 
 try {
     // Aggiornamento del successore del predecessore
-    if ($successore!='null' && $predecessore!='null') {
+    if ($successore != 'null' && $predecessore != 'null') {
         $stm = $db->prepare($queryUpdatePredecessore);
-        $stm->bindValue(':successore', $nome, );
-        $stm->bindValue(':predecessore', $predecessore, );
+        $stm->bindValue(':successore', $nome);
+        $stm->bindValue(':predecessore', $predecessore);
         $stm->execute();
         $stm->closeCursor();
     }
@@ -62,9 +64,9 @@ try {
 
 try {
     // Aggiornamento del predecessore del successore
-    if ($successore!='null' && $predecessore!='null') {
+    if ($successore != 'null' && $predecessore != 'null') {
         $stm = $db->prepare($queryUpdateSuccessore);
-        $stm->bindValue(':predecessore', $nome, );
+        $stm->bindValue(':predecessore', $nome);
         $stm->bindValue(':successore', $successore);
         $stm->execute();
         $stm->closeCursor();
@@ -73,7 +75,6 @@ try {
     logError($e);
 }
 ?>
-
 
 
 <!doctype html>
@@ -86,7 +87,7 @@ try {
     <title>Inserimento sovrani</title>
 </head>
 <body>
-<form method="get" action="./form.php">
+<form method="post" action="./form.php">
     <br>
     <label for="nome"><strong>Nome: </strong></label><br><br>
     <input type="text" id="nome" name="nome" required>
@@ -100,6 +101,10 @@ try {
     <br>
     <label for="fine_regno"><strong>Fine regno: </strong></label><br><br>
     <input type="date" id="fine_regno" name="fine_regno" required>
+    <hr>
+
+    <label for="immagine"><strong>Immagine (link): </strong></label><br><br>
+    <input type="immagine" id="immagine" name="immagine" required>
     <hr>
 
     <br>
