@@ -7,8 +7,10 @@ $db = DBconn::getDB($config);
 $nome = $_GET['nome'] ?? '';
 $inizio_regno = $_GET['inizio_regno'] ?? '';
 $fine_regno = $_GET['fine_regno'] ?? '';
-$successore = $_GET['successore'] ?? '';
-$predecessore = $_GET['predecessore'] ?? '';
+
+//successore e predecessore se non selezionati, come è ovvio che accadrà per il primo sovrano inserito, asssumeranno valore null direttamente da php
+$successore = $_GET['successore'] ?? null;
+$predecessore = $_GET['predecessore'] ?? null;
 
 $sovrani = [];
 
@@ -18,6 +20,7 @@ $queryUpdatePredecessore = 'UPDATE db_dinastia_sovrani.sovrani SET successore = 
 $queryUpdateSuccessore = 'UPDATE db_dinastia_sovrani.sovrani SET predecessore = :predecessore WHERE nome = :successore';
 
 try{
+    if($successore != $predecessore){
         $stm = $db->prepare($queryInsertInto);
 
         $stm->bindValue(':nome', $nome);
@@ -28,7 +31,7 @@ try{
 
         $stm->execute();
         $stm->closeCursor();
-
+    }
 }catch(Exception $e){
     logError($e);
 }
@@ -44,13 +47,12 @@ try{
     logError($e);
 }
 
-
 try {
     // Aggiornamento del successore del predecessore
-    if (!empty($predecessore) && !empty($successore)) {
+    if ($successore!='null' && $predecessore!='null') {
         $stm = $db->prepare($queryUpdatePredecessore);
-        $stm->bindValue(':successore', $successore);
-        $stm->bindValue(':predecessore', $predecessore);
+        $stm->bindValue(':successore', $nome, );
+        $stm->bindValue(':predecessore', $predecessore, );
         $stm->execute();
         $stm->closeCursor();
     }
@@ -60,9 +62,9 @@ try {
 
 try {
     // Aggiornamento del predecessore del successore
-    if (!empty($successore) && !empty($nome)) {
+    if ($successore!='null' && $predecessore!='null') {
         $stm = $db->prepare($queryUpdateSuccessore);
-        $stm->bindValue(':predecessore', $nome);
+        $stm->bindValue(':predecessore', $nome, );
         $stm->bindValue(':successore', $successore);
         $stm->execute();
         $stm->closeCursor();
