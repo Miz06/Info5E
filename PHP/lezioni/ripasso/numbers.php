@@ -11,7 +11,7 @@ $ripetizioni = 5;
     <title>Document</title>
 </head>
 <body>
-<form action="action_page_number.php" method="post">
+<form action="./action_page_numbers.php" method="post">
     <?php for ($i = 0; $i < $ripetizioni; $i++) { ?>
         <label for="<?= $i ?>">Inserire numero <?= $i + 1 ?></label><br>
         <input type="number" name="numero[]" id="<?=$i?>" min="1" max="5"><br>
