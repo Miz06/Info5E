@@ -1,3 +1,7 @@
 body{
     background-color: yellow;
 }
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: white;
+}

@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
         if ($user && $email == $user['email'] && password_verify($password, $user['password'])) {
             $_SESSION['email'] = $user['email'];
             header('Location: home.php');
-            exit();
         } else {
             echo 'Credenziali errate';
         }

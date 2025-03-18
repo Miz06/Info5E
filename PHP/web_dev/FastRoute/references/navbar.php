@@ -42,29 +42,35 @@ if (isset($_SESSION['email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+<body class="p-3 border-0 bd-example m-0 border-0">
 
-<nav class="navbar navbar-expand-lg bg-dark mb-3" style=" border-radius: 15px;">
-    <div class="container-fluid">
-        <a class="navbar-brand account" href="./account.php"
-           style=" border: 1px solid white; padding: 1%; margin: 1%; border-radius: 5px; color: white;"> <?= $nomeUtente ?></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" style="color: white" aria-current="page" href="./home.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" style="color: white" aria-current="page"
-                       href="../pages/login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" style="color: white" aria-current="page" href="./home.php">Inserisci cliente</a>
-                </li>
-            </ul>
+<?php if (isset($_COOKIE['nav_color'])) { ?>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
+<?php }else{ ?>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
+<?php } ?>
+        <div class="container-fluid">
+            <a class="navbar-brand account" href="./account.php"
+               style=" border: 1px solid white; padding: 1%; margin: 1%; border-radius: 5px; color: lightgrey;"> <?= $nomeUtente ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: lightgrey" aria-current="page"
+                           href="./home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: lightgrey" aria-current="page"
+                           href="../pages/login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: lightgrey" aria-current="page" href="./home.php">Inserisci
+                            cliente</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
