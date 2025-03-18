@@ -12,20 +12,20 @@ create table db_FastRoute.stati(
  );
 
 create table db_FastRoute.sedi(
- città varchar(30),
+ citta varchar(30),
  via varchar(30),
- primary key(città,
+ primary key(citta,
 via)
  );
 
 create table db_FastRoute.personale(
  email varchar(30) primary key,
  nome varchar(30),
- password varchar(30),
-	città varchar(30),
+ password varchar(255),
+	citta varchar(30),
 	via varchar(30),
-	foreign key (città,
-via) references db_FastRoute.sedi(città,
+	foreign key (citta,
+via) references db_FastRoute.sedi(citta,
 via)
  );
 
@@ -80,14 +80,7 @@ create table db_FastRoute.consegnare(
 	primary key (telefono_mittente, id_plico)
 );
 
-INSERT INTO db_FastRoute.sedi (città, via) VALUES 
+INSERT INTO db_FastRoute.sedi (citta, via) VALUES 
 ('Milano', 'Via Roma 10'),
 ('Roma', 'Via Milano 20'),
 ('Torino', 'Corso Francia 30');
-
-INSERT INTO db_FastRoute.personale (email, nome, password, città, via) VALUES 
-('m.rossi@fastroute.com', 'Marco Rossi', 'password123', 'Milano', 'Via Roma 10'),
-('l.bianchi@fastroute.com', 'Laura Bianchi', 'secure456', 'Roma', 'Via Milano 20'),
-('g.verdi@fastroute.com', 'Giovanni Verdi', 'mypassword', 'Torino', 'Corso Francia 30');
-
-SELECT p.email, p.password FROM db_FastRoute.personale p;

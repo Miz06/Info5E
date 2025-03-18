@@ -1,6 +1,4 @@
 <?php
-require '../references/functions.php';
-
 class DBconn
 {
     private static PDO $db;

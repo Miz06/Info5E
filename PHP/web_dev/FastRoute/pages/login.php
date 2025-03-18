@@ -1,13 +1,16 @@
 <?php
-require '../connectionToDB/DBconn.php';
-$config = require '../connectionToDB/databaseConfig.php';
+
+$title = 'login';
+require '../references/navbar.php';
+
+$config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
 $queryCheckLogin = 'SELECT email, password FROM db_FastRoute.personale WHERE email = :email';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_POST['pwd'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
-    $password = $_POST['pwd'];
+    $password = $_POST['password'];
 
     try {
         $stm = $db->prepare($queryCheckLogin);
@@ -16,14 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
 
         // Recupera i dati dell'utente
         $user = $stm->fetch(PDO::FETCH_ASSOC);
+        $stm->closeCursor();
 
-        if ($user && $email == $user['email'] && password_verify($password, $user['email'])) {
+        if ($user && $email == $user['email'] && password_verify($password, $user['password'])) {
+            $_SESSION['email'] = $user['email'];
             header('Location: home.php');
+            exit();
         } else {
             echo 'Credenziali errate';
         }
 
-        $stm->closeCursor();
     } catch (Exception $e) {
         logError($e);
     }
@@ -31,16 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
 ?>
 
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
 <form method="post" action="login.php">
     <br>
     <label for="email"><strong>Email</strong></label>
@@ -48,11 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
     <hr>
 
     <br>
-    <label for="pwd"><strong>Password</strong></label>
-    <input type="password" name="pwd" id="pwd" required>
+    <label for="password"><strong>Password</strong></label>
+    <input type="password" name="password" id="password" required>
     <hr>
 
     <input type="submit" value="Login">
 </form>
+
 </body>
 </html>
