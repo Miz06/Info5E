@@ -44,9 +44,9 @@ if (isset($_SESSION['email'])) {
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-<nav class="navbar navbar-expand-lg bg-dark" style=" border-radius: 15px;">
+<nav class="navbar navbar-expand-lg bg-dark mb-3" style=" border-radius: 15px;">
     <div class="container-fluid">
-        <a class="navbar-brand account" href="./account"
+        <a class="navbar-brand account" href="./account.php"
            style=" border: 1px solid white; padding: 1%; margin: 1%; border-radius: 5px; color: white;"> <?= $nomeUtente ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ if (isset($_SESSION['email'])) {
                        href="../pages/login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" style="color: white" aria-current="page" href="./home.php">Link3</a>
+                    <a class="nav-link active" style="color: white" aria-current="page" href="./home.php">Inserisci cliente</a>
                 </li>
             </ul>
         </div>
