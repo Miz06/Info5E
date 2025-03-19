@@ -68,7 +68,7 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                            href="../pages/login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" style="color: lightgrey" aria-current="page" href="./home.php">Inserisci
+                        <a class="nav-link active" style="color: lightgrey" aria-current="page" href="./registra_cliente.php">Registra
                             cliente</a>
                     </li>
                 </ul>
