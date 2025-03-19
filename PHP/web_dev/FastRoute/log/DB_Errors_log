@@ -1,1 +1,2 @@
 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM db_FastRoute.personale SET password = '$2y$10$tO8AqcQUQyecID.S.p0jseLCaa...' at line 1---2025-03-18 21:41:56
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-19 08:01:16

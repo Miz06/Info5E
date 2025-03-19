@@ -51,6 +51,12 @@ if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') {
     <h4>Desideri cambiare le preferenze?</h4>
     <a href="./preferenze.php" class="btn btn-primary">Impostazioni</a>
     <hr>
+
+    <br>
+    <a href="./logout.php" class="btn btn-primary">Esci dall'account</a>
+    <hr>
+
 <?php } else { ?>
     <p><strong>Nome: </strong>Ospite</p>
+    <p>[L'account ospite ha a sua disposizione i servizi di base: sono disponibii maggiori funzionalità solamente previo login.]</p>
 <?php } ?>

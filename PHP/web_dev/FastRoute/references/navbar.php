@@ -10,7 +10,7 @@ $db = DBconn::getDB($config);
 
 $queryNomeUtente = 'SELECT nome FROM db_FastRoute.personale WHERE email = :email';
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
     try {
         $stm = $db->prepare($queryNomeUtente);
         $stm->bindValue(':email', $_SESSION['email']);
@@ -45,10 +45,11 @@ if (isset($_SESSION['email'])) {
 <body class="p-3 border-0 bd-example m-0 border-0">
 
 <?php if (isset($_COOKIE['nav_color'])) { ?>
-    <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
-<?php }else{ ?>
+<nav class="navbar navbar-expand-lg navbar-dark mb-3"
+     style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
+    <?php }else{ ?>
     <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
-<?php } ?>
+        <?php } ?>
         <div class="container-fluid">
             <a class="navbar-brand account" href="./account.php"
                style=" border: 1px solid white; padding: 1%; margin: 1%; border-radius: 5px; color: lightgrey;"> <?= $nomeUtente ?></a>
