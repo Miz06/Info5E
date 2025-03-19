@@ -5,7 +5,7 @@ require '../references/navbar.php';
 $config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
-$queryUpdatePassword = 'UPDATE db_FastRoute;personale SET password = :password WHERE email = :email';
+$queryUpdatePassword = 'UPDATE db_FastRoute.personale SET password = :password WHERE email = :email';
 $querySelectUserData = 'SELECT * FROM db_FastRoute.personale WHERE email = :email';
 
 if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') {

@@ -36,13 +36,37 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
     <title><?= /**@var $title */
         $title ?></title>
 
-    <link href="./style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .account {
+            border: 1px solid white;
+            padding: 1%;
+            margin: 1%;
+            border-radius: 5px;
+            color: white;
+            background-color: darkgreen;
+        }
+
+        .nav-link{
+            border: 1px solid white;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+        }
+
+        .nav-link:hover{
+            background-color: grey;
+        }
+
+        .account:hover{
+            background-color: forestgreen;
+        }
+    </style>
 </head>
 
-<body class="p-3 border-0 bd-example m-0 border-0">
+<body class="p-3 border-0 bd-example m-0 border-0" style="background-color: whitesmoke">
 
 <?php if (isset($_COOKIE['nav_color'])) { ?>
 <nav class="navbar navbar-expand-lg navbar-dark mb-3"
@@ -51,26 +75,31 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
     <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
         <?php } ?>
         <div class="container-fluid">
-            <a class="navbar-brand account" href="./account.php"
-               style=" border: 1px solid white; padding: 1%; margin: 1%; border-radius: 5px; color: lightgrey;"> <?= $nomeUtente ?></a>
+            <a class="navbar-brand account" href="./account.php"> <?= $nomeUtente ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" style="color: lightgrey" aria-current="page"
+                    <li class="nav-item m-2">
+                        <a class="nav-link active" aria-current="page"
                            href="./home.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" style="color: lightgrey" aria-current="page"
+                    <li class="nav-item m-2">
+                        <a class="nav-link active" aria-current="page"
                            href="../pages/login.php">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" style="color: lightgrey" aria-current="page" href="./registra_cliente.php">Registra
-                            cliente</a>
+                    <li class="nav-item m-2" >
+                        <a class="nav-link active" aria-current="page"
+                           href="../pages/info.php">Info</a>
                     </li>
+                    <?php if ($_SESSION['email'] != 'Ospite') { ?>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active" aria-current="page" href="./registra_cliente.php">Registra
+                                cliente</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
