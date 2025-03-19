@@ -49,18 +49,22 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             background-color: darkgreen;
         }
 
-        .nav-link{
+        .nav-link {
             border: 1px solid white;
             border-radius: 5px;
             color: white;
             text-align: center;
         }
 
-        .nav-link:hover{
+        .private {
+            background-color: darkslateblue;
+        }
+
+        .nav-link:hover {
             background-color: grey;
         }
 
-        .account:hover{
+        .account:hover {
             background-color: forestgreen;
         }
     </style>
@@ -90,14 +94,17 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                         <a class="nav-link active" aria-current="page"
                            href="../pages/login.php">Login</a>
                     </li>
-                    <li class="nav-item m-2" >
+                    <li class="nav-item m-2">
                         <a class="nav-link active" aria-current="page"
                            href="../pages/info.php">Info</a>
                     </li>
-                    <?php if ($_SESSION['email'] != 'Ospite') { ?>
+                    <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="./registra_cliente.php">Registra
+                            <a class="nav-link active private" aria-current="page" href="./registra_cliente.php">Registra
                                 cliente</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active private" aria-current="page" href="./nuovo_plico.php">Nuovo plico</a>
                         </li>
                     <?php } ?>
                 </ul>
