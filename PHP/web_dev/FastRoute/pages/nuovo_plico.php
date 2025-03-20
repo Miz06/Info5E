@@ -8,11 +8,11 @@ $db = DBconn::getDB($config);
 $querySelectPersonale = 'SELECT * FROM db_FastRoute.personale';
 $querySelectSedi = 'SELECT * FROM db_FastRoute.sedi';
 
-$querySelectCliente = 'SELECT * FROM db_FastRoute.clienti WHERE telefono = :telefono';
+$querySelectCliente = 'SELECT * FROM db_FastRoute.clienti WHERE email = :email';
 $querySelectDestinatario = 'SELECT * FROM db_FastRoute.destinatari WHERE CF = :CF';
 $querySelectPersonaleSede = 'SELECT * FROM db_FastRoute.personale WHERE citta = :citta AND via = :via';
 
-$queryInsertPlico = 'INSERT INTO db_FastRoute.plichi (email_personale_magazziniere, email_personale_recapito, telefono_mittente, CF_destinatario) values (:email_personale_magazziniere, :email_personale_recapito, :telefono_mittente, :CF_destinatario)';
+$queryInsertPlico = 'INSERT INTO db_FastRoute.plichi (email_personale_magazziniere, email_personale_recapito, email_mittente, CF_destinatario) values (:email_personale_magazziniere, :email_personale_recapito, :email_mittente, :CF_destinatario)';
 $queryInsertDestinatario = 'INSERT INTO db_FastRoute.destinatari (nome, cognome, CF) values (:nome_destinatario, :cognome_destinatario, :CF_destinatario)';
 $queryInsertCliente = "INSERT INTO db_FastRoute.clienti (nome, cognome, indirizzo, telefono, email, email_personale) values (:nome_mittente, :cognome_mittente, :indirizzo_mittente, :telefono_mittente, :email_mittente, :email_personale)";
 
@@ -38,31 +38,44 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     //CLIENTI
     $stm = $db->prepare($querySelectCliente);
-    $stm->bindValue(':telefono', $_POST['telefono_mittente']);
+    $stm->bindValue(':email', $_POST['email_mittente']);
     $stm->execute();
-    $cliente = $stm->fetchColumn();
+    $cliente = $stm->fetch(PDO::FETCH_ASSOC);
     $stm->CloseCursor();
 
     //DESTINATARI
     $stm = $db->prepare($querySelectDestinatario);
     $stm->bindValue(':CF', $_POST['CF_destinatario']);
     $stm->execute();
-    $destinatario = $stm->fetchColumn();
+    $destinatario = $stm->fetch(PDO::FETCH_ASSOC);
     $stm->CloseCursor();
 
-    if (empty($destinatario) && isset($_POST['nome_destinatario']) && isset($_POST['cognome_destinatario']) && isset($_POST['CF_destinatario'])) {
-        $nome_destinatario = $_POST['nome_destinatario'];
-        $cognome_destinatario = $_POST['cognome_destinatario'];
-        $CF_destinatario = $_POST['CF_destinatario'];
+    if (!$cliente && isset($_POST['nome_mittente']) && isset($_POST['cognome_mittente']) && isset($_POST['indirizzo_mittente']) && isset($_POST['telefono_mittente']) && isset($_POST['email_mittente'])) {
+        try {
+            $stm = $db->prepare($queryInsertCliente);
 
+            $stm->bindValue(':nome_mittente', $_POST['nome_mittente']);
+            $stm->bindValue(':cognome_mittente', $_POST['cognome_mittente']);
+            $stm->bindValue(':indirizzo_mittente',  $_POST['indirizzo_mittente']);
+            $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
+            $stm->bindValue(':email_mittente', $_POST['email_mittente']);
+            $stm->bindValue(':email_personale', $_SESSION['email']);
+
+            $stm->execute();
+            $stm->closeCursor();
+        } catch (Exception $e) {
+            logError($e);
+        }
+    }
+
+    if (!$destinatario && isset($_POST['nome_destinatario']) && isset($_POST['cognome_destinatario']) && isset($_POST['CF_destinatario'])) {
         try {
             $stm = $db->prepare($queryInsertDestinatario);
-            $stm->bindValue(':nome_destinatario', $nome_destinatario);
-            $stm->bindValue(':cognome_destinatario', $cognome_destinatario);
-            $stm->bindValue(':CF_destinatario', $CF_destinatario);
+            $stm->bindValue(':nome_destinatario', $_POST['nome_destinatario']);
+            $stm->bindValue(':cognome_destinatario', $_POST['cognome_destinatario']);
+            $stm->bindValue(':CF_destinatario', $_POST['CF_destinatario']);
             $stm->execute();
             $stm->CloseCursor();
         } catch (Exception $e) {
@@ -70,30 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (empty($cliente) && isset($_POST['nome_mittente']) && isset($_POST['cognome_mittente']) && isset($_POST['indirizzo_mittente']) && isset($_POST['telefono_mittente']) && isset($_POST['email_mittente']) && isset($_SESSION['email_personale_consegna'])) {
-        try {
-            $stm = $db->prepare($queryInsertCliente);
-
-            $stm->bindValue(':nome_mittente', $_POST['nome_mittente']);
-            $stm->bindValue(':cognome_mittente', $_POST['cognome_mittente']);
-            $stm->bindValue(':indirizzo_mittente', $_POST['indirizzo_mittente']);
-            $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
-            $stm->bindValue(':email_mittente', $_POST['email_mittente']);
-            $stm->bindValue(':email_personale', $_SESSION['email']);
-
-            $stm->execute();
-            $stm->closeCursor();
-
-        } catch (Exception $e) {
-            logError($e);
-        }
-    }
-
-
-    if(isset($_POST['contatto_recapito']) && isset($_POST['CF_destinatario']) && isset($_POST['telefono_mittente'])) {
+    if(isset($_POST['contatto_recapito']) && isset($_POST['CF_destinatario']) && isset($_POST['email_mittente'])) {
         $contatto_recapito = $_POST['contatto_recapito'];
         $CF_destinatario = $_POST['CF_destinatario'];
-        $telefono_mittente = $_POST['telefono_mittente'];
+        $email_mittente = $_POST['email_mittente'];
 
         try {
             $stm = $db->prepare($queryInsertPlico);
@@ -101,33 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stm->bindValue(':email_personale_magazziniere', $_SESSION['email']);
             $stm->bindValue(':email_personale_recapito', $contatto_recapito);
             $stm->bindValue(':CF_destinatario', $CF_destinatario);
-            $stm->bindValue(':telefono_mittente', $telefono_mittente);
+            $stm->bindValue(':email_mittente', $email_mittente);
 
             $stm->execute();
             $stm->CloseCursor();
         } catch (Exception $e) {
             logError($e);
         }
-
     }
-    /*
-    try {
-        $stm = $db->prepare($queryInsertPlico);
-
-        $stm->bindValue(':data_consegna', $_POST['data_consegna']);
-        $stm->bindValue(':ora_consegna', $_POST['ora_consegna']);
-        $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
-        $stm->bindValue(':id_plico', $_POST['id_plico']);
-
-        $stm->execute();
-        $stm->CloseCursor();
-    } catch (Exception $e) {
-        logError($e);
-    }*/
-
-    header('Location: ../info.php');
+    header('Location: ./info.php');
 }
-
 ?>
 
 <form method="post" action="nuovo_plico.php">
@@ -167,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h3>Cliente mittente</h3>
 
     <br>
-    <label for="nome_cliente"><strong>Nome</strong></label>
-    <input type="text" id="nome_cliente" name="nome_cliente" required>
+    <label for="nome_mittente"><strong>Nome</strong></label>
+    <input type="text" id="nome_mittente" name="nome_mittente" required>
 
     <br>
     <label for="cognome_mittente"><strong>Cognome</strong></label>

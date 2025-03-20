@@ -102,7 +102,11 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                         <li class="nav-item m-2">
                             <a class="nav-link active private" aria-current="page" href="./nuovo_plico.php">Nuovo plico</a>
                         </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active private" aria-current="page" href="./stato_plichi.php">Stato plichi</a>
+                        </li>
                     <?php } ?>
+
                 </ul>
             </div>
         </div>
