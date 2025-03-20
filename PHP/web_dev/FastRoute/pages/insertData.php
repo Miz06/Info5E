@@ -17,11 +17,27 @@ $sedi = [
 ];
 
 $users = [
-    'a@gmail.com' => ['nome' => 'alessandro', 'password' => 'Password1!', 'citta' => 'Milano', 'via' => 'Via Roma 10'],
-    'b@gmail.com' => ['nome' => 'beppe', 'password' => 'Password2!', 'citta' => 'Roma', 'via' => 'Via Genova 20'],
-    'c@gmail.com' => ['nome' => 'cristiano', 'password' => 'Password3!', 'citta' => 'Genova', 'via' => 'Via Firenze 30'],
-    'd@gmail.com' => ['nome' => 'doraemon', 'password' => 'Password4!', 'citta' => 'Firenze', 'via' => 'Via Milano 40'],
+    // Sede Milano
+    'a@gmail.com' => ['nome' => 'Alessandro', 'password' => 'Password1!', 'citta' => 'Milano', 'via' => 'Via Roma 10'],
+    'b@gmail.com' => ['nome' => 'Beppe', 'password' => 'Password2!', 'citta' => 'Milano', 'via' => 'Via Roma 10'],
+    'c@gmail.com' => ['nome' => 'Carlo', 'password' => 'Password3!', 'citta' => 'Milano', 'via' => 'Via Roma 10'],
+
+    // Sede Roma
+    'd@gmail.com' => ['nome' => 'Daniela', 'password' => 'Password4!', 'citta' => 'Roma', 'via' => 'Via Genova 20'],
+    'e@gmail.com' => ['nome' => 'Emilio', 'password' => 'Password5!', 'citta' => 'Roma', 'via' => 'Via Genova 20'],
+    'f@gmail.com' => ['nome' => 'Francesco', 'password' => 'Password6!', 'citta' => 'Roma', 'via' => 'Via Genova 20'],
+
+    // Sede Genova
+    'g@gmail.com' => ['nome' => 'Giulia', 'password' => 'Password7!', 'citta' => 'Genova', 'via' => 'Via Firenze 30'],
+    'h@gmail.com' => ['nome' => 'Horacio', 'password' => 'Password8!', 'citta' => 'Genova', 'via' => 'Via Firenze 30'],
+    'i@gmail.com' => ['nome' => 'Ivan', 'password' => 'Password9!', 'citta' => 'Genova', 'via' => 'Via Firenze 30'],
+
+    // Sede Firenze
+    'j@gmail.com' => ['nome' => 'Julia', 'password' => 'Password10!', 'citta' => 'Firenze', 'via' => 'Via Milano 40'],
+    'k@gmail.com' => ['nome' => 'Karlo', 'password' => 'Password11!', 'citta' => 'Firenze', 'via' => 'Via Milano 40'],
+    'l@gmail.com' => ['nome' => 'Luca', 'password' => 'Password12!', 'citta' => 'Firenze', 'via' => 'Via Milano 40'],
 ];
+
 
 $stati = [
     'in partenza',

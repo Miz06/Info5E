@@ -12,9 +12,9 @@ $querySelectCliente = 'SELECT * FROM db_FastRoute.clienti WHERE telefono = :tele
 $querySelectDestinatario = 'SELECT * FROM db_FastRoute.destinatari WHERE CF = :CF';
 $querySelectPersonaleSede = 'SELECT * FROM db_FastRoute.personale WHERE citta = :citta AND via = :via';
 
-$queryInsertPlico = 'INSERT INTO db_FastRoute.consegnare (data_consegna, ora_consegna, telefono_mittente, id_plico) values (:data_consegna, :ora_consegna, :telefono_mittente, :id_plico)';
+$queryInsertPlico = 'INSERT INTO db_FastRoute.plichi (email_personale_magazziniere, email_personale_recapito, telefono_mittente, CF_destinatario) values (:email_personale_magazziniere, :email_personale_recapito, :telefono_mittente, :CF_destinatario)';
 $queryInsertDestinatario = 'INSERT INTO db_FastRoute.destinatari (nome, cognome, CF) values (:nome_destinatario, :cognome_destinatario, :CF_destinatario)';
-$queryInsertCliente = "INSERT INTO db_FastRoute.clienti (nome, cognome, indirizzo, telefono, email, email_personale_consegna) values (:nome_mittente, :cognome_mittente, :indirizzo_mittente, :telefono_mittente, :email_mittente, :email_personale_consegna)";
+$queryInsertCliente = "INSERT INTO db_FastRoute.clienti (nome, cognome, indirizzo, telefono, email, email_personale) values (:nome_mittente, :cognome_mittente, :indirizzo_mittente, :telefono_mittente, :email_mittente, :email_personale)";
 
 $contatti_personale = [];
 $sedi = [];
@@ -32,39 +32,27 @@ try {
     $sedi = $stm->fetchAll(PDO::FETCH_ASSOC);
     $stm->CloseCursor();
 
-    //CLIENTI
-    $stm = $db->prepare($querySelectCliente);
-    $stm->execute();
-    $cliente = $stm->fetchColumn();
-    $stm->CloseCursor();
-
-    //DESTINATARI
-    $stm = $db->prepare($querySelectDestinatario);
-    $stm->execute();
-    $destinatario = $stm->fetchColumn();
-    $stm->CloseCursor();
-
     //$destinatario e $cliente sono utilizzati successivamente per verificare l'eventuale presenza, o meno, nel db
 } catch (Exception $e) {
     logError($e);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    /*
-    try {
-        $stm = $db->prepare($queryInsertPlico);
 
-        $stm->bindValue(':data_consegna', $_POST['data_consegna']);
-        $stm->bindValue(':ora_consegna', $_POST['ora_consegna']);
-        $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
-        $stm->bindValue(':id_plico', $_POST['id_plico']);
+    //CLIENTI
+    $stm = $db->prepare($querySelectCliente);
+    $stm->bindValue(':telefono', $_POST['telefono_mittente']);
+    $stm->execute();
+    $cliente = $stm->fetchColumn();
+    $stm->CloseCursor();
 
-        $stm->execute();
-        $stm->CloseCursor();
-    } catch (Exception $e) {
-        logError($e);
-    }
-*/
+    //DESTINATARI
+    $stm = $db->prepare($querySelectDestinatario);
+    $stm->bindValue(':CF', $_POST['CF_destinatario']);
+    $stm->execute();
+    $destinatario = $stm->fetchColumn();
+    $stm->CloseCursor();
+
     if (empty($destinatario) && isset($_POST['nome_destinatario']) && isset($_POST['cognome_destinatario']) && isset($_POST['CF_destinatario'])) {
         $nome_destinatario = $_POST['nome_destinatario'];
         $cognome_destinatario = $_POST['cognome_destinatario'];
@@ -86,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $stm = $db->prepare($queryInsertCliente);
 
-            $stm->bindValue(':nome', $_POST['nome_mittente']);
-            $stm->bindValue(':cognome', $_POST['cognome_mittente']);
-            $stm->bindValue(':indirizzo', $_POST['indirizzo_mittente']);
-            $stm->bindValue(':telefono', $_POST['telefono_mittente']);
-            $stm->bindValue(':email', $_POST['email_mittente']);
-            $stm->bindValue(':email_personale', $_SESSION['email_personale_consegna']);
+            $stm->bindValue(':nome_mittente', $_POST['nome_mittente']);
+            $stm->bindValue(':cognome_mittente', $_POST['cognome_mittente']);
+            $stm->bindValue(':indirizzo_mittente', $_POST['indirizzo_mittente']);
+            $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
+            $stm->bindValue(':email_mittente', $_POST['email_mittente']);
+            $stm->bindValue(':email_personale', $_SESSION['email']);
 
             $stm->execute();
             $stm->closeCursor();
@@ -100,6 +88,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             logError($e);
         }
     }
+
+
+    if(isset($_POST['contatto_recapito']) && isset($_POST['CF_destinatario']) && isset($_POST['telefono_mittente'])) {
+        $contatto_recapito = $_POST['contatto_recapito'];
+        $CF_destinatario = $_POST['CF_destinatario'];
+        $telefono_mittente = $_POST['telefono_mittente'];
+
+        try {
+            $stm = $db->prepare($queryInsertPlico);
+
+            $stm->bindValue(':email_personale_magazziniere', $_SESSION['email']);
+            $stm->bindValue(':email_personale_recapito', $contatto_recapito);
+            $stm->bindValue(':CF_destinatario', $CF_destinatario);
+            $stm->bindValue(':telefono_mittente', $telefono_mittente);
+
+            $stm->execute();
+            $stm->CloseCursor();
+        } catch (Exception $e) {
+            logError($e);
+        }
+
+    }
+    /*
+    try {
+        $stm = $db->prepare($queryInsertPlico);
+
+        $stm->bindValue(':data_consegna', $_POST['data_consegna']);
+        $stm->bindValue(':ora_consegna', $_POST['ora_consegna']);
+        $stm->bindValue(':telefono_mittente', $_POST['telefono_mittente']);
+        $stm->bindValue(':id_plico', $_POST['id_plico']);
+
+        $stm->execute();
+        $stm->CloseCursor();
+    } catch (Exception $e) {
+        logError($e);
+    }*/
 
     header('Location: ../info.php');
 }
@@ -113,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h6>3) Il plico viene spedito da un membro del personale in un altra sede [data e ora registrate]</h6>
     <h6>4) Il plico è recapitato da un membro del personale </h6>
     <h6>5) Il destinatario ritira il plico [data e ora registrate]</h6>
-
+    <hr>
 
     <br>
     <label for="contatto_spedizione"><strong>Email dell'addetto alla spedizione </strong></label>
@@ -138,44 +162,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <label for="contatto_recapito' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
     } ?>
 
-    <br>
-    <br>
-    <label for="contatto_ritiro"><strong>Email dell'addetto al ritiro </strong></label>
-    <?php foreach ($contatti_personale as $contatto_personale) {
-        echo '<br><input type="radio" id="contatto_ritiro' . $contatto_personale['email'] . '"name="contatto_ritiro" value="' . $contatto_personale['email'] . '">
-              <label for="contatto_ritiro' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-    } ?>
-
-    <br>
+    <hr>
     <br>
     <h3>Cliente mittente</h3>
 
     <br>
     <label for="nome_cliente"><strong>Nome</strong></label>
     <input type="text" id="nome_cliente" name="nome_cliente" required>
-    <hr>
 
     <br>
     <label for="cognome_mittente"><strong>Cognome</strong></label>
     <input type="text" id="cognome_mittente" name="cognome_mittente" required>
-    <hr>
 
     <br>
     <label for="email_mittente"><strong>Email</strong></label>
     <input type="text" id="email_mittente" name="email_mittente" required>
-    <hr>
 
     <br>
     <label for="telefono_mittente"><strong>Telefono</strong></label>
     <input type="text" id="telefono_mittente" name="telefono_mittente" required>
-    <hr>
 
     <br>
     <label for="indirizzo_mittente"><strong>Indirizzo</strong></label>
     <input type="text" id="indirizzo_mittente" name="indirizzo_mittente" required>
-    <hr>
 
-    <br>
+    <hr>
     <br>
     <h3>Destinatario</h3>
 
