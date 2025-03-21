@@ -1,0 +1,4 @@
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:29:26
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_plico' cannot be null---2025-03-21 17:34:00
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:38:22
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:39:06

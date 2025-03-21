@@ -10,6 +10,9 @@ $querySelectStati = 'SELECT * FROM db_FastRoute.stati';
 
 $queryCambiaStato = 'UPDATE db_FastRoute.plichi SET stato = :stato WHERE id = :id';
 
+$queryUpdateSpedire = 'UPDATE db_FastRoute.spedire SET data_spedizione = :data_spedizione, ora_spedizione = :ora_spedizione WHERE id_plico = :id_plico';
+$queryUpdateRitirare = 'UPDATE db_FastRoute.ritirare SET data_ritiro = :data_ritiro, ora_ritiro = :ora_ritiro WHERE id_plico = :id_plico';
+
 try {
     $stm = $db->prepare($querySelectPlichi);
     $stm->execute();
@@ -31,17 +34,45 @@ try {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['id_plico']) && isset($_POST['stato_plico'])) {
         try {
+            //AGGIORNAMENTO STATO DEL PLICO
             $stm = $db->prepare($queryCambiaStato);
             $stm->bindValue(':id', $_POST['id_plico']);
             $stm->bindValue(':stato', $_POST['stato_plico']);
             $stm->execute();
             $stm->closeCursor();
-
-            header('Location: ./stato_plichi.php');
         } catch (Exception $e) {
             logError($e);
         }
+
+        if($_POST['stato_plico'] == 'consegnato') {
+            try {
+                $stm = $db->prepare($queryUpdateRitirare);
+                $stm->bindValue(':data_spedizione', date('Y-m-d')); // Data attuale
+                $stm->bindValue(':ora_spedizione', date('H:i:s')); // Ora attuale
+                $stm->bindValue(':id_plico', $_POST['id_plico']);
+                $stm->execute();
+                $stm->closeCursor();
+            } catch (Exception $e) {
+                logError($e);
+            }
+        }
+
+        if($_POST['stato_plico'] == 'in transito') {
+            try {
+                $stm = $db->prepare($queryUpdateSpedire);
+                $stm->bindValue(':data_spedizione', date('Y-m-d')); // Data attuale
+                $stm->bindValue(':ora_spedizione', date('H:i:s')); // Ora attuale
+                $stm->bindValue(':id_plico', $_POST['id_plico']);
+                $stm->execute();
+                $stm->closeCursor();
+            } catch (Exception $e) {
+                logError($e);
+            }
+        }
     }
+
+    header('Location: ./stato_plichi.php');
+
 }
 
 echo '<br><h4>In partenza</h4><hr>';
@@ -106,7 +137,7 @@ echo '</table>';
 
     <br>
     <br>
-    <h4><label for="stato_plico">Stato plico</label></h4><hr>
+    <label for="stato_plico">Stato plico</label><br>
     <?php foreach ($stati as $stato) {
         echo '<input type="radio" id="' . $stato['descrizione'] . '"name="stato_plico" value="' . $stato['descrizione'] . '">
               <label for="' . $stato['descrizione'] . '">' . $stato['descrizione'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
