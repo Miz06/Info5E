@@ -3,7 +3,15 @@
 //i dati di una sessione sono sempre memorizzati nel server e non nel browser A DIFFERENZA DEI COOKIE
 //chiudendo il browser si chiude anche la sessione
 
-session_start();
+var_dump(session_get_cookie_params());
+session_get_cookie_params();
+die();
+
+//NB: Le sessioni si basano sul funzionamento dei cookie
+if(session_status() == PHP_SESSION_NONE){ //CONTROLLO SE LA SESSIONE è ATTIVA
+    session_start();
+}
+
 $materia = $_SESSION['materia'] = 'informatica';
 $scuola = $_SESSION['scuola'] = 'itis';
 
@@ -23,5 +31,9 @@ $scuola = $_SESSION['scuola'] = 'itis';
 <p>MATERIA: <?=$materia?></p>
 
 <a href="sessionIndexOne.php">SessionIndexOne</a>
+
+<p>Session name: <?php session_name()?></p>
+<p><?php $_COOKIE[session_name()]?></p>
+
 </body>
 </html>
