@@ -16,6 +16,7 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
         $stm->bindValue(':email', $_SESSION['email']);
         $stm->execute();
         $nomeUtente = $stm->fetchColumn();
+        $stm->closeCursor();
     } catch (Exception $e) {
         logError($e);
         $nomeUtente = "Errore";
@@ -40,16 +41,18 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        h4 {
+        h4, .lab {
             border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-        }
-
-        strong {
+            width: 100%;
+            padding-bottom: 1%;
             color: darkblue;
         }
 
-        .element{
+        strong {
+            color: black;
+        }
+
+        .element {
             background: white;
             padding: 2%;
             border-radius: 10px;
@@ -70,6 +73,13 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             color: white;
             border: none;
             cursor: pointer;
+            width: 70%;
+        }
+
+        .submit-container {
+            display: flex;
+            justify-content: center; /* Centra orizzontalmente */
+            margin: 10px 0;
         }
 
         input[type="submit"]:hover {
@@ -109,10 +119,6 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             text-align: center;
         }
 
-        .private {
-            background-color: darkslateblue;
-        }
-
         .nav-link:hover {
             background-color: grey;
         }
@@ -125,20 +131,38 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             width: 100%;
             border-collapse: collapse;
         }
+
         th, td {
             padding: 15px;
             text-align: center;
             border: 1px solid #ccc;
         }
+
         td {
             background-color: #f9f9f9;
         }
+
         th {
             background-color: #86f1ee;
         }
+
         .data-box {
             padding: 1%;
             margin: 1%;
+        }
+
+        .log-out {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: red;
+            border: 2px solid red;
+            color: white;
+        }
+
+        .log-out:hover {
+            background-color: darkred;
         }
     </style>
 </head>
@@ -146,13 +170,13 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
 <body class="p-3 border-0 bd-example m-0 border-0" style="background-color: whitesmoke">
 
 <?php if (isset($_COOKIE['nav_color'])) { ?>
-<nav class="navbar navbar-expand-lg navbar-dark mb-3"
+<nav class="navbar navbar-expand-lg navbar-dark"
      style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
     <?php }else{ ?>
     <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
         <?php } ?>
         <div class="container-fluid">
-            <a class="navbar-brand account" href="./account.php"> <?= $nomeUtente ?></a>
+            <a class="navbar-brand account" href="../pages/account.php"><?=$nomeUtente?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -161,20 +185,19 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                 <ul class="navbar-nav">
                     <li class="nav-item m-2">
                         <a class="nav-link active" aria-current="page"
-                           href="./home.php">Home</a>
+                           href="../pages/home.php">Home</a>
                     </li>
                     <?php if (!isset($_SESSION['email']) || $_SESSION['email'] == 'Ospite') { ?>
                     <li class="nav-item m-2">
-                        <a class="nav-link active" aria-current="page"
-                           href="../pages/login.php">Login</a>
+                        <a class="nav-link active" aria-current="page" href="../pages/login.php">Login</a>
                     </li>
                     <?php } ?>
                     <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
                         <li class="nav-item m-2">
-                            <a class="nav-link active private" aria-current="page" href="./nuovo_plico.php">Nuovo plico</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/nuovo_plico.php">Nuovo plico</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a class="nav-link active private" aria-current="page" href="./stato_plichi.php">Stato plichi</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/stato_plichi.php">Stato plichi</a>
                         </li>
                     <?php } ?>
 

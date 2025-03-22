@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: ./stato_plichi.php');
 }
 
-echo '<br><h4>In partenza</h4><hr>';
+echo '<div class="element"><h4>In partenza</h4><hr>';
 echo '<table>';
 echo '<tr><th>ID</th><th>Email Magazziniere</th><th>Email Recapito</th><th>Stato</th><th>Email Mittente</th><th>CF Destinatario</th></tr>';
 foreach ($plichi as $p) {
@@ -89,9 +89,9 @@ foreach ($plichi as $p) {
         echo '</tr>';
     }
 }
-echo '</table>';
+echo '</table></div>';
 
-echo '<br><br><h4>In transito</h4><hr>';
+echo '<div class="element"><h4>In transito</h4><hr>';
 echo '<table>';
 echo '<tr><th>ID</th><th>Email Magazziniere</th><th>Email Recapito</th><th>Stato</th><th>Email Mittente</th><th>CF Destinatario</th></tr>';
 foreach ($plichi as $p) {
@@ -106,9 +106,9 @@ foreach ($plichi as $p) {
         echo '</tr>';
     }
 }
-echo '</table>';
+echo '</table></div>';
 
-echo '<br><br><h4>Consegnato</h4><hr>';
+echo '<div class="element"><h4>Consegnato</h4><hr>';
 echo '<table>';
 echo '<tr><th>ID</th><th>Email Magazziniere</th><th>Email Recapito</th><th>Stato</th><th>Email Mittente</th><th>CF Destinatario</th></tr>';
 foreach ($plichi as $p) {
@@ -123,29 +123,30 @@ foreach ($plichi as $p) {
         echo '</tr>';
     }
 }
-echo '</table>';
+echo '</table></div><br>';
 ?>
 
 <div class="element">
     <form method="post" action="stato_plichi.php">
         <br>
         <br>
-        <h4>Cambia stato plico</h4>
+        <h4>Cambia stato di un plico</h4>
         <hr>
 
-        <label for="id_plico">ID plico</label>
+        <br>
+        <label for="id_plico"><strong>ID del plico</strong></label>
         <input type='text' id='id_plico' name='id_plico' required>
 
         <br>
         <br>
-        <label for="stato_plico">Stato plico</label><br>
         <?php foreach ($stati as $stato) {
             echo '<input type="radio" id="' . $stato['descrizione'] . '"name="stato_plico" value="' . $stato['descrizione'] . '">
               <label for="' . $stato['descrizione'] . '">' . $stato['descrizione'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
         } ?>
 
-        <br><br>
-        <input type="submit" value="Cambia stato">
+        <div class="submit-container">
+            <input type="submit" value="Cambia stato del plico">
+        </div>
 
     </form>
 </div>

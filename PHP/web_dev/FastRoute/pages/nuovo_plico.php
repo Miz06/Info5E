@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             // INSERT INTO RITIRARE
-            if (isset($CF_destinatario) && isset($id_plico)){
+            if (isset($CF_destinatario) && isset($id_plico)) {
                 try {
                     $stm = $db->prepare($queryInsertRitirare);
                     $stm->bindValue(':CF', $CF_destinatario);
@@ -165,92 +165,92 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    header('Location: ./info.php');
+    header('Location: ./stato_plichi.php');
 }
 ?>
 
 <form method="post" action="nuovo_plico.php">
     <div class="element">
-    <h4>Informazioni relative alla gestione del plico</h4>
-    <hr>
-    <h6>1) Il cliente consegna il pacco in sede [data e ora registrate]</h6>
-    <h6>2) Un membro del personale registra e immagazzina il plico </h6>
-    <h6>3) Il plico viene spedito da un membro del personale in un altra sede [data e ora registrate]</h6>
-    <h6>4) Il plico è recapitato da un membro del personale </h6>
-    <h6>5) Il destinatario ritira il plico [data e ora registrate]</h6>
+        <h4>Informazioni relative alla gestione del plico</h4>
+        <hr>
+        <h6>1) Il cliente consegna il pacco in sede [data e ora registrate]</h6>
+        <h6>2) Un membro del personale registra e immagazzina il plico </h6>
+        <h6>3) Il plico viene spedito da un membro del personale in un altra sede [data e ora registrate]</h6>
+        <h6>4) Il plico è recapitato da un membro del personale </h6>
+        <h6>5) Il destinatario ritira il plico [data e ora registrate]</h6>
     </div>
 
     <div class="element">
-    <h4><label for="contatto_spedizione">Email dell'addetto alla spedizione</label></h4>
-    <hr>
-    <?php foreach ($contatti_personale as $contatto_personale) {
-        echo '<input type="radio" id="contatto_spedizione' . $contatto_personale['email'] . '"name="contatto_spedizione" value="' . $contatto_personale['email'] . '">
+        <h4><label for="contatto_spedizione">Email dell'addetto alla spedizione</label></h4>
+        <hr>
+        <?php foreach ($contatti_personale as $contatto_personale) {
+            echo '<input type="radio" id="contatto_spedizione' . $contatto_personale['email'] . '"name="contatto_spedizione" value="' . $contatto_personale['email'] . '">
               <label for="contatto_spedizione' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //label che fa riferimento alla prima per consentire una maggiore usabilità
-    } ?>
+        } ?>
     </div>
 
     <div class="element">
-    <h4><label for="sede">In quale sede verrà spedito il pacco?</label></h4>
-    <hr>
-    <?php foreach ($sedi as $sede) {
-        echo '<input type="radio" id="sede_' . $sede['citta'] . '_' . $sede['via'] . '" name="sede" value="' . $sede['citta'] . '-' . $sede['via'] . '">
+        <h4><label for="sede">In quale sede verrà spedito il pacco?</label></h4>
+        <hr>
+        <?php foreach ($sedi as $sede) {
+            echo '<input type="radio" id="sede_' . $sede['citta'] . '_' . $sede['via'] . '" name="sede" value="' . $sede['citta'] . '-' . $sede['via'] . '">
               <label for="sede_' . $sede['citta'] . '_' . $sede['via'] . '">' . $sede['citta'] . ' - ' . $sede['via'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-    } ?>
+        } ?>
     </div>
 
     <div class="element">
-    <h4><label for="contatto_recapito">Email dell'addetto al recapito </label></h4>
-    <hr>
-    <?php foreach ($contatti_personale as $contatto_personale) {
-        echo '<input type="radio" id="contatto_recapito' . $contatto_personale['email'] . '"name="contatto_recapito" value="' . $contatto_personale['email'] . '">
+        <h4><label for="contatto_recapito">Email dell'addetto al recapito </label></h4>
+        <hr>
+        <?php foreach ($contatti_personale as $contatto_personale) {
+            echo '<input type="radio" id="contatto_recapito' . $contatto_personale['email'] . '"name="contatto_recapito" value="' . $contatto_personale['email'] . '">
               <label for="contatto_recapito' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-    } ?>
+        } ?>
     </div>
 
     <div class="element">
-    <h4>Cliente mittente</h4>
-    <hr
+        <h4>Cliente mittente</h4>
+        <hr
 
-    <br>
-    <label for="nome_mittente"><strong>Nome</strong></label>
-    <input type="text" id="nome_mittente" name="nome_mittente" required>
+        <br><br>
+        <label for="nome_mittente"><strong>Nome</strong></label>
+        <input type="text" id="nome_mittente" name="nome_mittente" required>
 
-    <br>
-    <label for="cognome_mittente"><strong>Cognome</strong></label>
-    <input type="text" id="cognome_mittente" name="cognome_mittente" required>
+        <br><br>
+        <label for="cognome_mittente"><strong>Cognome</strong></label>
+        <input type="text" id="cognome_mittente" name="cognome_mittente" required>
 
-    <br>
-    <label for="email_mittente"><strong>Email</strong></label>
-    <input type="text" id="email_mittente" name="email_mittente" required>
+        <br><br>
+        <label for="email_mittente"><strong>Email</strong></label>
+        <input type="text" id="email_mittente" name="email_mittente" required>
 
-    <br>
-    <label for="telefono_mittente"><strong>Telefono</strong></label>
-    <input type="text" id="telefono_mittente" name="telefono_mittente" required>
+        <br><br>
+        <label for="telefono_mittente"><strong>Telefono</strong></label>
+        <input type="text" id="telefono_mittente" name="telefono_mittente" required>
 
-    <br>
-    <label for="indirizzo_mittente"><strong>Indirizzo</strong></label>
-    <input type="text" id="indirizzo_mittente" name="indirizzo_mittente" required>
+        <br><br>
+        <label for="indirizzo_mittente"><strong>Indirizzo</strong></label>
+        <input type="text" id="indirizzo_mittente" name="indirizzo_mittente" required>
     </div>
 
     <div class="element">
-    <h4>Destinatario</h4>
-    <hr
+        <h4>Destinatario</h4>
+        <hr
 
-    <br>
-    <label for="nome_destinatario"><strong>Nome</strong></label>
-    <input type="text" id="nome_destinatario" name="nome_destinatario" required>
+        <br><br>
+        <label for="nome_destinatario"><strong>Nome</strong></label>
+        <input type="text" id="nome_destinatario" name="nome_destinatario" required>
 
-    <br>
-    <label for="cognome_destinatario"><strong>Cognome</strong></label>
-    <input type="text" id="cognome_destinatario" name="cognome_destinatario" required>
+        <br><br>
+        <label for="cognome_destinatario"><strong>Cognome</strong></label>
+        <input type="text" id="cognome_destinatario" name="cognome_destinatario" required>
 
-    <br>
-    <label for="CF_destinatario"><strong>Codice fiscale</strong></label>
-    <input type="text" id="CF_destinatario" name="CF_destinatario" required>
+        <br><br>
+        <label for="CF_destinatario"><strong>Codice fiscale</strong></label>
+        <input type="text" id="CF_destinatario" name="CF_destinatario" required>
     </div>
 
-    <br>
-    <br>
-    <input type="submit" value="Submit">
+    <div class="submit-container">
+        <input type="submit" value="Invia">
+    </div>
 </form>
 

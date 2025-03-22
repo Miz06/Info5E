@@ -15,7 +15,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
 <form method="post" action="preferenze.php">
     <br>
     <br>
-    <h4><label for="nav_color">Cambia password</label></h4><hr>
+    <h4><label for="nav_color">Tema navbar</label></h4><hr>
 
     <input type='radio' id='verde' name='nav_color' value='#28a745'>
     <label for="verde">Verde</label>

@@ -1,5 +1,5 @@
 <?php
-$title = 'Home';
+$title = 'home';
 require '../references/navbar.php';
 ?>
 

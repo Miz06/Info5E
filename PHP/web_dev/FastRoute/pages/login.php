@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
         $stm->closeCursor();
 
         if ($user && $email == $user['email'] && password_verify($password, $user['password'])) {
-            $_SESSION['email'] = $user['email'];
-            header('Location: home.php');
+            $_SESSION['email'] = $_POST['email'];
+            header('Location: ./home.php');
         } else {
             echo 'Credenziali errate';
         }
@@ -34,19 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
 }
 ?>
 
-
 <form method="post" action="login.php">
-    <br>
-    <label for="email"><strong>Email</strong></label>
-    <input type="email" name="email" id="email" required>
-    <hr>
+    <div class="element">
+        <label for="email" class="lab"><strong>Email</strong></label>
+        <hr>
+        <input type="email" name="email" id="email" required>
 
-    <br>
-    <label for="password"><strong>Password</strong></label>
-    <input type="password" name="password" id="password" required>
-    <hr>
+        <br><br>
+        <label for="password" class="lab"><strong>Password</strong></label>
+        <hr>
+        <input type="password" name="password" id="password" required>
 
-    <input type="submit" value="Login">
+    </div>
+
+    <div class="submit-container">
+        <input type="submit" value="Invia">
+    </div>
 </form>
 
 </body>
