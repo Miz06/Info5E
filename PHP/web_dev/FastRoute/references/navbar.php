@@ -49,7 +49,7 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             color: darkblue;
         }
 
-        form {
+        .element{
             background: white;
             padding: 2%;
             border-radius: 10px;

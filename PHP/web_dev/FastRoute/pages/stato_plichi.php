@@ -32,7 +32,7 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(isset($_POST['id_plico']) && isset($_POST['stato_plico'])) {
+    if (isset($_POST['id_plico']) && isset($_POST['stato_plico'])) {
         try {
             //AGGIORNAMENTO STATO DEL PLICO
             $stm = $db->prepare($queryCambiaStato);
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             logError($e);
         }
 
-        if($_POST['stato_plico'] == 'consegnato') {
+        if ($_POST['stato_plico'] == 'consegnato') {
             try {
                 $stm = $db->prepare($queryUpdateRitirare);
                 $stm->bindValue(':data_spedizione', date('Y-m-d')); // Data attuale
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        if($_POST['stato_plico'] == 'in transito') {
+        if ($_POST['stato_plico'] == 'in transito') {
             try {
                 $stm = $db->prepare($queryUpdateSpedire);
                 $stm->bindValue(':data_spedizione', date('Y-m-d')); // Data attuale
@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     header('Location: ./stato_plichi.php');
-
 }
 
 echo '<br><h4>In partenza</h4><hr>';
@@ -127,23 +126,26 @@ foreach ($plichi as $p) {
 echo '</table>';
 ?>
 
-<form method="post" action="stato_plichi.php">
-    <br>
-    <br>
-    <h4>Cambia stato plico</h4><hr>
+<div class="element">
+    <form method="post" action="stato_plichi.php">
+        <br>
+        <br>
+        <h4>Cambia stato plico</h4>
+        <hr>
 
-    <label for="id_plico">ID plico</label>
-    <input type='text' id='id_plico' name='id_plico' required>
+        <label for="id_plico">ID plico</label>
+        <input type='text' id='id_plico' name='id_plico' required>
 
-    <br>
-    <br>
-    <label for="stato_plico">Stato plico</label><br>
-    <?php foreach ($stati as $stato) {
-        echo '<input type="radio" id="' . $stato['descrizione'] . '"name="stato_plico" value="' . $stato['descrizione'] . '">
+        <br>
+        <br>
+        <label for="stato_plico">Stato plico</label><br>
+        <?php foreach ($stati as $stato) {
+            echo '<input type="radio" id="' . $stato['descrizione'] . '"name="stato_plico" value="' . $stato['descrizione'] . '">
               <label for="' . $stato['descrizione'] . '">' . $stato['descrizione'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-    } ?>
+        } ?>
 
-    <br><br>
-    <input type="submit" value="Cambia stato">
+        <br><br>
+        <input type="submit" value="Cambia stato">
 
-</form>
+    </form>
+</div>

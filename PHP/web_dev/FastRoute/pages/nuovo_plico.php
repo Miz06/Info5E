@@ -170,8 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <form method="post" action="nuovo_plico.php">
-
-    <br>
+    <div class="element">
     <h4>Informazioni relative alla gestione del plico</h4>
     <hr>
     <h6>1) Il cliente consegna il pacco in sede [data e ora registrate]</h6>
@@ -179,36 +178,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h6>3) Il plico viene spedito da un membro del personale in un altra sede [data e ora registrate]</h6>
     <h6>4) Il plico è recapitato da un membro del personale </h6>
     <h6>5) Il destinatario ritira il plico [data e ora registrate]</h6>
+    </div>
 
-    <br>
-    <br>
+    <div class="element">
     <h4><label for="contatto_spedizione">Email dell'addetto alla spedizione</label></h4>
     <hr>
     <?php foreach ($contatti_personale as $contatto_personale) {
         echo '<input type="radio" id="contatto_spedizione' . $contatto_personale['email'] . '"name="contatto_spedizione" value="' . $contatto_personale['email'] . '">
               <label for="contatto_spedizione' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //label che fa riferimento alla prima per consentire una maggiore usabilità
     } ?>
+    </div>
 
-    <br>
-    <br>
+    <div class="element">
     <h4><label for="sede">In quale sede verrà spedito il pacco?</label></h4>
     <hr>
     <?php foreach ($sedi as $sede) {
         echo '<input type="radio" id="sede_' . $sede['citta'] . '_' . $sede['via'] . '" name="sede" value="' . $sede['citta'] . '-' . $sede['via'] . '">
               <label for="sede_' . $sede['citta'] . '_' . $sede['via'] . '">' . $sede['citta'] . ' - ' . $sede['via'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
     } ?>
+    </div>
 
-    <br>
-    <br>
+    <div class="element">
     <h4><label for="contatto_recapito">Email dell'addetto al recapito </label></h4>
     <hr>
     <?php foreach ($contatti_personale as $contatto_personale) {
         echo '<input type="radio" id="contatto_recapito' . $contatto_personale['email'] . '"name="contatto_recapito" value="' . $contatto_personale['email'] . '">
               <label for="contatto_recapito' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
     } ?>
+    </div>
 
-    <br>
-    <br>
+    <div class="element">
     <h4>Cliente mittente</h4>
     <hr
 
@@ -231,10 +230,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <br>
     <label for="indirizzo_mittente"><strong>Indirizzo</strong></label>
     <input type="text" id="indirizzo_mittente" name="indirizzo_mittente" required>
+    </div>
 
-    <br>
-    <br>
-    <br>
+    <div class="element">
     <h4>Destinatario</h4>
     <hr
 
@@ -249,6 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <br>
     <label for="CF_destinatario"><strong>Codice fiscale</strong></label>
     <input type="text" id="CF_destinatario" name="CF_destinatario" required>
+    </div>
 
     <br>
     <br>
