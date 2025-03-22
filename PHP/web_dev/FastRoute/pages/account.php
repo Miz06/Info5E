@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $title = 'account';
 require '../references/navbar.php';
 
@@ -36,6 +37,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
         header("Location: ./account.php"); // Reindirizzamento
     }
 }
+ob_end_flush();
 ?>
 
 <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
@@ -68,21 +70,23 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
             <h4><label for="nav_color">Desideri cambiare tema alla navbar?</label></h4>
             <hr>
 
-            <input type='radio' id='verde' name='nav_color' value='#28a745'>
-            <label for="verde">Verde</label>
+            <div class="form-check">
+                <input type="radio" id="grey" name="nav_color" value="darkslategrey" class="form-check-input">
+                <label for="grey" class="form-check-label">Dark grey</label>
+            </div>
 
-            <input type='radio' id='blu' name='nav_color' value='#007bff'>
-            <label for="blu">Blu</label>
+            <div class="form-check">
+                <input type="radio" id="blu" name="nav_color" value="darkblue" class="form-check-input">
+                <label for="blu" class="form-check-label">Dark blu</label>
+            </div>
 
-            <input type='radio' id='viola' name='nav_color' value='#6f42c1'>
-            <label for="viola">Viola</label>
-
-
-            <input type='radio' id='nero' name='nav_color' value='#000000'>
-            <label for="nero">Nero</label>
+            <div class="form-check">
+                <input type="radio" id="nero" name="nav_color" value="#000000" class="form-check-input">
+                <label for="nero" class="form-check-label">Nero</label>
+            </div>
 
             <div class="submit-container">
-                <input type="submit" href="./account.php" value="Salva preferenze">
+                <input type="submit" value="Salva preferenze">
             </div>
         </form>
     </div>
@@ -98,3 +102,5 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
     <p>[L'account ospite ha a sua disposizione i servizi di base: sono disponibii maggiori funzionalità solamente previo
         login.]</p>
 <?php } ?>
+
+<?php require '../references/footer.php'; ?>

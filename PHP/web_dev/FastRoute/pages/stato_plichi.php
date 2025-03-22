@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $title = 'nuovo plico';
 require '../references/navbar.php';
 
@@ -124,12 +125,11 @@ foreach ($plichi as $p) {
     }
 }
 echo '</table></div><br>';
+ob_end_flush();
 ?>
 
 <div class="element">
     <form method="post" action="stato_plichi.php">
-        <br>
-        <br>
         <h4>Cambia stato di un plico</h4>
         <hr>
 
@@ -139,14 +139,18 @@ echo '</table></div><br>';
 
         <br>
         <br>
-        <?php foreach ($stati as $stato) {
-            echo '<input type="radio" id="' . $stato['descrizione'] . '"name="stato_plico" value="' . $stato['descrizione'] . '">
-              <label for="' . $stato['descrizione'] . '">' . $stato['descrizione'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-        } ?>
+        <?php foreach ($stati as $stato) { ?>
+            <div class="form-check">
+                <input type="radio" id="<?= $stato['descrizione'] ?>" name="stato_plico" value="<?= $stato['descrizione'] ?>" class="form-check-input">
+                <label for="<?= $stato['descrizione'] ?>" class="form-check-label"><?= $stato['descrizione'] ?></label>
+            </div>
+        <?php } ?>
+
 
         <div class="submit-container">
             <input type="submit" value="Cambia stato del plico">
         </div>
-
     </form>
 </div>
+
+<?php require '../references/footer.php';?>

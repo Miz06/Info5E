@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $title = 'nuovo plico';
 require '../references/navbar.php';
 
@@ -167,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header('Location: ./stato_plichi.php');
 }
+ob_end_flush();
 ?>
 
 <form method="post" action="nuovo_plico.php">
@@ -183,29 +185,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="element">
         <h4><label for="contatto_spedizione">Email dell'addetto alla spedizione</label></h4>
         <hr>
-        <?php foreach ($contatti_personale as $contatto_personale) {
-            echo '<input type="radio" id="contatto_spedizione' . $contatto_personale['email'] . '"name="contatto_spedizione" value="' . $contatto_personale['email'] . '">
-              <label for="contatto_spedizione' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //label che fa riferimento alla prima per consentire una maggiore usabilità
-        } ?>
+        <?php foreach ($contatti_personale as $contatto_personale) { ?>
+            <div class="form-check">
+                <input type="radio" id="contatto_spedizione_<?= $contatto_personale['email']; ?>"
+                       name="contatto_spedizione"
+                       value="<?= $contatto_personale['email']; ?>"
+                       class="form-check-input">
+                <label for="contatto_spedizione_<?= $contatto_personale['email']; ?>"
+                       class="form-check-label">
+                    <?= $contatto_personale['nome']; ?> (<?= $contatto_personale['email']; ?>)
+                </label>
+            </div>
+        <?php } ?>
+
     </div>
+
 
     <div class="element">
         <h4><label for="sede">In quale sede verrà spedito il pacco?</label></h4>
         <hr>
-        <?php foreach ($sedi as $sede) {
-            echo '<input type="radio" id="sede_' . $sede['citta'] . '_' . $sede['via'] . '" name="sede" value="' . $sede['citta'] . '-' . $sede['via'] . '">
-              <label for="sede_' . $sede['citta'] . '_' . $sede['via'] . '">' . $sede['citta'] . ' - ' . $sede['via'] . '</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-        } ?>
+        <?php foreach ($sedi as $sede) { ?>
+            <div class="form-check">
+                <input type="radio" id="sede_<?= $sede['citta']; ?>_<?= $sede['via']; ?>"
+                       name="sede"
+                       value="<?= $sede['citta']; ?>-<?= $sede['via']; ?>"
+                       class="form-check-input">
+                <label for="sede_<?= $sede['citta']; ?>_<?= $sede['via']; ?>"
+                       class="form-check-label">
+                    <?= $sede['citta']; ?> - <?= $sede['via']; ?>
+                </label>
+            </div>
+        <?php } ?>
+
     </div>
 
+
     <div class="element">
-        <h4><label for="contatto_recapito">Email dell'addetto al recapito </label></h4>
+        <h4><label for="contatto_recapito">Email dell'addetto al recapito</label></h4>
         <hr>
-        <?php foreach ($contatti_personale as $contatto_personale) {
-            echo '<input type="radio" id="contatto_recapito' . $contatto_personale['email'] . '"name="contatto_recapito" value="' . $contatto_personale['email'] . '">
-              <label for="contatto_recapito' . $contatto_personale['email'] . '">' . $contatto_personale['nome'] . ' (' . $contatto_personale['email'] . ')</label><br>'; //seconda label che fa riferimento alla prima per consentire una maggiore usabilità
-        } ?>
+        <?php foreach ($contatti_personale as $contatto_personale) { ?>
+            <div class="form-check">
+                <input type="radio" id="contatto_recapito_<?= $contatto_personale['email']; ?>"
+                       name="contatto_recapito"
+                       value="<?= $contatto_personale['email']; ?>"
+                       class="form-check-input">
+                <label for="contatto_recapito_<?= $contatto_personale['email']; ?>"
+                       class="form-check-label">
+                    <?= $contatto_personale['nome']; ?> (<?= $contatto_personale['email']; ?>)
+                </label>
+            </div>
+        <?php } ?>
+
     </div>
+
 
     <div class="element">
         <h4>Cliente mittente</h4>
@@ -250,7 +282,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <div class="submit-container">
-        <input type="submit" value="Invia">
+        <input type="submit" value="Inserisci plico">
     </div>
 </form>
 
+<?php require '../references/footer.php'; ?>

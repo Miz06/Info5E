@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $title = 'aggiorna password';
 require '../references/navbar.php';
 
@@ -26,25 +27,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['email'])) {
         echo 'Password differenti';
     }
 }
+ob_end_flush();
 ?>
 
-<form method="post" action="aggiorna_password.php">
-    <br>
-    <br>
-    <h4>Cambia password</h4><hr>
-    <label for="nuova_password"><strong>Nuova password</strong></label>
-    <input type="password" name="nuova_password" id="nuova_password" required>
+<div class="element">
+    <form method="post" action="aggiorna_password.php">
+        <h4>Cambia password</h4>
+        <hr>
+        <label for="nuova_password"><strong>Nuova password</strong></label>
+        <input type="password" name="nuova_password" id="nuova_password" required>
 
-    <br>
-    <label for="conferma_nuova_password"><strong>Conferma nuova password</strong></label>
-    <input type="password" name="conferma_nuova_password" id="conferma_nuova_password" required>
+        <br>
+        <label for="conferma_nuova_password"><strong>Conferma nuova password</strong></label>
+        <input type="password" name="conferma_nuova_password" id="conferma_nuova_password" required>
 
-    <br>
-    <br>
-    <input type="submit" value="Submit">
+        <div class="submit-container">
+            <input type="submit" value="Submit">
+        </div>
 
 
-</form>
+    </form>
+</div>
 
-</body>
-</html>
+<?php require '../references/footer.php';?>

@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 $title = 'login';
 require '../references/navbar.php';
 
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
         logError($e);
     }
 }
+ob_end_flush();
 ?>
 
 <form method="post" action="login.php">
@@ -52,5 +53,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
     </div>
 </form>
 
-</body>
-</html>
+<?php require '../references/footer.php';?>

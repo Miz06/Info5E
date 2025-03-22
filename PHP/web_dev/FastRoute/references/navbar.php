@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require '../references/functions.php';
 require '../connectionToDB/DBconn.php';
@@ -19,7 +18,7 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
         $stm->closeCursor();
     } catch (Exception $e) {
         logError($e);
-        $nomeUtente = "Errore";
+        $nomeUtente = "Ospite";
     }
 } else {
     $nomeUtente = "Ospite";
@@ -39,7 +38,6 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         h4, .lab {
             border-bottom: 2px solid #007bff;
@@ -164,19 +162,41 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
         .log-out:hover {
             background-color: darkred;
         }
+
+        .footer{
+            background-color: black;
+            color:white;
+            text-align: center;
+            width: 100%;
+            padding-top: 2%;
+            padding-bottom: 1%;
+            margin-top: 3%;
+        }
+
+        input[type="radio"] {
+            vertical-align: middle; /* Allinea verticalmente */
+            border: 1px solid black;
+        }
+
+        label {
+            margin-left: 1%;
+            vertical-align: middle; /* Assicura l'allineamento */
+            display: inline-block;
+        }
+
     </style>
 </head>
 
-<body class="p-3 border-0 bd-example m-0 border-0" style="background-color: whitesmoke">
-
+<body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
+<div class="flex-grow-1">
 <?php if (isset($_COOKIE['nav_color'])) { ?>
-<nav class="navbar navbar-expand-lg navbar-dark"
+<nav class="navbar navbar-expand-lg navbar-dark m-3"
      style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
     <?php }else{ ?>
     <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
         <?php } ?>
         <div class="container-fluid">
-            <a class="navbar-brand account" href="../pages/account.php"><?=$nomeUtente?></a>
+            <a class="navbar-brand account" href="../pages/account.php"><?= $nomeUtente ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -188,16 +208,18 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                            href="../pages/home.php">Home</a>
                     </li>
                     <?php if (!isset($_SESSION['email']) || $_SESSION['email'] == 'Ospite') { ?>
-                    <li class="nav-item m-2">
-                        <a class="nav-link active" aria-current="page" href="../pages/login.php">Login</a>
-                    </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active" aria-current="page" href="../pages/login.php">Login</a>
+                        </li>
                     <?php } ?>
                     <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/nuovo_plico.php">Nuovo plico</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/nuovo_plico.php">Nuovo
+                                plico</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/stato_plichi.php">Stato plichi</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/stato_plichi.php">Stato
+                                plichi</a>
                         </li>
                     <?php } ?>
 
