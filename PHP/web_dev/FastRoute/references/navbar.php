@@ -40,6 +40,59 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
+        h4 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        strong {
+            color: darkblue;
+        }
+
+        form {
+            background: white;
+            padding: 2%;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 2%;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        hr {
+            border: 1px solid darkblue;
+        }
+
         .account {
             border: 1px solid white;
             padding: 1%;

@@ -31,7 +31,6 @@ if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') {
 
 <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
     <br>
-    <br>
     <h4>Info account</h4><hr>
     <p><strong>Nome: </strong> <?= $userData['nome'] ?></p>
     <p><strong>Email: </strong> <?= $userData['email'] ?></p>

@@ -2,3 +2,11 @@ SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-2
 SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_plico' cannot be null---2025-03-21 17:34:00
 SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:38:22
 SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:39:06
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:34
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:39
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:51
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:42:32
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:42:36
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:42:40
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:43:31
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 07:58:20
