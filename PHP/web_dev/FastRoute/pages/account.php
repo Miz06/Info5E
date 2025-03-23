@@ -98,9 +98,11 @@ ob_end_flush();
         <a href="./logout.php" class="btn-primary log-out">Log out</a>
     </div>
 <?php } else { ?>
+        <div class="element">
     <p><strong>Nome: </strong>Ospite</p>
-    <p>[L'account ospite ha a sua disposizione i servizi di base: sono disponibii maggiori funzionalità solamente previo
-        login.]</p>
+    <p>[Dall'ccount ospite è usufruibile il servizio di richiesta informazini su servizi previo
+        inserimento di un nome e una e-mail.]</p>
+        </div>
 <?php } ?>
 
 <?php require '../references/footer.php'; ?>

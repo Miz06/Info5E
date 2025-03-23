@@ -190,10 +190,9 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
 <body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
 <div class="flex-grow-1">
 <?php if (isset($_COOKIE['nav_color'])) { ?>
-<nav class="navbar navbar-expand-lg navbar-dark m-3"
-     style="background-color: <?= $_COOKIE['nav_color'] ?>; border-radius: 15px;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_COOKIE['nav_color'] ?>">
     <?php }else{ ?>
-    <nav class="navbar navbar-expand-lg navbar-dark mb-3" style="background-color: black; border-radius: 15px;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
         <?php } ?>
         <div class="container-fluid">
             <a class="navbar-brand account" href="../pages/account.php"><?= $nomeUtente ?></a>
@@ -218,9 +217,12 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
                                 plico</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/stato_plichi.php">Stato
+                            <a class="nav-link active" aria-current="page" href="../pages/info_plichi.php">Info
                                 plichi</a>
                         </li>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active" aria-current="page" href="../pages/dashboard.php">Dashboard</a>
+                        </li
                     <?php } ?>
 
                 </ul>

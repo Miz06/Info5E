@@ -23,9 +23,6 @@ $queryInsertConsegnare = 'INSERT INTO db_FastRoute.consegnare (email_mittente, i
 $queryInsertSpedire = 'INSERT INTO db_FastRoute.spedire (email_personale, id_plico) values (:email_personale, :id_plico)';
 $queryInsertRitirare = 'INSERT INTO db_FastRoute.ritirare (CF, id_plico) values (:CF, :id_plico)';
 
-//$contatti_personale = [];
-//$sedi = [];
-
 try {
     //SELECT PERSONALE
     $stm = $db->prepare($querySelectPersonale);
@@ -166,22 +163,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    header('Location: ./stato_plichi.php');
+    header('Location: ./info_plichi.php');
 }
 ob_end_flush();
 ?>
 
 <form method="post" action="nuovo_plico.php">
-    <div class="element">
-        <h4>Informazioni relative alla gestione del plico</h4>
-        <hr>
-        <h6>1) Il cliente consegna il pacco in sede [data e ora registrate]</h6>
-        <h6>2) Un membro del personale registra e immagazzina il plico </h6>
-        <h6>3) Il plico viene spedito da un membro del personale in un altra sede [data e ora registrate]</h6>
-        <h6>4) Il plico è recapitato da un membro del personale </h6>
-        <h6>5) Il destinatario ritira il plico [data e ora registrate]</h6>
-    </div>
-
     <div class="element">
         <h4><label for="contatto_spedizione">Email dell'addetto alla spedizione</label></h4>
         <hr>
@@ -199,26 +186,6 @@ ob_end_flush();
         <?php } ?>
 
     </div>
-
-
-    <div class="element">
-        <h4><label for="sede">In quale sede verrà spedito il pacco?</label></h4>
-        <hr>
-        <?php foreach ($sedi as $sede) { ?>
-            <div class="form-check">
-                <input type="radio" id="sede_<?= $sede['citta']; ?>_<?= $sede['via']; ?>"
-                       name="sede"
-                       value="<?= $sede['citta']; ?>-<?= $sede['via']; ?>"
-                       class="form-check-input">
-                <label for="sede_<?= $sede['citta']; ?>_<?= $sede['via']; ?>"
-                       class="form-check-label">
-                    <?= $sede['citta']; ?> - <?= $sede['via']; ?>
-                </label>
-            </div>
-        <?php } ?>
-
-    </div>
-
 
     <div class="element">
         <h4><label for="contatto_recapito">Email dell'addetto al recapito</label></h4>

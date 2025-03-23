@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    header('Location: ./stato_plichi.php');
+    header('Location: ./info_plichi.php');
 }
 
 echo '<div class="element"><h4>In partenza</h4><hr>';
@@ -129,13 +129,13 @@ ob_end_flush();
 ?>
 
 <div class="element">
-    <form method="post" action="stato_plichi.php">
+    <form method="post" action="info_plichi.php">
         <h4>Cambia stato di un plico</h4>
         <hr>
 
         <br>
         <label for="id_plico"><strong>ID del plico</strong></label>
-        <input type='text' id='id_plico' name='id_plico' required>
+        <input type='number' id='id_plico' name='id_plico' required>
 
         <br>
         <br>
@@ -152,5 +152,21 @@ ob_end_flush();
         </div>
     </form>
 </div>
+
+    <div class="element">
+        <form method="post" action="info_plichi.php">
+            <h4>Plichi consegnati negli ultimi N giorni</h4>
+            <hr>
+
+            <br>
+            <label for="giorni"><strong>Giorni</strong></label>
+            <input type='number' id='giorni' name='giorni' required>
+
+            <div class="submit-container">
+                <input type="submit" value="Visualizza">
+            </div>
+        </form>
+    </div>
+
 
 <?php require '../references/footer.php';?>
