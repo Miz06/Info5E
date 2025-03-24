@@ -27,8 +27,8 @@ require '../references/navbar.php';
         <input type="text" name="email_info" id="email_info" required>
 
         <br><br>
-        <label for="quesito"><strong>Quesito</strong></label>
-        <input type="text" name="quesito" id="quesito" required>
+        <label for="email_content"><strong>Contenuto della email</strong></label>
+        <input type="text" name="email_content" id="email_content" required>
 
         <div class="submit-container">
             <input type="submit" value="Invia email al team Fast Route">
