@@ -3,6 +3,7 @@
 //i dati di una sessione sono sempre memorizzati nel server e non nel browser A DIFFERENZA DEI COOKIE
 //chiudendo il browser si chiude anche la sessione
 
+/*
 var_dump(session_get_cookie_params());
 session_get_cookie_params();
 die();
@@ -11,9 +12,12 @@ die();
 if(session_status() == PHP_SESSION_NONE){ //CONTROLLO SE LA SESSIONE è ATTIVA
     session_start();
 }
+*/
 
-$materia = $_SESSION['materia'] = 'informatica';
-$scuola = $_SESSION['scuola'] = 'itis';
+session_start();
+
+$materia = $_SESSION['materia'] ?? '';
+$scuola = $_SESSION['scuola'] ?? '';
 
 ?>
 
@@ -34,6 +38,7 @@ $scuola = $_SESSION['scuola'] = 'itis';
 
 <p>Session name: <?php session_name()?></p>
 <p><?php $_COOKIE[session_name()]?></p>
+<a href="logout.php">Log out</a>
 
 </body>
 </html>
