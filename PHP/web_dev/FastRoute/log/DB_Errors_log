@@ -1,0 +1,124 @@
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:29:26
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_plico' cannot be null---2025-03-21 17:34:00
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:38:22
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-21 17:39:06
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:34
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:39
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:40:51
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:42:32
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:42:36
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 00:42:40
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 00:43:31
+SQLSTATE[HY000] [2006] MySQL server has gone away---2025-03-22 07:58:20
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-03-22 09:31:55
+SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-22 09:32:04
+SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-22 09:32:10
+SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-22 09:32:10
+SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-22 09:32:10
+SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-22 09:33:16
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Milano-Via Roma 10' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Roma-Via Genova 20' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Genova-Via Firenze 30' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Firenze-Via Milano 40' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'e@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'g@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'h@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'i@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'j@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'k@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'l@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in partenza' for key 'PRIMARY'---2025-03-22 10:50:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in transito' for key 'PRIMARY'---2025-03-22 10:50:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'consegnato' for key 'PRIMARY'---2025-03-22 10:50:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Milano-Via Roma 10' for key 'PRIMARY'---2025-03-22 10:50:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Roma-Via Genova 20' for key 'PRIMARY'---2025-03-22 10:50:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Genova-Via Firenze 30' for key 'PRIMARY'---2025-03-22 10:50:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Firenze-Via Milano 40' for key 'PRIMARY'---2025-03-22 10:50:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:29
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'e@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'g@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'h@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'i@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'j@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'k@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'l@gmail.com' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in partenza' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in transito' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'consegnato' for key 'PRIMARY'---2025-03-22 10:50:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Milano-Via Roma 10' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Roma-Via Genova 20' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Genova-Via Firenze 30' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Firenze-Via Milano 40' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'e@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'g@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'h@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'i@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'j@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'k@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:34
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'l@gmail.com' for key 'PRIMARY'---2025-03-22 12:41:35
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in partenza' for key 'PRIMARY'---2025-03-22 12:41:35
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in transito' for key 'PRIMARY'---2025-03-22 12:41:35
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'consegnato' for key 'PRIMARY'---2025-03-22 12:41:35
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Milano-Via Roma 10' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Roma-Via Genova 20' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Genova-Via Firenze 30' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Firenze-Via Milano 40' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'e@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'g@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'h@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'i@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'j@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'k@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'l@gmail.com' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in partenza' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in transito' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'consegnato' for key 'PRIMARY'---2025-03-22 14:30:27
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 14:39:46
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 14:39:54
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 14:42:34
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 15:23:56
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 15:25:17
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-22 15:27:30
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Milano-Via Roma 10' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Roma-Via Genova 20' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Genova-Via Firenze 30' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Firenze-Via Milano 40' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'e@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'g@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'h@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'i@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'j@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'k@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'l@gmail.com' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in partenza' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'in transito' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'consegnato' for key 'PRIMARY'---2025-03-22 22:04:56
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-03-24 10:48:23
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_fastroute.dashboard' doesn't exist---2025-03-24 12:05:34
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_fastroute.dashboard' doesn't exist---2025-03-24 12:06:57
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_fastroute.dashboard' doesn't exist---2025-03-24 12:08:57
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_fastroute.dashboard' doesn't exist---2025-03-24 12:09:04
