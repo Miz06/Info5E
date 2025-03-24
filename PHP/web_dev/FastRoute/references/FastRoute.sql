@@ -83,21 +83,25 @@ create table db_FastRoute.consegnare(
                                         primary key (email_mittente, id_plico)
 );
 
+-- ho utilizzato view e non table per consenitre l'aggiornamento automatico della tabella dashboard la quale fa riferimento alle altre sottotabelle da cui è composta
+-- utilizzando table la tabella è statica e va aggiornata manualmente in quanto non tiene conto del cambiamento di statodelle sue sottotabelle
+
+create view db_FastRoute.dashboard AS
 select
-    s.id_plico,
-    s.email_personale as corriere,
-    s.data_spedizione,
-    s.ora_spedizione,
-    r.CF as CF_destinatario,
-    r.data_ritiro,
-    r.ora_ritiro,
+    p.id,
+    p.stato,
     c.email_mittente,
+    r.CF as CF_destinatario,
+    p.email_personale_magazziniere as email_magazziniere,
     c.data_consegna,
     c.ora_consegna,
-    p.stato,
-    p.email_personale_magazziniere as magazziniere,
-    p.email_personale_recapito as recapito
-from  db_FastRoute.spedire s
-          inner join db_fastroute.ritirare r on r.id_plico = s.id_plico
-          inner join db_fastroute.consegnare c on c.id_plico = s.id_plico
-          inner join db_fastroute.plichi p on p.id = s.id_plico;
+    s.email_personale as email_corriere,
+    s.data_spedizione,
+    s.ora_spedizione,
+    p.email_personale_recapito as email_recapito,
+    r.data_ritiro,
+    r.ora_ritiro
+    from  db_FastRoute.plichi p
+          inner join db_fastroute.ritirare r on r.id_plico = p.id
+          inner join db_fastroute.consegnare c on c.id_plico = p.id
+          inner join db_fastroute.spedire s on s.id_plico = p.id;
