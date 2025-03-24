@@ -3,7 +3,7 @@ ob_start();
 $title = 'login';
 require '../references/navbar.php';
 
-$config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
+$config = require '../connectionToDB/databaseConfig.php';; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
 $queryCheckLogin = 'SELECT email, password FROM db_FastRoute.personale WHERE email = :email';
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email']) && isset($_PO
             $_SESSION['email'] = $_POST['email'];
             header('Location: ./home.php');
         } else {
-            echo 'Credenziali errate';
+            $wrongCredentials = 'Credenziali errate! Riprovare';
         }
 
     } catch (Exception $e) {
@@ -40,7 +40,10 @@ ob_end_flush();
         <h4>Login</h4>
         <hr>
 
-        <br>
+        <?php if(isset($_POST['email']) && isset($_POST['password']) && $wrongCredentials) {?>
+            <p style="color: red"> <?php echo $wrongCredentials?></p>
+        <?php }?>
+
         <label for="email"><strong>Email</strong></label>
         <input type="email" name="email" id="email" required>
 

@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer; //inclusione libreria per usare la classe PHPmailer
 use PHPMailer\PHPMailer\Exception; //gestore delle eccezioni
 
-$config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
+$config = require '../connectionToDB/databaseConfig.php';; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
 $querySelectPlichi = 'SELECT * FROM db_FastRoute.plichi';

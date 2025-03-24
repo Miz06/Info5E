@@ -3,23 +3,28 @@ session_start();
 require '../references/functions.php';
 require '../connectionToDB/DBconn.php';
 
-$_SESSION['config'] = require '../connectionToDB/databaseConfig.php';
-$config = $_SESSION['config'];
+$config = require '../connectionToDB/databaseConfig.php';;
 $db = DBconn::getDB($config);
 
 $queryNomeUtente = 'SELECT nome FROM db_FastRoute.personale WHERE email = :email';
 
-if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
+if (isset($_SESSION['email'])) {
     try {
         $stm = $db->prepare($queryNomeUtente);
         $stm->bindValue(':email', $_SESSION['email']);
         $stm->execute();
         $nomeUtente = $stm->fetchColumn();
         $stm->closeCursor();
+        $_SESSION['nome'] = $nomeUtente;
     } catch (Exception $e) {
         logError($e);
         $nomeUtente = "Ospite";
     }
+} else if (isset($_COOKIE['nome'])) {
+    $nomeUtente = $_COOKIE['nome'];
+    $_SESSION['nome'] = $_COOKIE['nome'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $_SESSION['nav_color'] = $_COOKIE['nav_color'];
 } else {
     $nomeUtente = "Ospite";
 }
@@ -163,9 +168,9 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             background-color: darkred;
         }
 
-        .footer{
+        .footer {
             background-color: black;
-            color:white;
+            color: white;
             text-align: center;
             width: 100%;
             padding-top: 2%;
@@ -183,49 +188,50 @@ if (isset($_SESSION['email']) && ($_SESSION['email'] != 'Ospite')) {
             vertical-align: middle; /* Assicura l'allineamento */
             display: inline-block;
         }
-
     </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
 <div class="flex-grow-1">
-<?php if (isset($_COOKIE['nav_color'])) { ?>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_COOKIE['nav_color'] ?>">
-    <?php }else{ ?>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
-        <?php } ?>
-        <div class="container-fluid">
-            <a class="navbar-brand account" href="../pages/account.php"><?= $nomeUtente ?></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item m-2">
-                        <a class="nav-link active" aria-current="page"
-                           href="../pages/home.php">Home</a>
-                    </li>
-                    <?php if (!isset($_SESSION['email']) || $_SESSION['email'] == 'Ospite') { ?>
-                        <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/login.php">Login</a>
-                        </li>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['email']) && $_SESSION['email'] != 'Ospite') { ?>
-                        <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/nuovo_plico.php">Nuovo
-                                plico</a>
-                        </li>
-                        <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/info_plichi.php">Info
-                                plichi</a>
-                        </li>
-                        <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/dashboard.php">Dashboard</a>
-                        </li
-                    <?php } ?>
+    <?php if (isset($_SESSION['nav_color']) && isset($_SESSION['email'])) { ?>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_SESSION['nav_color'] ?>">
+        <?php }else if (isset($_COOKIE['nav_color']) && isset($_COOKIES['email'])) { ?>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_COOKIE['nav_color'] ?>">
+            <?php }else{ ?>
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+                <?php } ?>
+                <div class="container-fluid">
+                    <a class="navbar-brand account" href="../pages/account.php"><?= $nomeUtente ?></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item m-2">
+                                <a class="nav-link active" aria-current="page"
+                                   href="../pages/home.php">Home</a>
+                            </li>
+                            <?php if (!isset($_SESSION['email']) && !isset($_COOKIE['email'])) { ?>
+                                <li class="nav-item m-2">
+                                    <a class="nav-link active" aria-current="page" href="../pages/login.php">Login</a>
+                                </li>
+                            <?php } ?>
+                            <?php if (isset($_SESSION['email']) || isset($_COOKIE['email'])) { ?>
+                                <li class="nav-item m-2">
+                                    <a class="nav-link active" aria-current="page" href="../pages/nuovo_plico.php">Nuovo
+                                        plico</a>
+                                </li>
+                                <li class="nav-item m-2">
+                                    <a class="nav-link active" aria-current="page" href="../pages/info_plichi.php">Info
+                                        plichi</a>
+                                </li>
+                                <li class="nav-item m-2">
+                                    <a class="nav-link active" aria-current="page" href="../pages/dashboard.php">Dashboard</a>
+                                </li
+                            <?php } ?>
 
-                </ul>
-            </div>
-        </div>
-    </nav>
+                        </ul>
+                    </div>
+                </div>
+            </nav>

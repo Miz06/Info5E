@@ -101,7 +101,7 @@ select
     p.email_personale_recapito as email_recapito,
     r.data_ritiro,
     r.ora_ritiro
-    from  db_FastRoute.plichi p
+from  db_FastRoute.plichi p
           inner join db_fastroute.ritirare r on r.id_plico = p.id
           inner join db_fastroute.consegnare c on c.id_plico = p.id
           inner join db_fastroute.spedire s on s.id_plico = p.id;

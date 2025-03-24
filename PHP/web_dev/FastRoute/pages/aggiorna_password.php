@@ -3,7 +3,7 @@ ob_start();
 $title = 'aggiorna password';
 require '../references/navbar.php';
 
-$config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
+$config = require '../connectionToDB/databaseConfig.php';; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
 $queryUpdatePassword = 'UPDATE db_FastRoute.personale SET password = :password WHERE email = :email';
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['email'])) {
             logError($e);
         }
     } else {
-        echo 'Password differenti';
+        $wrongCredentials = 'Password differenti! Riprovare';
     }
 }
 ob_end_flush();
@@ -34,6 +34,9 @@ ob_end_flush();
     <form method="post" action="aggiorna_password.php">
         <h4>Cambia password</h4>
         <hr>
+        <?php if(isset($_POST['nuova_password']) && isset($_POST['conferma_nuova_password']) && $wrongCredentials) {?>
+            <p style="color: red"> <?php echo $wrongCredentials?></p>
+        <?php }?>
         <label for="nuova_password"><strong>Nuova password</strong></label>
         <input type="password" name="nuova_password" id="nuova_password" required>
 

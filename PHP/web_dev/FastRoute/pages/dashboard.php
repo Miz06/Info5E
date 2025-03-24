@@ -3,7 +3,7 @@ ob_start();
 $title = 'dashboard';
 require '../references/navbar.php';
 
-$config = $_SESSION['config']; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
+$config = require '../connectionToDB/databaseConfig.php';; //utilizzo una sessione per evitare di fare nuovamente il require rispetto a $config (vedi navbar)
 $db = DBconn::getDB($config);
 
 $querySelectDashboard = 'SELECT * FROM db_FastRoute.dashboard';
