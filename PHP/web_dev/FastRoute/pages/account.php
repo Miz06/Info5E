@@ -95,7 +95,7 @@ ob_end_flush();
 
         <h4>Esci dall'account</h4>
         <hr>
-        <a href="./logout.php" class="btn-primary log-out">Log out</a>
+        <a href="./logout.php" class="btn-primary log-out">Logout</a>
     </div>
 <?php } else { ?>
         <div class="element">

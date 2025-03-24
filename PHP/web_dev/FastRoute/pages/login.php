@@ -37,19 +37,21 @@ ob_end_flush();
 
 <form method="post" action="login.php">
     <div class="element">
-        <label for="email" class="lab"><strong>Email</strong></label>
+        <h4>Login</h4>
         <hr>
+
+        <br>
+        <label for="email"><strong>Email</strong></label>
         <input type="email" name="email" id="email" required>
 
         <br><br>
-        <label for="password" class="lab"><strong>Password</strong></label>
-        <hr>
+        <label for="password"><strong>Password</strong></label>
         <input type="password" name="password" id="password" required>
 
     </div>
 
     <div class="submit-container">
-        <input type="submit" value="Invia">
+        <input type="submit" value="Accedi">
     </div>
 </form>
 
