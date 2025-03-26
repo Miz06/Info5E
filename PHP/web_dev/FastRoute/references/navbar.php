@@ -195,7 +195,7 @@ if (isset($_SESSION['email'])) {
 <div class="flex-grow-1">
     <?php if (isset($_SESSION['nav_color']) && isset($_SESSION['email'])) { ?>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_SESSION['nav_color'] ?>">
-        <?php }else if (isset($_COOKIE['nav_color']) && isset($_COOKIES['email'])) { ?>
+        <?php }else if (isset($_COOKIE['nav_color']) && isset($_COOKIE['email'])) { ?>
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: <?= $_COOKIE['nav_color'] ?>">
             <?php }else{ ?>
             <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
