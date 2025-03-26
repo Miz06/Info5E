@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
-$successMessage = ''; // Variabile per il messaggio di successo
+$successMessage = 'Email inviata con successo!';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['content'])) {
     $nome = $_POST['nome'];
@@ -39,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && isset($_POS
     ob_end_flush();
 }
 ?>
-
     <div class="element">
         <h4>Informazioni relative alla gestione del plico</h4>
         <hr>
@@ -72,11 +71,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && isset($_POS
             </div>
         </form>
     </div>
-
-<?php if ($successMessage): ?>
-    <div class="alert alert-success" style="color: green; margin-top: 2%; border-radius: 5px">
-        <?php echo $successMessage; ?>
-    </div>
-<?php endif; ?>
 
 <?php require '../references/footer.php'; ?>
