@@ -14,7 +14,7 @@ create table db_elettronica.users(
                                      password varchar(255)
 );
 
-create table db_elettronica.admin(
+create table db_elettronica.admins(
                                      nome varchar(30),
                                      email varchar(30) primary key,
                                      password varchar(255)

@@ -1,7 +1,8 @@
 <?php
+ob_start();
 function logError(PDOException $e): void
 {
-    error_log($e->getMessage() . '---' . date('Y-m-d H:i:s' . "\n"), 3, '../log/DB_Errors_log');
+    error_log($e->getMessage() . '---' . date('Y-m-d H:i:s' . "\n"), 3, './log/DB_Errors_log');
 }
 
 session_start();
@@ -10,8 +11,14 @@ require '../references/connectionToDB/DBconn.php';
 $config = require '../references/connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$user = $_SESSION['user'] ?? "Ospite";
-
+if(isset($_SESSION['email_user']) && isset($_SESSION['nome_user'])){
+    $nomeUtente = $_SESSION['nome_user'];
+}else if (isset($_SESSION['email_admin']) && isset($_SESSION['nome_admin'])){
+    $nomeUtente = $_SESSION['nome_admin'];
+}else{
+    $nomeUtente = "Ospite";
+}
+ob_end_flush();
 ?>
 
 <!doctype html>
@@ -180,7 +187,7 @@ $user = $_SESSION['user'] ?? "Ospite";
 <div class="flex-grow-1">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
         <div class="container-fluid">
-            <a class="navbar-brand account" href="../pages/account.php"><?= $user ?></a>
+            <a class="navbar-brand account" href="../pages/account.php"><?= $nomeUtente ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -191,16 +198,14 @@ $user = $_SESSION['user'] ?? "Ospite";
                         <a class="nav-link active" aria-current="page"
                            href="../pages/home.php">Home</a>
                     </li>
-                        <?php if (isset($_SESSION['user'])) { ?>
+                        <?php if (isset($_SESSION['email_user']) && isset($_SESSION['nome_user'])) { ?>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/prodotti.php">Nuovo
-                                plico</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/prodotti.php">Prodotti</a>
                         </li>
                     <?php } ?>
-                    <?php if (isset($_SESSION['admin'])) { ?>
+                    <?php if (isset($_SESSION['email_admin']) && isset($_SESSION['nome_admin'])) { ?>
                         <li class="nav-item m-2">
-                            <a class="nav-link active" aria-current="page" href="../pages/aggiornaProdotto.php">Nuovo
-                                plico</a>
+                            <a class="nav-link active" aria-current="page" href="../pages/gestione_prodotti.php">Gestione prodotti</a>
                         </li>
                     <?php } ?>
                 </ul>

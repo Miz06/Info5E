@@ -1,6 +1,11 @@
 <?php
 
-require './navbar.php';
+function logError(PDOException $e): void
+{
+    error_log($e->getMessage() . '---' . date('Y-m-d H:i:s' . "\n"), 3, './log/DB_Errors_log');
+}
+
+require '../references/connectionToDB/DBconn.php';
 $config = require './connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
@@ -27,8 +32,11 @@ foreach($users as $email=>$user){
         $stm->bindValue(":password", $hashedPassword);
         $stm->execute();
         $stm->closeCursor();
+
+        echo "Inserimento user" . $email . "avvenuto correttamente<br>";
     }catch(Exception $e){
         logError($e);
+        echo "Errore nell'inserimento di user" . $email . "<br>";
     }
 }
 
@@ -41,8 +49,11 @@ foreach($admins as $email=>$admin){
         $stm->bindValue(":password", $hashedPassword);
         $stm->execute();
         $stm->closeCursor();
+
+        echo "Inserimento admin" . $email . "avvenuto correttamente<br>";
     }catch(Exception $e){
         logError($e);
+        echo "Errore nell'inserimento di admin" . $email . "<br>";
     }
 }
 
