@@ -198,7 +198,7 @@ ob_end_flush();
                         <a class="nav-link active" aria-current="page"
                            href="../pages/home.php">Home</a>
                     </li>
-                        <?php if (isset($_SESSION['email_user']) && isset($_SESSION['nome_user'])) { ?>
+                        <?php if ((isset($_SESSION['email_user']) && isset($_SESSION['nome_user'])) || (isset($_SESSION['email_admin']) && isset($_SESSION['nome_admin']))) { ?>
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page" href="../pages/prodotti.php">Prodotti</a>
                         </li>

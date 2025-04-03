@@ -33,10 +33,10 @@ foreach($users as $email=>$user){
         $stm->execute();
         $stm->closeCursor();
 
-        echo "Inserimento user" . $email . "avvenuto correttamente<br>";
+        echo "Inserimento user " . $email . " avvenuto correttamente<br>";
     }catch(Exception $e){
         logError($e);
-        echo "Errore nell'inserimento di user" . $email . "<br>";
+        echo "Errore nell'inserimento di user " . $email . "<br>";
     }
 }
 
@@ -50,10 +50,10 @@ foreach($admins as $email=>$admin){
         $stm->execute();
         $stm->closeCursor();
 
-        echo "Inserimento admin" . $email . "avvenuto correttamente<br>";
+        echo "Inserimento admin " . $email . " avvenuto correttamente<br>";
     }catch(Exception $e){
         logError($e);
-        echo "Errore nell'inserimento di admin" . $email . "<br>";
+        echo "Errore nell'inserimento di admin " . $email . "<br>";
     }
 }
 

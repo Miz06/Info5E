@@ -39,7 +39,9 @@ if(isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['password']))
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
 
-        <input type="submit" value="Registrati">
+        <div class="submit-container">
+            <input type="submit" value="Registrati">
+        </div>
     </form>
 </div>
 

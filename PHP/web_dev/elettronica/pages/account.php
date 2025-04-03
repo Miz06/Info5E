@@ -70,7 +70,8 @@ ob_end_flush();
 
     <div class="element">
         <h4>Esci dall'account</h4>
-        <a href="../references/logout.php">Logout</a>
+        <a href="../references/logout.php" class="btn btn-danger log-out">Logout</a>
+
     </div>
 <?php } else { ?>
     <div class="element">
@@ -87,7 +88,9 @@ ob_end_flush();
             <label for="password_user">Password</label>
             <input type="password" id="password_user" name="password_user" required>
 
-            <input type="submit" value="Accedi">
+            <div class="submit-container">
+                <input type="submit" value="Accedi">
+            </div>
         </form>
     </div>
 
@@ -100,13 +103,15 @@ ob_end_flush();
             <label for="password_admin">Password</label>
             <input type="password" id="password_admin" name="password_admin" required>
 
-            <input type="submit" value="Accedi">
+            <div class="submit-container">
+                <input type="submit" value="Accedi">
+            </div>
         </form>
     </div>
 
     <div class="element">
         <h4>Non hai un account user? Registrati</h4>
-        <a href="./registrazione.php" class="btn-primary log-out">Registrati</a>
+        <a href="./registrazione.php" class="btn btn-primary">Registrati</a>
     </div>
 <?php } ?>
 
