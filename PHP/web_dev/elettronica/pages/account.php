@@ -58,7 +58,7 @@ ob_end_flush();
 
     <div class="element">
         <h4>Esci dall'account</h4>
-        <a href="../references/logout.php">Logout</a>
+        <a href="../references/logout.php" class="btn btn-danger log-out">Logout</a>
     </div>
 <?php } else if (isset($_SESSION['email_admin']) && isset($_SESSION['nome_admin'])) { ?>
     <div class="element">
@@ -71,7 +71,6 @@ ob_end_flush();
     <div class="element">
         <h4>Esci dall'account</h4>
         <a href="../references/logout.php" class="btn btn-danger log-out">Logout</a>
-
     </div>
 <?php } else { ?>
     <div class="element">
