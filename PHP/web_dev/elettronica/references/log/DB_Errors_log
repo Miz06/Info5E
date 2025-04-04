@@ -1,0 +1,6 @@
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'a@gmail.com' for key 'PRIMARY'---2025-04-03 15:07:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'b@gmail.com' for key 'PRIMARY'---2025-04-03 15:07:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'c@gmail.com' for key 'PRIMARY'---2025-04-03 15:07:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin1@gmail.com' for key 'PRIMARY'---2025-04-03 15:07:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'admin2@gmail.com' for key 'PRIMARY'---2025-04-03 15:07:48
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_elettronica.products' doesn't exist---2025-04-04 13:27:36
