@@ -36,7 +36,7 @@ $scuola = $_SESSION['scuola'] ?? '';
 
 <a href="sessionIndexOne.php">SessionIndexOne</a>
 
-<p>Session name: <?php session_name()?></p>
+<p>Sessio$_COOKIE[session_name()]n name: <?php session_name()?></p>
 <p><?php $_COOKIE[session_name()]?></p>
 <a href="logout.php">Log out</a>
 

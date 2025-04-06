@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 //COMPOSER = gestore di package (in php package = libreria)
-//utilizzo di PHPMailer per l'inio di mail tramite PHP
+//utilizzo di PHPMailer per l'invio di mail tramite PHP
 
 try{
     $mail->SMTPDebug=2; //mostra i dati ralativi all mail inviata
