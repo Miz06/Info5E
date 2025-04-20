@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $title = 'login - amministratore';
 
 require '../references/navbar.php';
@@ -16,7 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['nome
         $stm->bindValue(':cognome', $_POST['cognome']);
         $stm->bindValue(':username', $_POST['username']);
         $stm->execute();
-        $data = $stm->fetchColumn();
+        $data = $stm->fetch(PDO::FETCH_ASSOC);
         if ($data && password_verify($_POST['password'], $data['password'])) {
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['nome'] = $_POST['nome'];
@@ -33,6 +34,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['nome
         logError($e);
     }
 }
+ob_end_flush();
 ?>
 
     <form action="amministratore.php" method="post">

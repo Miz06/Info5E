@@ -1,15 +1,23 @@
 <?php
+ob_start();
 session_start();
 
 function logError(PDOException $e): void{
     error_log($e->getMessage().'---'.date('Y-m-d H:i:s'."\n"), 3,'../log/DB_Errors_log');
 }
 
-if(isset($_SESSION['email'])){
+if(isset($_COOKIE['username']) && !isset($_SESSION['username'])){
+    $_SESSION['username'] = $_COOKIE['username'];
+    $_SESSION['nome'] = $_COOKIE['nome'];
+    $_SESSION['cognome'] = $_COOKIE['cognome'];
+}
+
+if(isset($_SESSION['username'])){
     $nomeUtente = $_SESSION['nome'];
 }else{
     $nomeUtente = "Ospite";
 }
+ob_end_flush();
 ?>
 
 <!doctype html>
@@ -37,7 +45,7 @@ if(isset($_SESSION['email'])){
 
         .container{
             background: white;
-            padding: 5%;
+            padding: 3%;
             margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -58,6 +66,19 @@ if(isset($_SESSION['email'])){
             background-color: grey;
             color: white;
             cursor: pointer;
+        }
+
+        .log-out {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: darkred;
+            color: white;
+        }
+
+        .log-out:hover {
+            background-color: grey;
         }
 
         .account {
@@ -81,7 +102,7 @@ if(isset($_SESSION['email'])){
         }
 
         .account:hover {
-            background-color: darkviolet;
+            background-color: grey;
         }
 
         label {
@@ -90,7 +111,6 @@ if(isset($_SESSION['email'])){
             display: inline-block;
             color: darkred;
         }
-
 
         input {
             width: 100%;
