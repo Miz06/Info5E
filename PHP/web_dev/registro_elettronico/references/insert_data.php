@@ -1,5 +1,4 @@
 <?php
-
 function logError(PDOException $e): void
 {
     error_log($e->getMessage() . '---' . date('Y-m-d H:i:s' . "\n"), 3, '../log/DB_Errors_log');
@@ -21,15 +20,15 @@ $studenti = [
 ];
 
 $insegnanti = [
-    'insegnante1' => ['password' => 'Password1!', 'nome' => 'Alessandro', 'cognome' => 'Rossi'],
-    'insegnante2' => ['password' => 'Password2!', 'nome' => 'Davide', 'cognome' => 'Verdi'],
-    'insegnante3' => ['password' => 'Password3!', 'nome' => 'Luca', 'cognome' => 'Bianchi'],
+    'insegnante1' => ['password' => 'Password1!', 'nome' => 'insegnante1', 'cognome' => 'Rossi'],
+    'insegnante2' => ['password' => 'Password2!', 'nome' => 'insegnante2', 'cognome' => 'Verdi'],
+    'insegnante3' => ['password' => 'Password3!', 'nome' => 'insegnante3', 'cognome' => 'Bianchi'],
 ];
 
 $genitori = [
-    'genitore1' => ['password' => 'Password1!', 'nome' => 'insegnante1', 'cognome' => 'Rossi', 'username_studente' => 'studente1'],
-    'genitore2' => ['password' => 'Password2!', 'nome' => 'insegnante2', 'cognome' => 'Verdi', 'username_studente' => 'studente2'],
-    'genitore3' => ['password' => 'Password3!', 'nome' => 'insegnante3', 'cognome' => 'Bianchi', 'username_studente' => 'studente3'],
+    'genitore1' => ['password' => 'Password1!', 'nome' => 'genitore1', 'cognome' => 'Rossi', 'username_studente' => 'studente1'],
+    'genitore2' => ['password' => 'Password2!', 'nome' => 'genitore2', 'cognome' => 'Verdi', 'username_studente' => 'studente2'],
+    'genitore3' => ['password' => 'Password3!', 'nome' => 'genitore3', 'cognome' => 'Bianchi', 'username_studente' => 'studente3'],
 ];
 
 $amministratori = [

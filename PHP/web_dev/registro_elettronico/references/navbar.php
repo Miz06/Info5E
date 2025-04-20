@@ -1,5 +1,4 @@
 <?php
-ob_start();
 session_start();
 
 function logError(PDOException $e): void{
@@ -17,7 +16,6 @@ if(isset($_SESSION['username'])){
 }else{
     $nomeUtente = "Ospite";
 }
-ob_end_flush();
 ?>
 
 <!doctype html>
