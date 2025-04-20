@@ -1,0 +1,18 @@
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:21:24
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:21:24
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:21:24
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente1' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente2' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente3' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'insegnante1' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'insegnante2' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'insegnante3' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:22:21
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:22:21
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore1' for key 'PRIMARY'---2025-04-20 23:22:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore2' for key 'PRIMARY'---2025-04-20 23:22:22
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore3' for key 'PRIMARY'---2025-04-20 23:22:22
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente1' for key 'PRIMARY'---2025-04-20 23:22:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente2' for key 'PRIMARY'---2025-04-20 23:22:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'studente3' for key 'PRIMARY'---2025-04-20 23:22:55
