@@ -9,9 +9,10 @@ $config = require '../connectionToDB/databaseConfig.php';;
 $db = DBconn::getDB($config);
 
 $queryInsertStudenti = 'INSERT INTO studenti (username, password, nome, cognome) VALUES (:username, :password, :nome, :cognome)';
-$queryInsertGenitori = 'INSERT INTO genitori (username, password, nome, cognome, username_studente) VALUES (:username, :password, :nome, :cognome, :username_studente)';
+$queryInsertGenitori = 'INSERT INTO genitori (username, password, nome, cognome) VALUES (:username, :password, :nome, :cognome)';
 $queryInsertInsegnanti = 'INSERT INTO insegnanti (username, password, nome, cognome) VALUES (:username, :password, :nome, :cognome)';
 $queryInsertAmministratori = 'INSERT INTO amministratori (username, password, nome, cognome) VALUES (:username, :password, :nome, :cognome)';
+$queryInsertGenitoriStudenti = 'INSERT INTO genitori_studenti (username_genitore, username_studente) VALUES (:username_genitore, :username_studente)';
 
 $studenti = [
     'studente1' => ['password' => 'Password1!', 'nome' => 'studente1', 'cognome' => 'Rossi'],
@@ -26,15 +27,21 @@ $insegnanti = [
 ];
 
 $genitori = [
-    'genitore1' => ['password' => 'Password1!', 'nome' => 'genitore1', 'cognome' => 'Rossi', 'username_studente' => 'studente1'],
-    'genitore2' => ['password' => 'Password2!', 'nome' => 'genitore2', 'cognome' => 'Verdi', 'username_studente' => 'studente2'],
-    'genitore3' => ['password' => 'Password3!', 'nome' => 'genitore3', 'cognome' => 'Bianchi', 'username_studente' => 'studente3'],
+    'genitore1' => ['password' => 'Password1!', 'nome' => 'genitore1', 'cognome' => 'Rossi'],
+    'genitore2' => ['password' => 'Password2!', 'nome' => 'genitore2', 'cognome' => 'Verdi'],
+    'genitore3' => ['password' => 'Password3!', 'nome' => 'genitore3', 'cognome' => 'Bianchi'],
 ];
 
 $amministratori = [
     'amministratore1' => ['password' => 'Password1!', 'nome' => 'amministratore1', 'cognome' => 'Rossi'],
     'amministratore2' => ['password' => 'Password2!', 'nome' => 'amministratore2', 'cognome' => 'Verdi'],
     'amministratore3' => ['password' => 'Password3!', 'nome' => 'amministratore3', 'cognome' => 'Bianchi'],
+];
+
+$genitori_studenti = [
+    'genitore1' => ['studente1', 'studente2'],
+    'genitore2' => ['studente1', 'studente2'],
+    'genitore3' => ['studente3'],
 ];
 
 foreach ($studenti as $username => $s) {
@@ -93,7 +100,6 @@ foreach ($genitori as $username => $g) {
         $stm->bindValue(':password', $hashedPassword);
         $stm->bindValue(':nome', $g['nome']);
         $stm->bindValue(':cognome', $g['cognome']);
-        $stm->bindValue(':username_studente', $g['username_studente']);
         $stm->execute();
         $stm->closeCursor();
 
@@ -123,6 +129,25 @@ foreach ($amministratori as $username => $a) {
     } catch (Exception $e) {
         logError($e);
         echo 'Errore durante l\'inserimento del\'amministratore ' . $username . ': ' . $e->getMessage() . '<br>';
+    }
+}
+
+echo '<br>';
+
+foreach ($genitori_studenti as $username_genitore => $figli) {
+    foreach ($figli as $username_studente) {
+        try {
+            $stm = $db->prepare($queryInsertGenitoriStudenti);
+            $stm->bindValue(':username_genitore', $username_genitore);
+            $stm->bindValue(':username_studente', $username_studente);
+            $stm->execute();
+            $stm->closeCursor();
+
+            echo "Relazione $username_genitore → $username_studente inserita con successo<br>";
+        } catch (Exception $e) {
+            logError($e);
+            echo "Errore durante l'inserimento della relazione $username_genitore → $username_studente: " . $e->getMessage() . "<br>";
+        }
     }
 }
 

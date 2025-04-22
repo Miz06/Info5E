@@ -8,7 +8,7 @@ require '../connectionToDB/DBconn.php';
 $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$querySelectGenitore = "SELECT * FROM genitori WHERE username = :username";
+$querySelectGenitoreStudente = "SELECT username_studente FROM genitori_studenti WHERE username_genitore = :username_genitore";
 
 ob_end_flush();
 ?>
@@ -17,25 +17,26 @@ ob_end_flush();
     <div class="container">
         <h4 style="color: darkred">Info account</h4>
         <hr>
-        <p><strong>Username: </strong> <?= $_SESSION['nome'] ?></p>
-        <p><strong>Nome: </strong> <?= $_SESSION['cognome'] ?></p>
-        <p><strong>Cognome: </strong> <?= $_SESSION['username'] ?></p>
+        <p><strong>Username: </strong> <?= $_SESSION['username'] ?></p>
+        <p><strong>Nome: </strong> <?= $_SESSION['nome'] ?></p>
+        <p><strong>Cognome: </strong> <?= $_SESSION['cognome'] ?></p>
         <?php
-            try{
-                $stm = $db -> prepare($querySelectGenitore);
-                $stm -> bindParam(':username', $_SESSION['username']);
-                $stm->execute();
-                $genitore = $stm->fetchAll(PDO::FETCH_ASSOC);
-                $stm->closeCursor();
-            }catch (Exception $e){
-                logError($e);
-            }
+        try {
+            $stm = $db->prepare($querySelectGenitoreStudente);
+            $stm->bindParam(':username_genitore', $_SESSION['username']);
+            $stm->execute();
+            $studenti = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $stm->closeCursor();
+        } catch (Exception $e) {
+            logError($e);
+        }
 
-            if($genitore){
-                foreach($genitore){?>
-                        <p><strong>Figlio: </strong> <?= $_SESSION['username'] ?></p>
-            <?php }}?>
-            
+        if ($studenti) {
+            foreach ($studenti as $s) {
+                ?>
+                <p><strong>Figlio: </strong> <?= $s['username_studente']?></p>
+            <?php }
+        } ?>
     </div>
 
     <div class="container">
