@@ -1,6 +1,16 @@
 <?php
+ob_start();
 $title = 'account';
+
 require '../references/navbar.php';
+
+require '../connectionToDB/DBconn.php';
+$config = require '../connectionToDB/databaseConfig.php';
+$db = DBconn::getDB($config);
+
+$querySelectGenitore = "SELECT * FROM genitori WHERE username = :username";
+
+ob_end_flush();
 ?>
 
 <?php if (isset($_SESSION['username']) || isset($_COOKIE['email'])) { ?>
@@ -10,6 +20,22 @@ require '../references/navbar.php';
         <p><strong>Username: </strong> <?= $_SESSION['nome'] ?></p>
         <p><strong>Nome: </strong> <?= $_SESSION['cognome'] ?></p>
         <p><strong>Cognome: </strong> <?= $_SESSION['username'] ?></p>
+        <?php
+            try{
+                $stm = $db -> prepare($querySelectGenitore);
+                $stm -> bindParam(':username', $_SESSION['username']);
+                $stm->execute();
+                $genitore = $stm->fetchAll(PDO::FETCH_ASSOC);
+                $stm->closeCursor();
+            }catch (Exception $e){
+                logError($e);
+            }
+
+            if($genitore){
+                foreach($genitore){?>
+                        <p><strong>Figlio: </strong> <?= $_SESSION['username'] ?></p>
+            <?php }}?>
+            
     </div>
 
     <div class="container">
