@@ -9,6 +9,7 @@ $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
 $querySelectGenitoriStudenti = "SELECT * FROM genitori_studenti WHERE username_genitore = :username_genitore";
+$querySelectRuoloPersona = "SELECT * FROM persone_ruoli WHERE username = :username";
 
 ob_end_flush();
 ?>
@@ -25,16 +26,34 @@ ob_end_flush();
             $stm = $db->prepare($querySelectGenitoriStudenti);
             $stm->bindParam(':username_genitore', $_SESSION['username']);
             $stm->execute();
-            $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $gs = $stm->fetchAll(PDO::FETCH_ASSOC);
             $stm->closeCursor();
         } catch (Exception $e) {
             logError($e);
         }
 
-        if ($data) {
-            foreach ($data as $d) {
+        try {
+            $stm = $db->prepare($querySelectRuoloPersona);
+            $stm->bindParam(':username', $_SESSION['username']);
+            $stm->execute();
+            $pr = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $stm->closeCursor();
+        } catch (Exception $e) {
+            logError($e);
+        }
+
+
+        if ($pr) {
+            foreach ($pr as $e) {
                 ?>
-                <p><strong>Figlio: </strong> <?= $d['username_figlio']?></p>
+                <p><strong>Ruolo: </strong> <?= $e['ruolo']?></p><br>
+            <?php }
+        }
+
+        if ($gs) {
+            foreach ($gs as $e) {
+                ?>
+                <p><strong>Figlio: </strong> <?= $e['username_figlio']?></p>
             <?php }
         } ?>
     </div>
