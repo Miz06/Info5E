@@ -28,3 +28,14 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'insegnant
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore1' for key 'PRIMARY'---2025-04-22 22:22:42
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore2' for key 'PRIMARY'---2025-04-22 22:22:42
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'amministratore3' for key 'PRIMARY'---2025-04-22 22:22:42
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username_studente' in 'field list'---2025-04-26 19:47:32
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username_studente' in 'field list'---2025-04-26 19:47:32
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'persona1' for key 'PRIMARY'---2025-04-26 19:49:33
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'persona2' for key 'PRIMARY'---2025-04-26 19:49:33
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'persona3' for key 'PRIMARY'---2025-04-26 19:49:33
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'persona4' for key 'PRIMARY'---2025-04-26 19:49:33
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'persona5' for key 'PRIMARY'---2025-04-26 19:49:33
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''persona1'' at line 1---2025-04-26 19:50:09
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FORM persone WHERE username_genitore 'persona1'' at line 1---2025-04-26 20:02:57
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FORM persone WHERE username_genitore 'persona1'' at line 1---2025-04-26 20:03:38
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FORM persone WHERE username_genitore = 'persona1'' at line 1---2025-04-26 20:03:53

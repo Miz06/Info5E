@@ -8,7 +8,7 @@ require '../connectionToDB/DBconn.php';
 $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$querySelectGenitoreStudente = "SELECT username_studente FROM genitori_studenti WHERE username_genitore = :username_genitore";
+$querySelectGenitoriStudenti = "SELECT * FROM genitori_studenti WHERE username_genitore = :username_genitore";
 
 ob_end_flush();
 ?>
@@ -22,19 +22,19 @@ ob_end_flush();
         <p><strong>Cognome: </strong> <?= $_SESSION['cognome'] ?></p>
         <?php
         try {
-            $stm = $db->prepare($querySelectGenitoreStudente);
+            $stm = $db->prepare($querySelectGenitoriStudenti);
             $stm->bindParam(':username_genitore', $_SESSION['username']);
             $stm->execute();
-            $studenti = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $data = $stm->fetchAll(PDO::FETCH_ASSOC);
             $stm->closeCursor();
         } catch (Exception $e) {
             logError($e);
         }
 
-        if ($studenti) {
-            foreach ($studenti as $s) {
+        if ($data) {
+            foreach ($data as $d) {
                 ?>
-                <p><strong>Figlio: </strong> <?= $s['username_studente']?></p>
+                <p><strong>Figlio: </strong> <?= $d['username_figlio']?></p>
             <?php }
         } ?>
     </div>
@@ -48,6 +48,11 @@ ob_end_flush();
     <div class="container">
         <p><strong>Nome: </strong>Ospite</p>
         <p>[Dall'account ospite non è usufruibile alcun servizio.]</p>
+    </div>
+
+    <div class="container">
+        <h4>Effettua l'accesso:</h4><br>
+        <a class="login-button" href="login.php">Vai al login</a><hr><br>
     </div>
 <?php } ?>
 
