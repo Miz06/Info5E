@@ -1,39 +1,33 @@
-create database db_registro;
+CREATE database db_registro;
 
-create table db_registro.insegnanti(
-                                       username varchar(30) primary key,
-                                       password varchar(255),
-                                       nome varchar(30),
-                                       cognome varchar(30)
+CREATE TABLE db_registro.persone(
+                                    nome varchar(30),
+                                    cognome varchar(30),
+                                    username varchar(30) PRIMARY KEY,
+                                    password varchar(255)
 );
 
-create table db_registro.amministratori(
-                                           username varchar(30) primary key,
-                                           password varchar(255),
-                                           nome varchar(30),
-                                           cognome varchar(30)
+CREATE TABLE db_registro.ruoli(
+                                  ruolo varchar(30) PRIMARY key
 );
 
-create table db_registro.studenti(
-                                     username varchar(30) primary key,
-                                     password varchar(255),
-                                     nome varchar(30),
-                                     cognome varchar(30)
+CREATE TABLE db_registro.persone_ruoli(
+                                          ruolo varchar(30),
+                                          username varchar(30),
+                                          foreign (ruolo) references db_registro.persona(persone),
+                                          foreign (username) references db_registro.persona(persone),
 );
 
-create table db_registro.genitori(
-                                     username varchar(30) primary key,
-                                     password varchar(255),
-                                     nome varchar(30),
-                                     cognome varchar(30)
-);
-
-create table db_registro.genitori_studenti(
+CREATE TABLE db_registro.genitori_studenti(
                                               username_genitore varchar(30),
-                                              username_studente varchar(30),
-                                              primary key (username_genitore, username_studente),
-                                              foreign key (username_genitore) references db_registro.genitori(username),
-                                              foreign key (username_studente) references db_registro.studenti(username)
+                                              username_figlio varchar(30),
+                                              foreign key(username_genitore) references db_registro.persone(username),
+                                              foreign key(username_figlio) references db_registro.persone(username)
+);
+
+CREATE TABLE db_registro.materie(
+                                    materia
+
 );
 
 
