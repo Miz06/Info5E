@@ -8,8 +8,17 @@ require '../connectionToDB/DBconn.php';
 $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$querySelectGenitoriStudenti = "SELECT * FROM genitori_studenti WHERE username_genitore = :username_genitore";
 $querySelectRuoloPersona = "SELECT * FROM persone_ruoli WHERE username = :username";
+
+try {
+    $stm = $db->prepare($querySelectRuoloPersona);
+    $stm->bindParam(':username', $_SESSION['username']);
+    $stm->execute();
+    $pr = $stm->fetch(PDO::FETCH_ASSOC);
+    $stm->closeCursor();
+} catch (Exception $e) {
+    logError($e);
+}
 
 ob_end_flush();
 ?>
@@ -22,40 +31,9 @@ ob_end_flush();
         <p><strong>Nome: </strong> <?= $_SESSION['nome'] ?></p>
         <p><strong>Cognome: </strong> <?= $_SESSION['cognome'] ?></p>
         <?php
-        try {
-            $stm = $db->prepare($querySelectGenitoriStudenti);
-            $stm->bindParam(':username_genitore', $_SESSION['username']);
-            $stm->execute();
-            $gs = $stm->fetchAll(PDO::FETCH_ASSOC);
-            $stm->closeCursor();
-        } catch (Exception $e) {
-            logError($e);
-        }
-
-        try {
-            $stm = $db->prepare($querySelectRuoloPersona);
-            $stm->bindParam(':username', $_SESSION['username']);
-            $stm->execute();
-            $pr = $stm->fetchAll(PDO::FETCH_ASSOC);
-            $stm->closeCursor();
-        } catch (Exception $e) {
-            logError($e);
-        }
-
-
-        if ($pr) {
-            foreach ($pr as $e) {
-                ?>
-                <p><strong>Ruolo: </strong> <?= $e['ruolo']?></p><br>
-            <?php }
-        }
-
-        if ($gs) {
-            foreach ($gs as $e) {
-                ?>
-                <p><strong>Figlio: </strong> <?= $e['username_figlio']?></p>
-            <?php }
-        } ?>
+        if ($pr) {?>
+                <p><strong>Ruolo: </strong> <?= $pr['ruolo'] ?></p>
+        <?php } ?>
     </div>
 
     <div class="container">
@@ -71,7 +49,9 @@ ob_end_flush();
 
     <div class="container">
         <h4>Effettua l'accesso:</h4><br>
-        <a class="login-button" href="login.php">Vai al login</a><hr><br>
+        <a class="login-button" href="login.php">Vai al login</a>
+        <hr>
+        <br>
     </div>
 <?php } ?>
 

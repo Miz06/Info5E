@@ -1,19 +1,20 @@
 <?php
 session_start();
 
-function logError(PDOException $e): void{
-    error_log($e->getMessage().'---'.date('Y-m-d H:i:s'."\n"), 3,'../log/DB_Errors_log');
+function logError(PDOException $e): void
+{
+    error_log($e->getMessage() . '---' . date('Y-m-d H:i:s' . "\n"), 3, '../log/DB_Errors_log');
 }
 
-if(isset($_COOKIE['username']) && !isset($_SESSION['username'])){
+if (isset($_COOKIE['username']) && !isset($_SESSION['username'])) {
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['nome'] = $_COOKIE['nome'];
     $_SESSION['cognome'] = $_COOKIE['cognome'];
 }
 
-if(isset($_SESSION['username'])){
+if (isset($_SESSION['username'])) {
     $nomeUtente = $_SESSION['nome'];
-}else{
+} else {
     $nomeUtente = "Ospite";
 }
 ?>
@@ -25,7 +26,8 @@ if(isset($_SESSION['username'])){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= /**@var $title */ $title?></title>
+    <title><?= /**@var $title */
+        $title ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -41,7 +43,7 @@ if(isset($_SESSION['username'])){
             margin-top: 3%;
         }
 
-        .container{
+        .container {
             background: white;
             padding: 3%;
             margin: 20px auto;
@@ -49,7 +51,7 @@ if(isset($_SESSION['username'])){
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .login-button{
+        .login-button {
             padding: 1%;
             background-color: darkred;
             color: white;
@@ -60,7 +62,7 @@ if(isset($_SESSION['username'])){
             justify-content: center; /* Centra orizzontalmente */
         }
 
-        .login-button:hover{
+        .login-button:hover {
             background-color: grey;
             color: white;
             cursor: pointer;
@@ -134,7 +136,7 @@ if(isset($_SESSION['username'])){
         input[type="submit"]:hover {
             background-color: grey;
         }
-        </style>
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
 <div class="flex-grow-1">
@@ -145,13 +147,15 @@ if(isset($_SESSION['username'])){
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item m-2">
-                        <a class="nav-link active" aria-current="page"
-                           href="../pages/home.php">Home</a>
-                    </li>
-                </ul>
-            </div>
+            <?php if (!empty($_SESSION['username'])) { ?>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item m-2">
+                            <a class="nav-link active" aria-current="page"
+                               href="../pages/home.php">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </nav>
