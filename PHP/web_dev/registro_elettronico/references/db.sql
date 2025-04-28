@@ -26,32 +26,34 @@ CREATE TABLE db_registro.genitori_studenti(
                                               foreign key(username_figlio) references db_registro.persone(username)
 );
 
-create table db_registro.materie(
+CREATE TABLE db_registro.materie(
                                     nome varchar(100) primary key
 );
 
-create table db_registro.indirizzi(
+CREATE TABLE db_registro.indirizzi(
                                       nome varchar(100) primary key
 );
 
-create table db_registro.articolazioni(
+CREATE TABLE db_registro.articolazioni(
                                           nome varchar(100) primary key,
                                           indirizzo varchar(100),
                                           foreign key (indirizzo) references db_registro.indirizzi(nome)
 );
 
-create table db_registro.PDS(
+CREATE TABLE db_registro.PDS(
                                 id int auto_increment primary key,
-                                descrizione varchar(100)
+                                descrizione varchar(100),
+                                articolazione varchar(100),
+                                foreign key (articolazione) references db_registro.articolazioni(nome)
 );
 
-create table db_registro.classi(
+CREATE TABLE db_registro.classi(
                                    id varchar(30) primary key,
                                    articolazione varchar(100),
                                    foreign key(articolazione) references db_registro.articolazioni(nome)
 );
 
-create table db_registro.docenti_materie(
+CREATE TABLE db_registro.docenti_materie(
                                             username varchar(30),
                                             nome varchar(100),
                                             primary key(username, nome),
@@ -59,7 +61,7 @@ create table db_registro.docenti_materie(
                                             foreign key(nome) references db_registro.materie(nome)
 );
 
-create table db_registro.docenti_classi(
+CREATE TABLE db_registro.docenti_classi(
                                            username varchar(30),
                                            id varchar(30),
                                            primary key(username, id),
@@ -67,18 +69,18 @@ create table db_registro.docenti_classi(
                                            foreign key(id) references db_registro.classi(id)
 );
 
-create table db_registro.PDS_materie(
+CREATE TABLE db_registro.PDS_materie(
                                         id int,
                                         materia varchar(100),
                                         foreign key (id) references db_registro.PDS(id),
                                         foreign key (materia) references db_registro.materie(nome)
 );
 
-create table db_registro.persone_classi(
-                                           id varchar(30),
-                                           username varchar(30),
-                                           foreign key(username) references db_registro.persone(username),
-                                           foreign key(id) references db_registro.classi(id)
+CREATE TABLE db_registro.studenti_classi(
+                                            id varchar(30),
+                                            username varchar(30),
+                                            foreign key(username) references db_registro.persone(username),
+                                            foreign key(id) references db_registro.classi(id)
 );
 
 -- Inserimento dei ruoli
@@ -114,15 +116,10 @@ INSERT INTO db_registro.articolazioni (nome, indirizzo) VALUES
                                                             ('Telecomunicazioni', 'Informatica e Telecomunicazioni'),
                                                             ('Scienze Applicate', 'Liceo Scientifico');
 
--- Inserimento di alcuni PDS (Piano di Studi)
-INSERT INTO db_registro.PDS (descrizione) VALUES
-                                              ('Piano di studi 1'),
-                                              ('Piano di studi 2');
-
 -- Inserimento di classi
 INSERT INTO db_registro.classi (id, articolazione) VALUES
-                                                       ('5A INF', 'Informatica'),
-                                                       ('4B SCI', 'Scienze Applicate');
+                                                       ('5A', 'Informatica'),
+                                                       ('4B', 'Scienze Applicate');
 
 -- Associazioni docenti-materie (persona4 è insegnante)
 INSERT INTO db_registro.docenti_materie (username, nome) VALUES
@@ -131,7 +128,13 @@ INSERT INTO db_registro.docenti_materie (username, nome) VALUES
 
 -- Associazioni docenti-classi
 INSERT INTO db_registro.docenti_classi (username, id) VALUES
-    ('persona4', '5A INF');
+    ('persona4', '5A');
+('persona4', '4B');
+
+-- Inserimento di alcuni Piani di Studio (PDS)
+INSERT INTO db_registro.PDS (descrizione, articolazione) VALUES
+                                                             ('Piano di studi Informatica', 'Informatica'),
+                                                             ('Piano di studi Scienze Applicate', 'Scienze Applicate');
 
 -- Associazioni PDS-materie
 INSERT INTO db_registro.PDS_materie (id, materia) VALUES
@@ -141,13 +144,17 @@ INSERT INTO db_registro.PDS_materie (id, materia) VALUES
                                                       (2, 'Inglese');
 
 -- Associazioni PDS-persone-classi
-INSERT INTO db_registro.persone_classi (id, username) VALUES
-                                                          ('5A INF', 'persona2'),
-                                                          ('4B SCI', 'persona3');
+INSERT INTO db_registro.studenti_classi (id, username) VALUES
+                                                           ('5A', 'persona2'),
+                                                           ('4B', 'persona3');
 
-
-
-
-
-
-
+-- Query per creare la vista
+CREATE VIEW db_registro.classe_indirizzo_articolazione AS
+SELECT
+    c.id AS classe,
+    c.articolazione AS articolazione,
+    a.indirizzo AS indirizzo
+FROM
+    db_registro.classi c
+        INNER JOIN
+    db_registro.articolazioni a ON c.articolazione = a.nome;
