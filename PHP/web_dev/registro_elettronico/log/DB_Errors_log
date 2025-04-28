@@ -139,3 +139,10 @@ SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.pds_artic
 SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.pds_articolazione' doesn't exist---2025-04-28 18:59:20
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'---2025-04-28 19:09:47
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'---2025-04-28 19:09:47
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:41:20
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:41:20
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:41:32
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:45:42
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:45:58
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:46:22
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db_registro.docenti' doesn't exist---2025-04-28 19:47:22
