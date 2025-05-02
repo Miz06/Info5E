@@ -1,0 +1,4 @@
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_artifex`.`turisti`, CONSTRAINT `turisti_ibfk_1` FOREIGN KEY (`lingua_madre`) REFERENCES `lingue` (`nome`))---2025-05-02 12:01:50
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-05-02 12:47:01
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-05-02 12:47:08
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens---2025-05-02 12:47:27
