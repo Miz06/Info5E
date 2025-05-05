@@ -49,7 +49,7 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['nazional
             $mail->setFrom('alessandro.mizzon@iisviolamarchesini.edu.it');
             $mail->addAddress('alessandro.mizzon@iisviolamarchesini.edu.it');
             $mail->Subject = 'Iscrizione avvenuta con successo';
-            $mail->Body = 'Caro' . $_POST['email'] .'Ti ringraziamo di aver effettuato l\'iscrizione alla nostra piattaforma';
+            $mail->Body = 'Caro ' . $_POST['email'] .' ti ringraziamo di aver effettuato l\'iscrizione alla nostra piattaforma';
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
             $mail->send();
