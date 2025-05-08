@@ -48,6 +48,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         }
     } catch (Exception $e) {
         logError($e);
+        header('Location: ./login.php');
     }
 }
 ob_end_flush();

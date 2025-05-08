@@ -138,9 +138,9 @@ if (isset($_SESSION['nome'])) {
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <?php if (empty($_SESSION['email'])) { ?>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <?php if (empty($_SESSION['email'])) { ?>
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page"
                                href="../pages/login.php">Accedi</a>
@@ -149,8 +149,18 @@ if (isset($_SESSION['nome'])) {
                             <a class="nav-link active" aria-current="page"
                                href="../pages/registrazione.php">Registrati</a>
                         </li>
-                    </ul>
-                </div>
-            <?php } ?>
+                    <?php } else { ?>
+                        <li class="nav-item m-2">
+                            <a class="nav-link active" aria-current="page"
+                               href="../pages/prenotazione_eventi.php">Prenota eventi</a>
+                        </li>
+                    <?php } ?>
+                    <li class="nav-item m-2">
+                        <a class="nav-link active" aria-current="page"
+                           href="../pages/servizi.php">Servizi</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </nav>

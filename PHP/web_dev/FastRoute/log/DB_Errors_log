@@ -1,2 +1,3 @@
 SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-03-29 16:15:22
 SQLSTATE[HY000] [1049] Unknown database 'db_fastroute'---2025-05-05 19:09:02
+SQLSTATE[HY000] [2002] Impossibile stabilire la connessione. Rifiuto persistente del computer di destinazione---2025-05-08 22:56:19

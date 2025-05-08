@@ -63,6 +63,7 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['nazional
         exit;
     } catch (Exception $e) {
         logError($e);
+        header('Location: ./registrazione.php');
     }
 }
 
