@@ -32,6 +32,25 @@ if (isset($_SESSION['nome'])) {
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 
     <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        th {
+            background-color: #86f1ee;
+        }
+
         .footer {
             background-color: black;
             color: white;
