@@ -30,6 +30,7 @@ create table db_artifex.turisti(
 );
 
 create table db_artifex.eventi(
+								  id int auto_increment primary key,
                                   data date,
                                   ora_inizio time,
                                   prezzo float,
@@ -37,18 +38,15 @@ create table db_artifex.eventi(
                                   max_partecipanti int,
                                   titolo_visita varchar(100),
                                   id_guida int,
-                                  primary key (data, ora_inizio, titolo_visita),
                                   foreign key (id_guida) references db_artifex.guide(id),
                                   foreign key (titolo_visita) references db_artifex.visite(titolo)
 );
 
 create table db_artifex.prenotare(
-                                     data date,
-                                     ora_inizio time,
-                                     titolo_visita varchar(100),
+									 id_evento int,
                                      email varchar(100),
-                                     primary key(data, ora_inizio, titolo_visita, email),
-                                     foreign key (data, ora_inizio, titolo_visita) references db_artifex.eventi(data, ora_inizio, titolo_visita),
+                                     primary key(id_evento, email),
+                                     foreign key (id_evento) references db_artifex.eventi(id),
                                      foreign key (email) references db_artifex.turisti(email)
 );
 
@@ -92,11 +90,6 @@ INSERT INTO db_artifex.turisti (recapito, nome, nazionalita, email, lingua_madre
 INSERT INTO db_artifex.eventi (data, ora_inizio, prezzo, min_partecipanti, max_partecipanti, titolo_visita, id_guida) VALUES
                                                                                                                           ('2025-06-10', '10:00:00', 25.00, 5, 20, 'Tour Colosseo', 1),
                                                                                                                           ('2025-06-11', '14:00:00', 30.00, 5, 15, 'Visita Uffizi', 2);
-
--- Inserimento prenotazioni
-INSERT INTO db_artifex.prenotare (data, ora_inizio, titolo_visita, email) VALUES
-                                                                              ('2025-06-10', '10:00:00', 'Tour Colosseo', 'john.doe@example.com'),
-                                                                              ('2025-06-11', '14:00:00', 'Visita Uffizi', 'claire.fr@example.com');
 
 -- Inserimento lingue conosciute dalle guide
 INSERT INTO db_artifex.conoscere (id_guida, nome) VALUES
