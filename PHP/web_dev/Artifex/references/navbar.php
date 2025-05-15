@@ -146,6 +146,20 @@ if (isset($_SESSION['nome'])) {
         input[type="submit"]:hover {
             background-color: grey;
         }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 70%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
@@ -171,7 +185,7 @@ if (isset($_SESSION['nome'])) {
                     <?php } else { ?>
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page"
-                               href="../pages/prenotazione_eventi.php">Prenota eventi</a>
+                               href="../pages/prenotazione_eventi.php">Eventi</a>
                         </li>
                     <?php } ?>
                     <li class="nav-item m-2">
