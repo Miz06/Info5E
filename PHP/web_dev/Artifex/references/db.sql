@@ -30,6 +30,7 @@ create table db_artifex.turisti(
 );
 
 create table db_artifex.eventi(
+                                  id int auto_increment primary key,
                                   data date,
                                   ora_inizio time,
                                   prezzo float,
@@ -37,7 +38,6 @@ create table db_artifex.eventi(
                                   max_partecipanti int,
                                   titolo_visita varchar(100),
                                   id_guida int,
-                                  primary key (data, ora_inizio, titolo_visita),
                                   foreign key (id_guida) references db_artifex.guide(id),
                                   foreign key (titolo_visita) references db_artifex.visite(titolo)
 );
