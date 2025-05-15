@@ -45,8 +45,17 @@ create table db_artifex.eventi(
 create table db_artifex.prenotare(
                                      id_evento int,
                                      email varchar(100),
+                                     primary key (id_evento, email),
                                      foreign key (id_evento) references db_artifex.eventi(id),
                                      foreign key (email) references db_artifex.turisti(email)
+);
+
+create table db_artifex.salvare(
+                                   id_evento int,
+                                   email varchar(100),
+                                   primary key (id_evento, email),
+                                   foreign key (id_evento) references db_artifex.eventi(id),
+                                   foreign key (email) references db_artifex.turisti(email)
 );
 
 create table db_artifex.conoscere(
@@ -88,7 +97,13 @@ INSERT INTO db_artifex.turisti (recapito, nome, nazionalita, email, lingua_madre
 -- Inserimento eventi
 INSERT INTO db_artifex.eventi (data, ora_inizio, prezzo, min_partecipanti, max_partecipanti, titolo_visita, id_guida) VALUES
                                                                                                                           ('2025-06-10', '10:00:00', 25.00, 5, 20, 'Tour Colosseo', 1),
-                                                                                                                          ('2025-06-11', '14:00:00', 30.00, 5, 15, 'Visita Uffizi', 2);
+                                                                                                                          ('2025-06-11', '14:00:00', 30.00, 5, 15, 'Visita Uffizi', 2),
+                                                                                                                          ('2025-02-10', '10:00:00', 25.00, 5, 20, 'Tour Colosseo', 1),
+                                                                                                                          ('2025-02-11', '14:00:00', 30.00, 5, 15, 'Visita Uffizi', 2),
+                                                                                                                          ('2025-02-10', '10:00:00', 25.00, 5, 20, 'Passeggiata Venezia', 1),
+                                                                                                                          ('2025-02-11', '14:00:00', 30.00, 5, 15, 'Passeggiata Venezia', 2);
+
+
 
 -- Inserimento lingue conosciute dalle guide
 INSERT INTO db_artifex.conoscere (id_guida, nome) VALUES
@@ -102,4 +117,8 @@ INSERT INTO db_artifex.amministratori (email, password) VALUES
                                                             ('admin@artifex.com', 'adminpwd'),
                                                             ('direttore@artifex.com', 'direttorepwd');
 
-SELECT * from db_artifex.eventi join db_artifex.visite v on v.titolo = db_artifex.eventi.titolo_visita join db_artifex.guide g on g.id = eventi.id_guida;
+SELECT * from db_artifex.eventi join db_artifex.visite v on v.titolo = db_artifex.eventi.titolo_visita join db_artifex.guide g on g.id = eventi.id_guida order by db_artifex.eventi.titolo_visita;
+
+SELECT * FROM db_artifex.eventi
+                  JOIN db_artifex.visite v ON v.titolo = db_artifex.eventi.titolo_visita
+                  JOIN db_artifex.guide g ON g.id = eventi.id_guida;

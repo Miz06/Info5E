@@ -28,6 +28,7 @@ if (isset($_SESSION['nome'])) {
     <title><?= /**@var $title */
         $title ?></title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 
@@ -147,19 +148,45 @@ if (isset($_SESSION['nome'])) {
             background-color: grey;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            width: 70%;
+        .button-wrapper {
+            display: flex;
+            gap: 20px; /* spazio tra i due bottoni */
+            justify-content: center;
+            margin-top: 15px;
         }
 
-        .btn:hover {
+        .button-wrapper form {
+            flex: 1; /* fa sì che entrambi i form occupino metà spazio */
+        }
+
+        .btn-carrello, .btn-prenota {
+            width: 100%; /* occupa tutto lo spazio del form */
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-carrello {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-carrello:hover {
             background-color: #0056b3;
         }
+
+        .btn-prenota {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-prenota:hover {
+            background-color: #1e7e34;
+        }
+
+
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100" style="background-color: whitesmoke">
@@ -173,6 +200,10 @@ if (isset($_SESSION['nome'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <li class="nav-item m-2">
+                        <a class="nav-link active" aria-current="page"
+                           href="../pages/servizi.php">Servizi</a>
+                    </li>
                     <?php if (empty($_SESSION['email'])) { ?>
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page"
@@ -185,14 +216,15 @@ if (isset($_SESSION['nome'])) {
                     <?php } else { ?>
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page"
-                               href="../pages/prenotazione_eventi.php">Eventi</a>
+                               href="../pages/eventi.php">Prenota</a>
                         </li>
-                    <?php } ?>
-                    <li class="nav-item m-2">
-                        <a class="nav-link active" aria-current="page"
-                           href="../pages/servizi.php">Servizi</a>
-                    </li>
                 </ul>
+                        <div class="d-flex ms-auto">
+                            <a href="../pages/carrello.php" class="nav-link" style="width: 80px;margin-right: 20%;">
+                                <i class="bi bi-cart-fill" style="font-size: 1.5rem; color: white;"></i>
+                            </a>
+                        </div>
+                    <?php } ?>
             </div>
 
         </div>
