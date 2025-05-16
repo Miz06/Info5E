@@ -11,12 +11,19 @@ $querySelectGuide = 'SELECT * FROM guide';
 $querySelectEventi = 'SELECT * FROM eventi';
 $querySelectVisite = 'SELECT * FROM visite';
 $querySelectConoscere = 'SELECT * FROM conoscere';
-$querySelectAvere = 'SELECT * FROM db_artifex.avere a JOIN db_artifex.titoli t on a.id_guida = t.id';
+$querySelectAvere = 'SELECT * FROM db_artifex.avere';
+$querySelectTitoli = 'SELECT * FROM db_artifex.titoli WHERE nome = :titolo';
+$querySelectLingue = 'SELECT * FROM db_artifex.lingue WHERE nome = :nome';
 
-$queryInsertIntoEventi = 'INSERT INTO db_arteifx.eventi (data, ora_inizio, prezzo, min_partecipanti, max_partecipanti, titolo_visita, id_guida) VALUES (:data, :ora_inizio, :prezzo, :min_partecipanti, :max_partecipanti, :titolo_visita, :id_guida)';
+$queryInsertIntoEventi = 'INSERT INTO db_artifex.eventi (data, ora_inizio, prezzo, min_partecipanti, max_partecipanti, titolo_visita, id_guida) VALUES (:data_evento, :ora_inizio, :prezzo, :min_partecipanti, :max_partecipanti, :titolo_visita, :id_guida)';
 $queryInsertIntoGuide = 'INSERT INTO db_artifex.guide (cognome, nome, data_nascita, luogo_nascita) VALUES (:cognome, :nome, :data_nascita, :luogo_nascita)';
-$queryInsertIntoVisite= 'INSERT INTO db_artifex.visite (titolo, durata_media, luogo) VALUES (:titolo, :durata_media, :luogo)';
+$queryInsertIntoVisite = 'INSERT INTO db_artifex.visite (titolo, durata_media, luogo) VALUES (:titolo, :durata_media, :luogo)';
+$queryInsertIntoConoscere = 'INSERT INTO db_artifex.conoscere (nome, id_guida) VALUES (:nome, :id_guida)';
+$queryInsertIntoAvere = 'INSERT INTO db_artifex.avere (id_guida, titolo) VALUES (:id_guida, :titolo)';
+$queryInsertIntoLingue = 'INSERT INTO db_artifex.lingue (nome) VALUES (:nome)';
+$queryInsertIntoTitoli = 'INSERT INTO db_artifex.titoli (nome) VALUES (:nome)';
 
+//SELECT
 try {
     $stm = $db->prepare($querySelectGuide);
     $stm->execute();
@@ -62,11 +69,128 @@ try {
     logError($e);
 }
 
+//INSERIMENTI
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //EVENTI
+    if (isset($_POST['data_evento']) && isset($_POST['ora_inizio']) && isset($_POST['prezzo']) && isset($_POST['min_partecipanti']) && isset($_POST['max_partecipanti']) && isset($_POST['titolo_visita']) && isset($_POST['id_guida'])) {
+        try {
+            $stm = $db->prepare($queryInsertIntoEventi);
+            $stm->bindValue('data_evento', $_POST['data_evento']);
+            $stm->bindValue('ora_inizio', $_POST['ora_inizio']);
+            $stm->bindValue('prezzo', $_POST['prezzo']);
+            $stm->bindValue('min_partecipanti', $_POST['min_partecipanti']);
+            $stm->bindValue('max_partecipanti', $_POST['max_partecipanti']);
+            $stm->bindValue('titolo_visita', $_POST['titolo_visita']);
+            $stm->bindValue('id_guida', $_POST['id_guida']);
+            $stm->execute();
+            $stm->closeCursor();
+
+            header("Location: ./dashboard.php");
+        } catch (Exception $e) {
+            logError($e);
+        }
+    } //VISITE
+    elseif (isset($_POST['titolo']) && isset($_POST['durata_media']) && isset($_POST['luogo'])) {
+        try {
+            $stm = $db->prepare($queryInsertIntoVisite);
+            $stm->bindValue('titolo', $_POST['titolo']);
+            $stm->bindValue('durata_media', $_POST['durata_media']);
+            $stm->bindValue('luogo', $_POST['luogo']);
+            $stm->execute();
+            $stm->closeCursor();
+            header("Location: ./dashboard.php");
+        } catch (Exception $e) {
+            logError($e);
+        }
+    } //GUIDE
+    elseif (isset($_POST['cognome']) && isset($_POST['nome']) && isset($_POST['data_nascita']) && isset($_POST['luogo_nascita'])) {
+        try {
+            $stm = $db->prepare($queryInsertIntoGuide);
+            $stm->bindValue('cognome', $_POST['cognome']);
+            $stm->bindValue('nome', $_POST['nome']);
+            $stm->bindValue('data_nascita', $_POST['data_nascita']);
+            $stm->bindValue('luogo_nascita', $_POST['luogo_nascita']);
+            $stm->execute();
+            $lastInsertId = $db->lastInsertId();
+            $stm->closeCursor();
+
+            if (isset($_POST['lingua_conosciuta'])) {
+                try {
+                    $stm = $db->prepare($querySelectLingue);
+                    $stm->bindValue('nome', $_POST['lingua_conosciuta']);
+                    $stm->execute();
+                    $data = $stm->fetch(PDO::FETCH_ASSOC);
+                    $stm->closeCursor();
+                } catch (Exception $e) {
+                    logError($e);
+                }
+
+                if (!$data) {
+                    try {
+                        $stm = $db->prepare($queryInsertIntoLingue);
+                        $stm->bindValue('nome', $_POST['lingua_conosciuta']);
+                        $stm->execute();
+                        $data = $stm->fetch(PDO::FETCH_ASSOC);
+                        $stm->closeCursor();
+                    } catch (Exception $e) {
+                        logError($e);
+                    }
+                }
+
+                try {
+                    $stm = $db->prepare($queryInsertIntoConoscere);
+                    $stm->bindValue(':nome', $_POST['lingua_conosciuta']);
+                    $stm->bindvalue(':id_guida', $lastInsertId);
+                    $stm->execute();
+                    $stm->closeCursor();
+                } catch (Exception $e) {
+                    logError($e);
+                }
+            }
+
+            if (isset($_POST['titolo_guida'])) {
+                try {
+                    $stm = $db->prepare($querySelectTitoli);
+                    $stm->bindValue('nome', $_POST['titolo_guida']);
+                    $stm->execute();
+                    $data = $stm->fetch(PDO::FETCH_ASSOC);
+                    $stm->closeCursor();
+                } catch (Exception $e) {
+                    logError($e);
+                }
+
+                if (!$data) {
+                    try {
+                        $stm = $db->prepare($queryInsertIntoTitoli);
+                        $stm->bindValue('nome', $_POST['titolo_guida']);
+                        $stm->execute();
+                        $stm->closeCursor();
+                    } catch (Exception $e) {
+                        logError($e);
+                    }
+                }
+
+                try {
+                    $stm = $db->prepare($queryInsertIntoAvere);
+                    $stm->bindValue(':titolo', $_POST['titolo_guida']);
+                    $stm->bindvalue(':id_guida', $lastInsertId);
+                    $stm->execute();
+                    $stm->closeCursor();
+                } catch (Exception $e) {
+                    logError($e);
+                }
+            }
+            header("Location: ./dashboard.php");
+        } catch (Exception $e) {
+            logError($e);
+        }
+    }
+}
 echo '<div class="container my-4">';
 
-echo '
-<div class="accordion" id="dashboardAccordion">';
+echo '<div class="accordion" id="dashboardAccordion">';
 echo '<h3><strong>Visualizza</strong></h3><hr>';
+
 // EVENTI
 echo '
   <div class="accordion-item">
@@ -191,6 +315,7 @@ echo '</div>'; // close container
 
     <div class="accordion" id="insertAccordion">
 
+        <!-- INSERIMENTO EVENTO-->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingForm1">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm1"
@@ -237,6 +362,7 @@ echo '</div>'; // close container
             </div>
         </div>
 
+        <!-- INSERIMENTO GUIDA-->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingForm2">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -263,6 +389,14 @@ echo '</div>'; // close container
                         <input type="text" id="luogo_nascita" name="luogo_nascita" required>
                         <hr>
 
+                        <label for="lingua_conosciuta"><strong>Lingua conosciuta</strong></label>
+                        <input type="text" id="lingua_conosciuta" name="lingua_conosciuta" required>
+                        <hr>
+
+                        <label for="titolo_guida"><strong>Titolo di studio</strong></label>
+                        <input type="text" id="titolo_guida" name="titolo_guida" required>
+                        <hr>
+
                         <div class="submit-container">
                             <input type="submit" value="Inserisci">
                         </div>
@@ -271,6 +405,7 @@ echo '</div>'; // close container
             </div>
         </div>
 
+        <!-- INSERIMENTO VISITA -->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingForm3">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
