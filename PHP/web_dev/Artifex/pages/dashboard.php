@@ -199,7 +199,7 @@ echo '
         Eventi
       </button>
     </h2>
-    <div id="collapseEventi" class="accordion-collapse collapse show" aria-labelledby="headingEventi">
+    <div id="collapseEventi" class="accordion-collapse collapse" aria-labelledby="headingEventi">
       <div class="accordion-body">
         <table class="table table-bordered table-striped">
           <thead class="table-dark">
@@ -323,7 +323,7 @@ echo '</div>'; // close container
                     Evento
                 </button>
             </h2>
-            <div id="collapseForm1" class="accordion-collapse collapse show" aria-labelledby="headingForm1">
+            <div id="collapseForm1" class="accordion-collapse collapse" aria-labelledby="headingForm1">
                 <div class="accordion-body">
                     <form action="dashboard.php" method="post">
                         <label for="data_evento"><strong>Data evento</strong></label>
