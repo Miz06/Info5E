@@ -19,15 +19,14 @@ create table db_artifex.guide(
 );
 
 create table db_artifex.titoli(
-                                  id int auto_increment primary key,
-                                  titolo varchar(100)
+                                  nome varchar(100) primary key
 );
 
 create table db_artifex.avere(
                                  id_guida int,
-                                 id_titolo int,
+                                 titolo varchar(100),
                                  foreign key (id_guida) references db_artifex.guide(id),
-                                 foreign key (id_titolo) references db_artifex.titoli(id)
+                                 foreign key (titolo) references db_artifex.titoli(nome)
 );
 
 
@@ -94,13 +93,13 @@ INSERT INTO db_artifex.guide (cognome, nome, data_nascita, luogo_nascita) VALUES
                                                                               ('Rossi', 'Maria', '1985-04-12', 'Roma'),
                                                                               ('Bianchi', 'Luca', '1978-09-22', 'Milano');
 
-INSERT INTO db_artifex.titoli (titolo) VALUES
-                                           ('Laurea in Storia dell’Arte'),
-                                           ('Laurea in Archeologia');
+INSERT INTO db_artifex.titoli (nome) VALUES
+                                         ('Laurea in Storia dell’Arte'),
+                                         ('Laurea in Archeologia');
 
-INSERT INTO db_artifex.avere (id_guida, id_titolo) VALUES
-                                                       (1, 1),
-                                                       (2, 2);
+INSERT INTO db_artifex.avere (id_guida, titolo) VALUES
+                                                    (1, "Laurea in Storia dell’Arte"),
+                                                    (2, "Laurea in Archeologia");
 
 -- Inserimento visite
 INSERT INTO db_artifex.visite (titolo, durata_media, luogo) VALUES
@@ -131,14 +130,3 @@ INSERT INTO db_artifex.conoscere (id_guida, nome) VALUES
                                                       (1, 'Inglese'),
                                                       (2, 'Francese'),
                                                       (2, 'Italiano');
-
--- Inserimento amministratori
-INSERT INTO db_artifex.amministratori (email, password) VALUES
-                                                            ('admin@artifex.com', 'adminpwd'),
-                                                            ('direttore@artifex.com', 'direttorepwd');
-
-SELECT * from db_artifex.eventi join db_artifex.visite v on v.titolo = db_artifex.eventi.titolo_visita join db_artifex.guide g on g.id = eventi.id_guida order by db_artifex.eventi.titolo_visita;
-
-SELECT * FROM db_artifex.eventi
-                  JOIN db_artifex.visite v ON v.titolo = db_artifex.eventi.titolo_visita
-                  JOIN db_artifex.guide g ON g.id = eventi.id_guida;
