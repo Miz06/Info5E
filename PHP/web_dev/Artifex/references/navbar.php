@@ -140,7 +140,7 @@ $iniziale_utente = substr($nomeUtente, 0, 1)
         }
 
         input[type="submit"] {
-            background-color: darkslategray;
+            background-color: darkcyan;
             color: white;
             cursor: pointer;
             width: 70%;
@@ -192,6 +192,15 @@ $iniziale_utente = substr($nomeUtente, 0, 1)
 
         .btn-prenota:hover {
             background-color: #1e7e34;
+        }
+
+        .accordion-button, .accordion-button:not(.collapsed) {
+            background-color: darkslategray;
+            color: white;
+        }
+
+        .accordion-button::after {
+            filter: brightness(0) invert(1);
         }
     </style>
 </head>
