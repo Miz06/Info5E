@@ -195,7 +195,7 @@ echo '<h3><strong>Visualizza</strong></h3><hr>';
 echo '
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingEventi">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEventi" aria-expanded="true" aria-controls="collapseEventi">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEventi" aria-expanded="true" aria-controls="collapseEventi">
         Eventi
       </button>
     </h2>
@@ -307,6 +307,15 @@ echo '</tbody></table>
 
 echo '</div>'; // close accordion
 echo '</div>'; // close container
+
+if(isset($_POST['modifica_Id_guida']))
+    header('Location: ./dashboard_modifica.php');
+
+if(isset($_POST['modifica_Id_evento']))
+    header('Location: ./dashboard_modifica.php');
+
+if(isset($_POST['modifica_titolo_visita']))
+    header('Location: ./dashboard_modifica.php');
 ?>
 
 <div class="container my-4">
@@ -318,7 +327,7 @@ echo '</div>'; // close container
         <!-- INSERIMENTO EVENTO-->
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingForm1">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm1"
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm1"
                         aria-expanded="true" aria-controls="collapseForm1">
                     Evento
                 </button>
@@ -439,5 +448,82 @@ echo '</div>'; // close container
     </div>
 </div>
 
+<div class="container my-4">
+    <h3><strong>Modifica</strong></h3>
+    <hr>
+
+    <div class="accordion" id="insertAccordion">
+
+        <!-- MODIFICA EVENTO-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFormA">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFormA"
+                        aria-expanded="true" aria-controls="collapseFormA">
+                    Evento
+                </button>
+            </h2>
+            <div id="collapseFormA" class="accordion-collapse collapse" aria-labelledby="headingFormA">
+                <div class="accordion-body">
+                    <form action="dashboard_modifica.php" method="post">
+                        <label for="modifica_Id_evento"><strong>Id evento</strong></label>
+                        <input type="number" id="modifica_Id_evento" name="modifica_Id_evento" required>
+                        <hr>
+
+                        <div class="submit-container">
+                            <input type="submit" value="Vai alla modifica dell'evento">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODIFICA GUIDA-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFormB">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFormB" aria-expanded="false" aria-controls="collapseFormB">
+                    Guida
+                </button>
+            </h2>
+            <div id="collapseFormB" class="accordion-collapse collapse" aria-labelledby="headingFormB">
+                <div class="accordion-body">
+                    <form action="dashboard_modifica.php" method="post">
+                        <label for="modifica_Id_guida"><strong>Id guida</strong></label>
+                        <input type="number" id="modifica_Id_guida" name="modifica_Id_guida" required>
+                        <hr>
+
+                        <div class="submit-container">
+                            <input type="submit" value="Vai alla modifica della guida">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODIFICA VISITA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFormC">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFormC" aria-expanded="false" aria-controls="collapseFormC">
+                    Visita
+                </button>
+            </h2>
+            <div id="collapseFormC" class="accordion-collapse collapse" aria-labelledby="headingFormC">
+                <div class="accordion-body">
+                    <form action="dashboard_modifica.php" method="post">
+                        <label for="modifica_titolo_visita"><strong>Titolo visita</strong></label>
+                        <input type="number" id="modifica_titolo_visita" name="modifica_titolo_visita" required>
+                        <hr>
+
+                        <div class="submit-container">
+                            <input type="submit" value="Vai alla modifica della visita">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <?php require '../references/footer.php'; ?>
