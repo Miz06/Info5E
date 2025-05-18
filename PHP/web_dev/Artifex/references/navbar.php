@@ -177,7 +177,7 @@ $iniziale_utente = substr($nomeUtente, 0, 1)
         }
 
         .btn-carrello {
-            background-color: #007bff;
+            background-color: darkcyan;
             color: white;
         }
 
@@ -186,12 +186,12 @@ $iniziale_utente = substr($nomeUtente, 0, 1)
         }
 
         .btn-prenota {
-            background-color: #28a745;
+            background-color: forestgreen;
             color: white;
         }
 
         .btn-prenota:hover {
-            background-color: #1e7e34;
+            background-color: green;
         }
 
         .accordion-button, .accordion-button:not(.collapsed) {

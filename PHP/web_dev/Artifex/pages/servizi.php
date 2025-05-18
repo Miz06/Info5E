@@ -27,7 +27,7 @@ $db = DBconn::getDB($config);
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Visite Guidate</h5>
+                    <h5 class="card-title">Visite Guidate</h5><hr>
                     <p class="card-text">Esplora città d'arte, musei e siti storici accompagnato da guide turistiche professionali e appassionate.</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@ $db = DBconn::getDB($config);
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Prenotazione Online</h5>
+                    <h5 class="card-title">Prenotazione Online</h5><hr>
                     <p class="card-text">Prenota la tua esperienza comodamente da casa. Il nostro sistema è semplice, veloce e sicuro.</p>
                 </div>
             </div>
@@ -43,7 +43,7 @@ $db = DBconn::getDB($config);
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Tour Personalizzati</h5>
+                    <h5 class="card-title">Tour Personalizzati</h5><hr>
                     <p class="card-text">Hai esigenze particolari? Crea il tuo itinerario su misura con l'aiuto del nostro team esperto.</p>
                 </div>
             </div>

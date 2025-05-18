@@ -4,6 +4,7 @@ $title = 'registrazione';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../vendor/autoload.php';
 
 require '../references/navbar.php';
@@ -13,11 +14,25 @@ $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
 $queryInsertTurista = 'INSERT INTO turisti (recapito, nome, cognome, nazionalita, email, lingua_madre, password) VALUES (:recapito, :nome, :cognome, :nazionalita, :email, :lingua_madre, :password)';
+$querySelectLingue = 'SELECT * FROM lingue WHERE nome = :nome';
+$queryInsertIntoLingue = 'INSERT INTO lingue (nome) VALUES (:nome)';
 
 if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['cognome']) && isset($_POST['nazionalita']) && isset($_POST['email']) && isset($_POST['lingua_madre']) && isset($_POST['password'])) {
     try {
-        $stm = $db->prepare($queryInsertTurista);
+        $stm = $db->prepare($querySelectLingue);
+        $stm->bindValue(':nome', $_POST['lingua_madre']);
+        $stm->execute();
+        $data = $stm->fetch();
+        $stm->closeCursor();
 
+        if (!$data) {
+            $stm = $db->prepare($queryInsertIntoLingue);
+            $stm->bindValue(':nome', $_POST['lingua_madre']);
+            $stm->execute();
+            $stm->closeCursor();
+        }
+
+        $stm = $db->prepare($queryInsertTurista);
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $stm->bindValue(':recapito', $_POST['recapito']);
@@ -27,25 +42,23 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['cognome'
         $stm->bindValue(':email', $_POST['email']);
         $stm->bindValue(':lingua_madre', $_POST['lingua_madre']);
         $stm->bindValue(':password', $hashed_password);
-
         $stm->execute();
         $stm->closeCursor();
 
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['nome'] = $_POST['nome'];
-
         setcookie('email', $_POST['email'], time() + 3600, '/');
         setcookie('nome', $_POST['nome'], time() + 3600, '/');
 
         $mail = new PHPMailer(true);
 
         try {
-            $mail->isSMTP(); // Protocollo mail
-            $mail->Host = 'smtp.gmail.com'; // Mail SMTP server
-            $mail->SMTPAuth = true; // Autorizzazione
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
             $mail->Username = 'alessandro.mizzon@iisviolamarchesini.edu.it';
             $mail->Password = '...';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Sicurezza
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
             $mail->setFrom('alessandro.mizzon@iisviolamarchesini.edu.it');
             $mail->addAddress('alessandro.mizzon@iisviolamarchesini.edu.it');
