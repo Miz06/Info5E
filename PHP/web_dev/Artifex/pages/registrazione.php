@@ -44,7 +44,7 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['cognome'
             $mail->Host = 'smtp.gmail.com'; // Mail SMTP server
             $mail->SMTPAuth = true; // Autorizzazione
             $mail->Username = 'alessandro.mizzon@iisviolamarchesini.edu.it';
-            $mail->Password = 'oojs ebpf lblq ljwe';
+            $mail->Password = '...';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Sicurezza
             $mail->Port = 587;
             $mail->setFrom('alessandro.mizzon@iisviolamarchesini.edu.it');
