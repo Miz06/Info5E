@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
+//cmd: composer require PHPmailer/PHPmailer
 //COMPOSER = gestore di package (in php package = libreria)
 //utilizzo di PHPMailer per l'invio di mail tramite PHP
 
