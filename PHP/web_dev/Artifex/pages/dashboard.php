@@ -75,13 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['data_evento']) && isset($_POST['ora_inizio']) && isset($_POST['prezzo']) && isset($_POST['min_partecipanti']) && isset($_POST['max_partecipanti']) && isset($_POST['titolo_visita']) && isset($_POST['id_guida'])) {
         try {
             $stm = $db->prepare($queryInsertIntoEventi);
-            $stm->bindValue('data_evento', $_POST['data_evento']);
-            $stm->bindValue('ora_inizio', $_POST['ora_inizio']);
-            $stm->bindValue('prezzo', $_POST['prezzo']);
-            $stm->bindValue('min_partecipanti', $_POST['min_partecipanti']);
-            $stm->bindValue('max_partecipanti', $_POST['max_partecipanti']);
-            $stm->bindValue('titolo_visita', $_POST['titolo_visita']);
-            $stm->bindValue('id_guida', $_POST['id_guida']);
+            $stm->bindValue(':data_evento', $_POST['data_evento']);
+            $stm->bindValue(':ora_inizio', $_POST['ora_inizio']);
+            $stm->bindValue(':prezzo', $_POST['prezzo']);
+            $stm->bindValue(':min_partecipanti', $_POST['min_partecipanti']);
+            $stm->bindValue(':max_partecipanti', $_POST['max_partecipanti']);
+            $stm->bindValue(':titolo_visita', $_POST['titolo_visita']);
+            $stm->bindValue(':id_guida', $_POST['id_guida']);
             $stm->execute();
             $stm->closeCursor();
 
@@ -93,9 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     elseif (isset($_POST['titolo']) && isset($_POST['durata_media']) && isset($_POST['luogo'])) {
         try {
             $stm = $db->prepare($queryInsertIntoVisite);
-            $stm->bindValue('titolo', $_POST['titolo']);
-            $stm->bindValue('durata_media', $_POST['durata_media']);
-            $stm->bindValue('luogo', $_POST['luogo']);
+            $stm->bindValue(':titolo', $_POST['titolo']);
+            $stm->bindValue(':durata_media', $_POST['durata_media']);
+            $stm->bindValue(':luogo', $_POST['luogo']);
             $stm->execute();
             $stm->closeCursor();
             header("Location: ./dashboard.php");
@@ -106,10 +106,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     elseif (isset($_POST['cognome']) && isset($_POST['nome']) && isset($_POST['data_nascita']) && isset($_POST['luogo_nascita'])) {
         try {
             $stm = $db->prepare($queryInsertIntoGuide);
-            $stm->bindValue('cognome', $_POST['cognome']);
-            $stm->bindValue('nome', $_POST['nome']);
-            $stm->bindValue('data_nascita', $_POST['data_nascita']);
-            $stm->bindValue('luogo_nascita', $_POST['luogo_nascita']);
+            $stm->bindValue(':cognome', $_POST['cognome']);
+            $stm->bindValue(':nome', $_POST['nome']);
+            $stm->bindValue(':data_nascita', $_POST['data_nascita']);
+            $stm->bindValue(':luogo_nascita', $_POST['luogo_nascita']);
             $stm->execute();
             $lastInsertId = $db->lastInsertId();
             $stm->closeCursor();
@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['lingua_conosciuta'])) {
                 try {
                     $stm = $db->prepare($querySelectLingue);
-                    $stm->bindValue('nome', $_POST['lingua_conosciuta']);
+                    $stm->bindValue(':nome', $_POST['lingua_conosciuta']);
                     $stm->execute();
                     $data = $stm->fetch(PDO::FETCH_ASSOC);
                     $stm->closeCursor();
@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!$data) {
                     try {
                         $stm = $db->prepare($queryInsertIntoLingue);
-                        $stm->bindValue('nome', $_POST['lingua_conosciuta']);
+                        $stm->bindValue(':nome', $_POST['lingua_conosciuta']);
                         $stm->execute();
                         $data = $stm->fetch(PDO::FETCH_ASSOC);
                         $stm->closeCursor();
@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['titolo_guida'])) {
                 try {
                     $stm = $db->prepare($querySelectTitoli);
-                    $stm->bindValue('nome', $_POST['titolo_guida']);
+                    $stm->bindValue(':nome', $_POST['titolo_guida']);
                     $stm->execute();
                     $data = $stm->fetch(PDO::FETCH_ASSOC);
                     $stm->closeCursor();
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!$data) {
                     try {
                         $stm = $db->prepare($queryInsertIntoTitoli);
-                        $stm->bindValue('nome', $_POST['titolo_guida']);
+                        $stm->bindValue(':nome', $_POST['titolo_guida']);
                         $stm->execute();
                         $stm->closeCursor();
                     } catch (Exception $e) {
