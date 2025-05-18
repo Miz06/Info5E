@@ -1,1 +1,4 @@
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined---2025-05-16 23:06:54
+SMTP Error: Could not authenticate.---2025-05-18 19:35:15
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1-alessandromizzon07@gmail.com' for key 'PRIMARY'---2025-05-18 19:52:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1-alessandromizzon07@gmail.com' for key 'PRIMARY'---2025-05-18 19:52:26
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1-alessandromizzon07@gmail.com' for key 'PRIMARY'---2025-05-18 19:52:30

@@ -12,9 +12,9 @@ require '../connectionToDB/DBconn.php';
 $config = require '../connectionToDB/databaseConfig.php';
 $db = DBconn::getDB($config);
 
-$queryInsertTurista = 'INSERT INTO turisti (recapito, nome, nazionalita, email, lingua_madre, password) VALUES (:recapito, :nome, :nazionalita, :email, :lingua_madre, :password)';
+$queryInsertTurista = 'INSERT INTO turisti (recapito, nome, cognome, nazionalita, email, lingua_madre, password) VALUES (:recapito, :nome, :cognome, :nazionalita, :email, :lingua_madre, :password)';
 
-if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['nazionalita']) && isset($_POST['email']) && isset($_POST['lingua_madre']) && isset($_POST['password'])) {
+if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['cognome']) && isset($_POST['nazionalita']) && isset($_POST['email']) && isset($_POST['lingua_madre']) && isset($_POST['password'])) {
     try {
         $stm = $db->prepare($queryInsertTurista);
 
@@ -22,6 +22,7 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['nazional
 
         $stm->bindValue(':recapito', $_POST['recapito']);
         $stm->bindValue(':nome', $_POST['nome']);
+        $stm->bindValue(':cognome', $_POST['cognome']);
         $stm->bindValue(':nazionalita', $_POST['nazionalita']);
         $stm->bindValue(':email', $_POST['email']);
         $stm->bindValue(':lingua_madre', $_POST['lingua_madre']);
@@ -43,13 +44,13 @@ if (isset($_POST['recapito']) && isset($_POST['nome']) && isset($_POST['nazional
             $mail->Host = 'smtp.gmail.com'; // Mail SMTP server
             $mail->SMTPAuth = true; // Autorizzazione
             $mail->Username = 'alessandro.mizzon@iisviolamarchesini.edu.it';
-            $mail->Password = '...';
+            $mail->Password = 'oojs ebpf lblq ljwe';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Sicurezza
             $mail->Port = 587;
             $mail->setFrom('alessandro.mizzon@iisviolamarchesini.edu.it');
             $mail->addAddress('alessandro.mizzon@iisviolamarchesini.edu.it');
             $mail->Subject = 'Iscrizione avvenuta con successo';
-            $mail->Body = 'Caro ' . $_POST['email'] .' ti ringraziamo di aver effettuato l\'iscrizione alla nostra piattaforma';
+            $mail->Body = 'Caro ' . $_POST['nome'] . ' ' . $_POST['cognome'] . ",\nti ringraziamo di aver effettuato l'iscrizione alla nostra piattaforma.\n\nIl team di Artifex.";
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
             $mail->send();
@@ -91,6 +92,11 @@ ob_end_flush();
 
             <label for="nome"><strong>Nome</strong></label>
             <input type="text" id="nome" name="nome" required>
+            <hr>
+            <br>
+
+            <label for="cognome"><strong>Cognome</strong></label>
+            <input type="text" id="cognome" name="cognome" required>
             <hr>
             <br>
 

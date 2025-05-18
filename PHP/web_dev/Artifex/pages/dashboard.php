@@ -512,7 +512,7 @@ if(isset($_POST['modifica_titolo_visita']))
                 <div class="accordion-body">
                     <form action="dashboard_modifica.php" method="post">
                         <label for="modifica_titolo_visita"><strong>Titolo visita</strong></label>
-                        <input type="number" id="modifica_titolo_visita" name="modifica_titolo_visita" required>
+                        <input type="text" id="modifica_titolo_visita" name="modifica_titolo_visita" required>
                         <hr>
 
                         <div class="submit-container">
@@ -526,4 +526,5 @@ if(isset($_POST['modifica_titolo_visita']))
     </div>
 </div>
 
-<?php require '../references/footer.php'; ?>
+<?php ob_end_flush();
+require '../references/footer.php'; ?>
